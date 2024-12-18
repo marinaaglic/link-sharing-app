@@ -1,4 +1,5 @@
 import { ComponentPropsWithoutRef } from "react";
+import styles from "./input.module.css";
 
 type InputProps = {
   type: "text" | "number" | "email" | "password";
@@ -19,8 +20,10 @@ export default function Input({
   ...props
 }: InputProps) {
   return (
-    <div>
-      <label htmlFor={id}>{label} </label>
+    <div className={styles.container}>
+      <label htmlFor={id} className={styles.label}>
+        {label}{" "}
+      </label>
       <input id={id} name={id} {...props} />
     </div>
   );

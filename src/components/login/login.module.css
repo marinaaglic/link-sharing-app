@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 80vh;
+  height: 100vh;
 }
 
 .loginCard {
@@ -13,8 +13,6 @@
   gap: 40px;
   max-height: 482px;
   margin: auto;
-  overflow: hidden;
-  height: 100vh;
 }
 
 .loginTitle {
@@ -24,4 +22,22 @@
 
 .loginText {
   margin-bottom: 40px;
+  font-weight: lighter;
+  color: grey;
+}
+
+.loginButton {
+  width: 100%;
+  max-width: 396px;
+  min-height: 48px;
+  padding: 11px 27px;
+  display: flex;
+  gap: 8px;
+  border-radius: 8px;
+  justify-content: center;
+}
+
+.link {
+  color: grey;
+  text-align: center;
 }

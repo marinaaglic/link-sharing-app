@@ -27,7 +27,9 @@ export default function Login({}: Props) {
             name="username"
             placeholder="Enter your password"
           />
+          <button className={styles.loginButton}>Login</button>
         </form>
+        <p className={styles.link}>Don't have an account? Create account</p>
       </div>
     </div>
   );

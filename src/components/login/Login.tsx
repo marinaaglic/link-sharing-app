@@ -6,25 +6,28 @@ type Props = {};
 export default function Login({}: Props) {
   return (
     <div className={styles.container}>
+      <h1>Link Sharing App</h1>
       <div className={styles.loginCard}>
-        <div className={styles.content}>
-          <h2>Login</h2>
-          <p>Add your details below to get back into the app</p>
-        </div>
-        <Input
-          type="email"
-          label="E-mail address"
-          id="e-mail"
-          name="e-mail"
-          placeholder="e.g. alex@email.com"
-        />
-        <Input
-          type="password"
-          label="Password"
-          id="password"
-          name="username"
-          placeholder="Enter your password"
-        />
+        <h1 className={styles.loginTitle}>Login</h1>
+        <p className={styles.loginText}>
+          Add your details below to get back into the app
+        </p>
+        <form className={styles.loginForm}>
+          <Input
+            type="email"
+            label="E-mail address"
+            id="e-mail"
+            name="e-mail"
+            placeholder="e.g. alex@email.com"
+          />
+          <Input
+            type="password"
+            label="Password"
+            id="password"
+            name="username"
+            placeholder="Enter your password"
+          />
+        </form>
       </div>
     </div>
   );

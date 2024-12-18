@@ -3,22 +3,25 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 80vh;
 }
 
 .loginCard {
-  width: 50%;
-  height: 50%;
   padding: 40px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 12px;
   gap: 40px;
-
-  h2 {
-    margin-bottom: 8px;
-  }
+  max-height: 482px;
+  margin: auto;
+  overflow: hidden;
+  height: 100vh;
 }
 
-.content {
+.loginTitle {
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.loginText {
   margin-bottom: 40px;
 }

@@ -24,7 +24,7 @@ export default function Input({
       <label htmlFor={id} className={styles.label}>
         {label}{" "}
       </label>
-      <input id={id} name={id} {...props} />
+      <input id={id} name={id} {...props} className={styles.input} />
     </div>
   );
 }

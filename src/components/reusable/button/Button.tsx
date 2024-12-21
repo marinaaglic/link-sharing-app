@@ -16,7 +16,7 @@ export default function Button({
   return (
     <div className={styles.container}>
       <label>{label}</label>
-      <button className={className} {...props}>
+      <button className={styles.button} {...props}>
         {text}
       </button>
     </div>

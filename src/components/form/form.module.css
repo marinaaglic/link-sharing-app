@@ -1,0 +1,23 @@
+.formContainer {
+  padding: 40px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 12px;
+  max-height: 482px;
+  margin: auto;
+}
+
+.formTitle {
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.formDescription {
+  margin-bottom: 40px;
+  font-weight: lighter;
+  color: grey;
+}
+
+.link {
+  color: grey;
+  text-align: center;
+}

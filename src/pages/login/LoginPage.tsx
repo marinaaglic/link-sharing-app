@@ -1,7 +1,8 @@
+import styles from "./loginPage.module.css";
+
 import Form from "../../components/form/Form";
 import Input from "../../components/reusable/input/Input";
 import Button from "../../components/reusable/button/Button";
-import styles from "./loginPage.module.css";
 
 export default function LoginPage() {
   return (
@@ -10,7 +11,6 @@ export default function LoginPage() {
         <Form
           title="Login"
           text="Add your details below to get back into the app."
-          linkText="Don't have an account? Create account"
         >
           <Input
             type="email"
@@ -28,6 +28,7 @@ export default function LoginPage() {
           />
           <Button text="Login" />
         </Form>
+        <p className={styles.link}>"Don't have an account? Create account"</p>
       </div>
     </div>
   );

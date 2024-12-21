@@ -9,3 +9,8 @@
 .loginCard {
   margin: auto;
 }
+
+.link {
+  color: grey;
+  text-align: center;
+}

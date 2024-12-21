@@ -1,18 +1,17 @@
-.formContainer {
+.container {
   padding: 40px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 12px;
+  gap: 40px;
   max-height: 482px;
   margin: auto;
 }
 
-.formTitle {
-  margin-bottom: 8px;
-  font-weight: bold;
+.registrationCard {
+  margin: auto;
 }
 
-.formDescription {
-  margin-bottom: 40px;
-  font-weight: lighter;
+.link {
   color: grey;
+  text-align: center;
 }

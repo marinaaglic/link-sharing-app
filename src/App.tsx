@@ -1,7 +1,11 @@
+// import LoginPage from "./pages/login/LoginPage";
+import RegistrationPage from "./pages/registration/RegistrationPage";
+
 function App() {
   return (
     <>
-      <h1>Link Sharing app</h1>
+      {/* <LoginPage /> */}
+      <RegistrationPage />
     </>
   );
 }

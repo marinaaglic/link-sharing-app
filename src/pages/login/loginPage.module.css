@@ -16,5 +16,5 @@
 }
 
 a {
-  color: #66a182;
+  color: var(--zomp);
 }

@@ -8,4 +8,7 @@
   border-radius: 8px;
   justify-content: center;
   font-family: "Poppins", sans-serif;
+  background-color: #2e4057;
+  border: none;
+  color: white;
 }

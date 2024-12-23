@@ -27,7 +27,9 @@ export default function LoginPage() {
             placeholder="Enter your password"
           />
           <Button text="Login" />
-          <p className={styles.link}>Don't have an account? Create account</p>
+          <p className={styles.link}>
+            Don't have an account? <a>Create account</a>
+          </p>
         </Form>
       </div>
     </div>

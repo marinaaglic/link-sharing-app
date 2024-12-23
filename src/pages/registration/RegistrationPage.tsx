@@ -37,7 +37,9 @@ export default function RegistrationPage() {
             Password must contain at least 8 characters.
           </p>
           <Button text="Create new account" />
-          <p className={styles.link}>Already have an account? Login</p>
+          <p className={styles.link}>
+            Already have an account? <a>Login</a>
+          </p>
         </Form>
       </div>
     </div>

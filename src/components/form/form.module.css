@@ -23,6 +23,7 @@
     box-shadow: none;
     max-height: 729px;
     margin: auto;
-    width: 90%;
+    width: auto;
+    padding: 32px;
   }
 }

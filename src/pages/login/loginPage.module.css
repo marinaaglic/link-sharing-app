@@ -18,3 +18,17 @@
 a {
   color: var(--zomp);
 }
+
+@media (max-width: 768px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+  }
+
+  .loginCard {
+    width: 100%;
+  }
+}

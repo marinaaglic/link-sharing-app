@@ -1,5 +1,5 @@
 import LoginPage from "./pages/login/LoginPage";
-import RegistrationPage from "./pages/registration/RegistrationPage";
+// import RegistrationPage from "./pages/registration/RegistrationPage";
 
 function App() {
   return (

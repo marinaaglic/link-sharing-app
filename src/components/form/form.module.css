@@ -16,3 +16,13 @@
   font-weight: lighter;
   color: grey;
 }
+
+@media (max-width: 786px) {
+  .formContainer {
+    padding: 40px;
+    box-shadow: none;
+    max-height: 729px;
+    margin: auto;
+    width: 90%;
+  }
+}

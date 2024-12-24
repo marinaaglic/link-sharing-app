@@ -1,14 +1,7 @@
 import styles from "./form.module.css";
-import { ComponentPropsWithoutRef, ReactNode } from "react";
+import { FormType } from "../../utils/type/form";
 
-type FormProps = {
-  title: string;
-  text: string;
-
-  children: ReactNode;
-} & ComponentPropsWithoutRef<"form">;
-
-export default function Form({ title, text, children }: FormProps) {
+export default function Form({ title, text, children }: FormType) {
   return (
     <div className={styles.formContainer}>
       <h1 className={styles.formTitle}>{title}</h1>

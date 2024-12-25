@@ -22,6 +22,11 @@
   font-family: "Poppins", sans-serif;
 }
 
+input:focus {
+  border-color: #ff0000;
+  box-shadow: 0 0 20px var(--tea-green);
+}
+
 @media (max-width: 768px) {
   .input {
     width: 100%;

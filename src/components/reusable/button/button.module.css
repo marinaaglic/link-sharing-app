@@ -3,9 +3,7 @@
   max-width: 396px;
   min-height: 48px;
   padding: 11px 27px;
-  gap: 8px;
   border-radius: 8px;
-  justify-content: center;
   font-family: "Poppins", sans-serif;
   background-color: var(--charcoal);
   border: none;

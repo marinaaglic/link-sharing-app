@@ -1,11 +1,9 @@
-import LoginPage from "./pages/login/LoginPage";
-import RegistrationPage from "./pages/registration/RegistrationPage";
+import AppRoutes from "./routes/AppRoutes";
 
 function App() {
   return (
     <>
-      <LoginPage />
-      <RegistrationPage />
+      <AppRoutes />
     </>
   );
 }

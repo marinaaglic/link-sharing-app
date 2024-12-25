@@ -4,6 +4,8 @@ import Form from "../../components/form/Form";
 import Input from "../../components/reusable/input/Input";
 import Button from "../../components/reusable/button/Button";
 
+import { Link } from "react-router-dom";
+
 export default function LoginPage() {
   return (
     <div className={styles.container}>
@@ -28,7 +30,8 @@ export default function LoginPage() {
           />
           <Button text="Login" />
           <p className={styles.link}>
-            Don't have an account? <a>Create account</a>
+            Don't have an account?{" "}
+            <Link to="/registration">Create account</Link>
           </p>
         </Form>
       </div>

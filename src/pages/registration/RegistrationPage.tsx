@@ -38,6 +38,7 @@ export default function RegistrationPage() {
         ...prevErrors,
         email: "Can't be empty",
         password: "Please check again",
+        confirmPassword: "Passwords do not match",
       }));
     }
   };
@@ -73,10 +74,11 @@ export default function RegistrationPage() {
           <Input
             type="password"
             label="Confirm password"
-            id="password"
-            name="password"
+            id="confirmPassword"
+            name="confirmPassword"
             value={formValues.confirmPassword}
             placeholder="At least 8 characters"
+            error={errors.confirmPassword}
             onChange={handleInputChange}
             onBlur={handleBlur}
           />

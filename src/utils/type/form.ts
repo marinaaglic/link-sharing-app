@@ -7,3 +7,9 @@ export type FormType = {
 
   children: ReactNode;
 } & ComponentPropsWithoutRef<"form">;
+
+export interface FormErrors {
+  email?: string;
+  password?: string;
+  confirmPassword?: string;
+}

@@ -3,18 +3,14 @@ import styles from "./loginPage.module.css";
 import Form from "../../components/form/Form";
 import Input from "../../components/reusable/input/Input";
 import Button from "../../components/reusable/button/Button";
+import { FormErrors } from "../../utils/type/form";
 
 import { Link } from "react-router-dom";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, FocusEvent, useState } from "react";
 
 interface LoginFormValues {
   email: string;
   password: string;
-}
-
-interface FormErrors {
-  email?: string;
-  password?: string;
 }
 
 export default function LoginPage() {
@@ -33,7 +29,7 @@ export default function LoginPage() {
     setErrors((prevErrors) => ({ ...prevErrors, [name]: undefined }));
   };
 
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
     const { value } = e.target;
     if (!value.trim()) {
       setErrors((prevErrors) => ({

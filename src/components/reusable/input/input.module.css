@@ -10,6 +10,11 @@
   font-size: 10px;
 }
 
+.inputWrapper {
+  position: relative;
+  width: 100%;
+}
+
 .input {
   box-sizing: border-box;
   width: 100%;
@@ -27,6 +32,21 @@ input:focus {
   box-shadow: 0 0 20px var(--tea-green);
 }
 
+.inputError {
+  border-color: #e74c3c;
+}
+
+.errorText {
+  position: absolute;
+  right: 90px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: #e74c3c;
+  background: #fff;
+  /* padding: 0 4px; */
+}
+
 @media (max-width: 768px) {
   .input {
     width: 100%;
@@ -37,5 +57,9 @@ input:focus {
 @media (max-width: 450px) {
   .input {
     padding: 8px 12px;
+  }
+
+  .errorText {
+    right: 30px;
   }
 }

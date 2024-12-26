@@ -5,8 +5,45 @@ import Input from "../../components/reusable/input/Input";
 import Button from "../../components/reusable/button/Button";
 
 import { Link } from "react-router-dom";
+import { ChangeEvent, useState } from "react";
+
+interface LoginFormValues {
+  email: string;
+  password: string;
+}
+
+interface FormErrors {
+  email?: string;
+  password?: string;
+}
 
 export default function LoginPage() {
+  const [formValues, setFormValues] = useState<LoginFormValues>({
+    email: "",
+    password: "",
+  });
+  const [errors, setErrors] = useState<FormErrors>({
+    email: "",
+    password: "",
+  });
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormValues((prevValues) => ({ ...prevValues, [name]: value }));
+    setErrors((prevErrors) => ({ ...prevErrors, [name]: undefined }));
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    if (!value.trim()) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        email: "Can't be empty",
+        password: "Please check again",
+      }));
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.loginCard}>
@@ -19,14 +56,22 @@ export default function LoginPage() {
             label="Email address"
             id="email"
             name="email"
+            value={formValues.email}
             placeholder="e.g. alex@email.com"
+            error={errors.email}
+            onChange={handleInputChange}
+            onBlur={handleBlur}
           />
           <Input
             type="password"
             label="Password"
             id="password"
             name="password"
+            value={formValues.password}
             placeholder="Enter your password"
+            error={errors.password}
+            onChange={handleInputChange}
+            onBlur={handleBlur}
           />
           <Button text="Login" />
           <p className={styles.link}>

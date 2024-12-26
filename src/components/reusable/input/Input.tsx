@@ -7,7 +7,6 @@ export default function Input({
   id,
   className,
   error,
-  disabled,
   ...props
 }: InputType) {
   return (
@@ -15,7 +14,16 @@ export default function Input({
       <label htmlFor={id} className={styles.label}>
         {label}{" "}
       </label>
-      <input id={id} name={id} {...props} className={styles.input} />
+      <div className={styles.inputWrapper}>
+        <input
+          id={id}
+          name={id}
+          {...props}
+          type={type}
+          className={`${styles.input} ${error ? styles.inputError : ""}`}
+        />
+        {error && <span className={styles.errorText}>{error}</span>}
+      </div>
     </div>
   );
 }

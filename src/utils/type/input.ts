@@ -6,5 +6,4 @@ export type InputType = {
   id: string;
   className?: string;
   error?: string;
-  disabled?: boolean;
 } & ComponentPropsWithoutRef<"input">;

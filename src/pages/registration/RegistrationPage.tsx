@@ -44,6 +44,7 @@ export default function RegistrationPage() {
   };
   return (
     <div className={styles.container}>
+      <h1>Link Sharing App</h1>
       <div className={styles.registrationCard}>
         <Form
           title="Create Account"

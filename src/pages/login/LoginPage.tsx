@@ -42,6 +42,7 @@ export default function LoginPage() {
 
   return (
     <div className={styles.container}>
+      <h1>Link Sharing App</h1>
       <div className={styles.loginCard}>
         <Form
           title="Login"

@@ -1,7 +1,9 @@
+import AppRoutes from "./routes/AppRoutes";
+
 function App() {
   return (
     <>
-      <h1>Link Sharing app</h1>
+      <AppRoutes />
     </>
   );
 }

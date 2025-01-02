@@ -1,0 +1,30 @@
+.formContainer {
+  padding: 40px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 12px;
+  max-height: 729px;
+  margin: auto;
+  width: 476px;
+}
+
+.formTitle {
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.formDescription {
+  margin-bottom: 40px;
+  font-weight: lighter;
+  color: grey;
+}
+
+@media (max-width: 450px) {
+  .formContainer {
+    padding: 40px;
+    box-shadow: none;
+    max-height: 729px;
+    margin: auto;
+    width: auto;
+    padding: 32px;
+  }
+}

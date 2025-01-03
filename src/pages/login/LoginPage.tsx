@@ -8,13 +8,13 @@ import { IFormErrors } from "../../components/form/form";
 import { Link } from "react-router-dom";
 import { ChangeEvent, FocusEvent, useState } from "react";
 
-interface LoginFormValues {
+interface ILoginFormValues {
   email: string;
   password: string;
 }
 
 export default function LoginPage() {
-  const [formValues, setFormValues] = useState<LoginFormValues>({
+  const [formValues, setFormValues] = useState<ILoginFormValues>({
     email: "",
     password: "",
   });

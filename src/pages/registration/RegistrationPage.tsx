@@ -8,14 +8,14 @@ import { IFormErrors } from "../../components/form/form";
 import { Link } from "react-router-dom";
 import { ChangeEvent, FocusEvent, useState } from "react";
 
-interface RegistrationFormValues {
+interface IRegistrationFormValues {
   email: string;
   password: string;
   confirmPassword: string;
 }
 
 export default function RegistrationPage() {
-  const [formValues, setFormValues] = useState<RegistrationFormValues>({
+  const [formValues, setFormValues] = useState<IRegistrationFormValues>({
     email: "",
     password: "",
     confirmPassword: "",

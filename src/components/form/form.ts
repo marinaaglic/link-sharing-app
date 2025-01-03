@@ -1,11 +1,10 @@
 import { FormHTMLAttributes } from "react";
-import { ReactNode } from "react";
 
 export type FormType = {
   title: string;
   text: string;
-
-  children: ReactNode;
+  type: "login" | "register";
+  onCTAClick: () => void;
 } & FormHTMLAttributes<HTMLFormElement>;
 
 export interface IFormErrors {

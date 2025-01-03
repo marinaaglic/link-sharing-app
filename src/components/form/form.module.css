@@ -18,6 +18,11 @@
   color: grey;
 }
 
+.link {
+  color: grey;
+  text-align: center;
+}
+
 @media (max-width: 480px) {
   .formContainer {
     padding: 40px;

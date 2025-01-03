@@ -1,9 +1,9 @@
 import styles from "./registrationPage.module.css";
 
-import Form from "../../components/form/Form";
+import FormComponent from "../../components/form/FormComponent";
 import Input from "../../components/reusable/input/Input";
-import Button from "../../components/reusable/button/Button";
-import { FormErrors } from "../../utils/type/form";
+import ButtonWithLabel from "../../components/reusable/button/ButtonWithLabel";
+import { IFormErrors } from "../../components/form/form";
 
 import { Link } from "react-router-dom";
 import { ChangeEvent, FocusEvent, useState } from "react";
@@ -20,7 +20,7 @@ export default function RegistrationPage() {
     password: "",
     confirmPassword: "",
   });
-  const [errors, setErrors] = useState<FormErrors>({
+  const [errors, setErrors] = useState<IFormErrors>({
     email: "",
     password: "",
     confirmPassword: "",
@@ -43,10 +43,10 @@ export default function RegistrationPage() {
     }
   };
   return (
-    <div className={styles.container}>
+    <div className={styles.registrationFormContainer}>
       <h1>Link Sharing App</h1>
       <div className={styles.registrationCard}>
-        <Form
+        <FormComponent
           title="Create Account"
           text="Let's get you started sharing your links!"
         >
@@ -86,11 +86,11 @@ export default function RegistrationPage() {
           <p className={styles.passReq}>
             Password must contain at least 8 characters.
           </p>
-          <Button text="Create new account" />
+          <ButtonWithLabel text="Create new account" />
           <p className={styles.link}>
             Already have an account? <Link to="/">Login</Link>
           </p>
-        </Form>
+        </FormComponent>
       </div>
     </div>
   );

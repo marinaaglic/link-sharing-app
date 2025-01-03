@@ -9,16 +9,16 @@
 
 .formTitle {
   margin-bottom: 8px;
-  font-weight: bold;
+  font-weight: 600;
 }
 
-.formDescription {
+.formSubtitle {
   margin-bottom: 40px;
-  font-weight: lighter;
+  font-weight: 500;
   color: grey;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 480px) {
   .formContainer {
     padding: 40px;
     box-shadow: none;

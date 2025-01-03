@@ -1,24 +1,17 @@
 import { InputType } from "../../../utils/type/input";
 import styles from "./input.module.css";
 
-export default function Input({
-  type,
-  label,
-  id,
-  className,
-  error,
-  ...props
-}: InputType) {
+export default function Input({ type, label, id, error, ...rest }: InputType) {
   return (
-    <div className={styles.container}>
-      <label htmlFor={id} className={styles.label}>
-        {label}{" "}
+    <div className={styles.inputContainer}>
+      <label htmlFor={id} className={styles.inputLabel}>
+        {label}
       </label>
       <div className={styles.inputWrapper}>
         <input
           id={id}
           name={id}
-          {...props}
+          {...rest}
           type={type}
           className={`${styles.input} ${error ? styles.inputError : ""}`}
         />

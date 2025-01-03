@@ -1,16 +1,15 @@
-import { ButtonType } from "../../../utils/type/button";
+import { ButtonLabelType } from "../../../utils/type/button";
 import styles from "./button.module.css";
 
-export default function Button({
+export default function ButtonWithLabel({
   label,
   text,
-  className,
-  ...props
-}: ButtonType) {
+  ...rest
+}: ButtonLabelType) {
   return (
     <div className={styles.container}>
       <label>{label}</label>
-      <button className={styles.button} {...props}>
+      <button className={styles.button} {...rest}>
         {text}
       </button>
     </div>

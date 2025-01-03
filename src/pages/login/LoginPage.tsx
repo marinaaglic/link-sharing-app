@@ -1,9 +1,9 @@
 import styles from "./loginPage.module.css";
 
-import Form from "../../components/form/Form";
+import FormComponent from "../../components/form/FormComponent";
 import Input from "../../components/reusable/input/Input";
-import Button from "../../components/reusable/button/Button";
-import { FormErrors } from "../../utils/type/form";
+import ButtonWithLabel from "../../components/reusable/button/ButtonWithLabel";
+import { IFormErrors } from "../../components/form/form";
 
 import { Link } from "react-router-dom";
 import { ChangeEvent, FocusEvent, useState } from "react";
@@ -18,7 +18,7 @@ export default function LoginPage() {
     email: "",
     password: "",
   });
-  const [errors, setErrors] = useState<FormErrors>({
+  const [errors, setErrors] = useState<IFormErrors>({
     email: "",
     password: "",
   });
@@ -41,10 +41,10 @@ export default function LoginPage() {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.loginFormContainer}>
       <h1>Link Sharing App</h1>
       <div className={styles.loginCard}>
-        <Form
+        <FormComponent
           title="Login"
           text="Add your details below to get back into the app."
         >
@@ -70,12 +70,12 @@ export default function LoginPage() {
             onChange={handleInputChange}
             onBlur={handleBlur}
           />
-          <Button text="Login" />
+          <ButtonWithLabel text="Login" />
           <p className={styles.link}>
             Don't have an account?{" "}
             <Link to="/registration">Create account</Link>
           </p>
-        </Form>
+        </FormComponent>
       </div>
     </div>
   );

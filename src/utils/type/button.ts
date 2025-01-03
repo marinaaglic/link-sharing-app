@@ -1,7 +1,6 @@
-import { ComponentPropsWithoutRef } from "react";
+import { ButtonHTMLAttributes } from "react";
 
-export type ButtonType = {
+export type ButtonLabelType = {
   label?: string;
   text: string;
-  className?: string;
-} & ComponentPropsWithoutRef<"button">;
+} & ButtonHTMLAttributes<HTMLButtonElement>;

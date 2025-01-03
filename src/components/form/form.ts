@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef } from "react";
+import { FormHTMLAttributes } from "react";
 import { ReactNode } from "react";
 
 export type FormType = {
@@ -6,9 +6,9 @@ export type FormType = {
   text: string;
 
   children: ReactNode;
-} & ComponentPropsWithoutRef<"form">;
+} & FormHTMLAttributes<HTMLFormElement>;
 
-export interface FormErrors {
+export interface IFormErrors {
   email?: string;
   password?: string;
   confirmPassword?: string;

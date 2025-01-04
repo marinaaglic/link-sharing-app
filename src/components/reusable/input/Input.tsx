@@ -1,5 +1,6 @@
 import { InputType } from "../../../utils/type/input";
 import styles from "./input.module.css";
+import clsx from "clsx";
 
 export default function Input({ type, label, id, error, ...rest }: InputType) {
   return (
@@ -13,7 +14,7 @@ export default function Input({ type, label, id, error, ...rest }: InputType) {
           name={id}
           {...rest}
           type={type}
-          className={`${styles.input} ${error ? styles.inputError : ""}`}
+          className={clsx(styles.input, { [styles.inputError]: error })}
         />
         {error && <span className={styles.errorText}>{error}</span>}
       </div>

@@ -1,6 +1,6 @@
 .formContainer {
   padding: 40px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: var(--shadow-color) 0px 3px 8px;
   border-radius: 12px;
   max-height: 729px;
   margin: auto;
@@ -15,11 +15,11 @@
 .formSubtitle {
   margin-bottom: 40px;
   font-weight: 500;
-  color: grey;
+  color: var(--grey);
 }
 
 .link {
-  color: grey;
+  color: var(--grey);
   text-align: center;
 }
 

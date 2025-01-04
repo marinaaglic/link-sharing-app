@@ -5,6 +5,10 @@
   --charcoal: #2e4057ff;
   --tea-green: #caffb9ff;
   --light-green: #aef78eff;
+  --warning-red: #e74c3c;
+  --error-red: #ff0000;
+  --shadow-color: #0000003d;
+  --grey: #808080;
 }
 
 body {

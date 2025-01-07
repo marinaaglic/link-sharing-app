@@ -8,9 +8,9 @@ import FormComponent from "../../components/form/FormComponent";
 // }
 
 export default function LoginPage() {
-  const handleLogin = () => {
-    console.log("Login action triggered");
-  };
+  // const handleLogin = () => {
+  //   console.log("Login action triggered");
+  // };
 
   return (
     <div className={styles.loginFormContainer}>
@@ -20,7 +20,7 @@ export default function LoginPage() {
           title="Login"
           text="Add your details below to get back into the app."
           type="login"
-          onCTAClick={handleLogin}
+          // onCTAClick={handleLogin}
         />
       </div>
     </div>

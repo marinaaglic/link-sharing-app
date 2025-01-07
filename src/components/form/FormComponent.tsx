@@ -1,31 +1,31 @@
 import styles from "./form.module.css";
-import { FormType } from "./form";
+import { FormType, IFormFields } from "./form";
 import ButtonWithLabel from "../reusable/button/ButtonWithLabel";
 import Input from "../reusable/input/Input";
 import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "../../utils/schema";
 
-export default function FormComponent({
-  title,
-  text,
-  type,
-  onCTAClick,
-}: FormType) {
+export default function FormComponent({ title, text, type }: FormType) {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IFormFields>({
     resolver: zodResolver(loginSchema),
     mode: "onBlur",
   });
+
+  const onSubmit: SubmitHandler<IFormFields> = (data) => {
+    console.log(data);
+  };
+
   return (
     <div className={styles.formContainer}>
       <h1 className={styles.formTitle}>{title}</h1>
       <p className={styles.formSubtitle}>{text}</p>
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <Input
           type="email"
           label="Email address"
@@ -50,7 +50,7 @@ export default function FormComponent({
         )}
         <ButtonWithLabel
           text={type === "login" ? "Login" : "Create new account"}
-          onClick={onCTAClick}
+          type="submit"
         />
         {type === "login" ? (
           <p className={styles.link}>

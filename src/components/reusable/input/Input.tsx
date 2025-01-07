@@ -1,8 +1,12 @@
+import { forwardRef } from "react";
 import { InputType } from "../../../utils/type/input";
 import styles from "./input.module.css";
 import clsx from "clsx";
 
-export default function Input({ type, label, id, error, ...rest }: InputType) {
+function Input(
+  { type, label, id, error, ...rest }: InputType,
+  ref: React.ForwardedRef<HTMLInputElement>
+) {
   return (
     <div className={styles.inputContainer}>
       <label htmlFor={id} className={styles.inputLabel}>
@@ -12,6 +16,7 @@ export default function Input({ type, label, id, error, ...rest }: InputType) {
         <input
           id={id}
           name={id}
+          ref={ref}
           {...rest}
           type={type}
           className={clsx(styles.input, { [styles.inputError]: error })}
@@ -21,3 +26,5 @@ export default function Input({ type, label, id, error, ...rest }: InputType) {
     </div>
   );
 }
+
+export default forwardRef(Input);

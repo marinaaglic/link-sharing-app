@@ -4,10 +4,10 @@ export type FormType = {
   title: string;
   text: string;
   type: "login" | "register";
-  onCTAClick: () => void;
+  onCTAClick?: () => void;
 } & FormHTMLAttributes<HTMLFormElement>;
 
-export interface IFormErrors {
+export interface IFormFields {
   email?: string;
   password?: string;
   confirmPassword?: string;

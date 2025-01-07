@@ -46,6 +46,7 @@ export default function FormComponent({ title, text, type }: FormType) {
             label="Confirm Password"
             id="confirmPassword"
             {...register("confirmPassword")}
+            error={errors.confirmPassword?.message?.toString()}
           />
         )}
         <ButtonWithLabel

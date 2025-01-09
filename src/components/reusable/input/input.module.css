@@ -1,0 +1,64 @@
+.inputContainer {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.inputLabel {
+  font-size: 10px;
+}
+
+.inputWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.input {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 396px;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid black;
+  padding: 12px 16px;
+  gap: 12px;
+  font-family: "Poppins", sans-serif;
+}
+
+input:focus {
+  border-color: var(--error-red);
+  box-shadow: 0 0 20px var(--tea-green);
+}
+
+.inputError {
+  border-color: var(--warning-red);
+}
+
+.errorText {
+  position: absolute;
+  right: 90px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: var(--warning-red);
+  background: #fff;
+}
+
+@media (max-width: 768px) {
+  .input {
+    width: 100%;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 450px) {
+  .input {
+    padding: 8px 12px;
+  }
+
+  .errorText {
+    right: 30px;
+  }
+}

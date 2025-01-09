@@ -1,0 +1,33 @@
+.registrationFormContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.registrationCard {
+  margin: auto;
+}
+
+.passReq {
+  font-size: 0.628rem;
+  color: grey;
+}
+
+a {
+  color: var(--zomp);
+}
+
+@media (max-width: 480px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+  }
+
+  .registrationCard {
+    width: 100%;
+  }
+}

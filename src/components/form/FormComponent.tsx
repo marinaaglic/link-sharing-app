@@ -6,8 +6,11 @@ import { Link } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "../../utils/schema";
+import { useAuth } from "../../context/UserAuthContext";
+import { CreateNewAccount, SignIn } from "../../utils/firebase/firebase";
 
 export default function FormComponent({ title, text, type }: FormType) {
+  const { setCurrentUser } = useAuth();
   const {
     register,
     handleSubmit,
@@ -17,7 +20,26 @@ export default function FormComponent({ title, text, type }: FormType) {
     mode: "onBlur",
   });
 
-  const onSubmit: SubmitHandler<IFormFields> = (data) => {};
+  const onSubmit: SubmitHandler<IFormFields> = async (data) => {
+    try {
+      if (type === "register") {
+        const newUser = await CreateNewAccount(data.email!, data.password!);
+        if (newUser) {
+          console.log("Saved!");
+          console.log(newUser);
+          setCurrentUser(newUser.user);
+        }
+      } else if (type === "login") {
+        const loggedUser = await SignIn(data.email!, data.password!);
+        if (loggedUser) {
+          console.log("Logged in!");
+          setCurrentUser(loggedUser.user);
+        }
+      }
+    } catch (error: any) {
+      console.log("Create account failed.", error);
+    }
+  };
 
   return (
     <div className={styles.formContainer}>

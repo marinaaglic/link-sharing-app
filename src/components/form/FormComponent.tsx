@@ -13,13 +13,11 @@ export default function FormComponent({ title, text, type }: FormType) {
     handleSubmit,
     formState: { errors },
   } = useForm<IFormFields>({
-    resolver: zodResolver(loginSchema),
+    resolver: zodResolver(loginSchema(type)),
     mode: "onBlur",
   });
 
-  const onSubmit: SubmitHandler<IFormFields> = (data) => {
-    console.log(data);
-  };
+  const onSubmit: SubmitHandler<IFormFields> = (data) => {};
 
   return (
     <div className={styles.formContainer}>

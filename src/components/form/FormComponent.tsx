@@ -26,7 +26,6 @@ export default function FormComponent({ title, text, type }: FormType) {
         const newUser = await CreateNewAccount(data.email!, data.password!);
         if (newUser) {
           console.log("Saved!");
-          console.log(newUser);
           setCurrentUser(newUser.user);
         }
       } else if (type === "login") {

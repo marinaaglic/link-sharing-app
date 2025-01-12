@@ -9,13 +9,13 @@ import {
 
 import { auth } from "../../utils/firebase/firebaseConfig";
 
-export async function CreateNewAccount(email: string, password: string) {
+export async function createNewAccount(email: string, password: string) {
   if (!email && !password) return;
 
   return await createUserWithEmailAndPassword(auth, email, password);
 }
 
-export async function SignIn(email: string, password: string) {
+export async function signIn(email: string, password: string) {
   if (!email && !password) return;
 
   return await signInWithEmailAndPassword(auth, email, password);
@@ -25,6 +25,6 @@ export function userStateListener(callback: NextOrObserver<User>) {
   return onAuthStateChanged(auth, callback);
 }
 
-export async function SignOutUser() {
+export async function signOutUser() {
   await signOut(auth);
 }

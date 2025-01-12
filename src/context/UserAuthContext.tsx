@@ -1,6 +1,6 @@
 import { User } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { SignOutUser, userStateListener } from "../utils/firebase/firebase";
+import { signOutUser, userStateListener } from "../utils/firebase/firebase";
 import {
   createContext,
   ReactNode,
@@ -33,7 +33,7 @@ export const UserAuthProvider = ({ children }: IUserAuthContextProps) => {
   }, [setCurrentUser]);
 
   const signOut = () => {
-    SignOutUser();
+    signOutUser();
     setCurrentUser(null);
     navigate("/");
   };

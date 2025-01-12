@@ -7,7 +7,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "../../utils/schema";
 import { useAuth } from "../../context/UserAuthContext";
-import { CreateNewAccount, SignIn } from "../../utils/firebase/firebase";
+import { createNewAccount, signIn } from "../../utils/firebase/firebase";
 
 export default function FormComponent({ title, text, type }: FormType) {
   const { setCurrentUser } = useAuth();
@@ -23,13 +23,13 @@ export default function FormComponent({ title, text, type }: FormType) {
   const onSubmit: SubmitHandler<IFormFields> = async (data) => {
     try {
       if (type === "register") {
-        const newUser = await CreateNewAccount(data.email!, data.password!);
+        const newUser = await createNewAccount(data.email!, data.password!);
         if (newUser) {
           console.log("Saved!");
           setCurrentUser(newUser.user);
         }
       } else if (type === "login") {
-        const loggedUser = await SignIn(data.email!, data.password!);
+        const loggedUser = await signIn(data.email!, data.password!);
         if (loggedUser) {
           console.log("Logged in!");
           setCurrentUser(loggedUser.user);

@@ -23,23 +23,20 @@ export default function FormComponent({ title, text, type }: FormType) {
 
   const onSubmit: SubmitHandler<IFormFields> = async (data) => {
     try {
-      if (type === "register") {
-        const newUser = await createNewAccount(data.email!, data.password!);
-        if (newUser) {
-          console.log("Saved!");
-          setCurrentUser(newUser.user);
-          reset();
-        }
-      } else if (type === "login") {
-        const loggedUser = await signIn(data.email!, data.password!);
-        if (loggedUser) {
-          console.log("Logged in!");
-          setCurrentUser(loggedUser.user);
-          reset();
-        }
+      const action = type === "register" ? createNewAccount : signIn;
+      const user = await action(data.email!, data.password!);
+
+      if (user) {
+        const successMessage = type === "register" ? "Saved!" : "Logged in!";
+        console.log(successMessage);
+        setCurrentUser(user.user);
+        reset();
       }
     } catch (error: any) {
-      console.log("Create account failed.", error);
+      const errorMessage =
+        type === "register" ? "Create account failed." : "Login failed.";
+
+      console.error(errorMessage, error);
     }
   };
 

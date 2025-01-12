@@ -6,19 +6,38 @@ import { Link } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "../../utils/schema";
+import { useAuth } from "../../context/UserAuthContext";
+import { createNewAccount, signIn } from "../../utils/firebase/firebase";
 
 export default function FormComponent({ title, text, type }: FormType) {
+  const { setCurrentUser } = useAuth();
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<IFormFields>({
-    resolver: zodResolver(loginSchema),
+    resolver: zodResolver(loginSchema(type)),
     mode: "onBlur",
   });
 
-  const onSubmit: SubmitHandler<IFormFields> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<IFormFields> = async (data) => {
+    try {
+      const action = type === "register" ? createNewAccount : signIn;
+      const user = await action(data.email!, data.password!);
+
+      if (user) {
+        const successMessage = type === "register" ? "Saved!" : "Logged in!";
+        console.log(successMessage);
+        setCurrentUser(user.user);
+        reset();
+      }
+    } catch (error: any) {
+      const errorMessage =
+        type === "register" ? "Create account failed." : "Login failed.";
+
+      console.error(errorMessage, error);
+    }
   };
 
   return (

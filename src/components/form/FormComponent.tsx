@@ -14,6 +14,7 @@ export default function FormComponent({ title, text, type }: FormType) {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<IFormFields>({
     resolver: zodResolver(loginSchema(type)),
@@ -27,12 +28,14 @@ export default function FormComponent({ title, text, type }: FormType) {
         if (newUser) {
           console.log("Saved!");
           setCurrentUser(newUser.user);
+          reset();
         }
       } else if (type === "login") {
         const loggedUser = await signIn(data.email!, data.password!);
         if (loggedUser) {
           console.log("Logged in!");
           setCurrentUser(loggedUser.user);
+          reset();
         }
       }
     } catch (error: any) {

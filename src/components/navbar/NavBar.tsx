@@ -1,4 +1,3 @@
-import ButtonWithLabel from "../reusable/button/ButtonWithLabel";
 import ButtonLink from "../reusable/button/ButtonLink";
 import styles from "./navBar.module.css";
 
@@ -12,7 +11,7 @@ export default function NavBar() {
           <ButtonLink text="Profile Details" to="/profile-details" />
         </div>
         <div className={styles.previewButton}>
-          <ButtonWithLabel text="Preview" />
+          <ButtonLink text="Preview" to="/preview" />
         </div>
       </div>
     </div>

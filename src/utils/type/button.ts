@@ -6,7 +6,10 @@ export type ButtonLabelType = {
   text: string;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
+export type ButtonLinkVariant = "default" | "outlined";
+
 export type ButtonLinkType = {
   to: string;
   text: string;
+  variant?: ButtonLinkVariant;
 } & AnchorHTMLAttributes<HTMLAnchorElement>;

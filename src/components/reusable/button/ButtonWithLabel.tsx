@@ -1,7 +1,6 @@
 import { ButtonLabelType } from "../../../utils/type/button";
 import styles from "./button.module.css";
-import { ButtonLabelVariantClasses } from "../../../utils/variantClasses/buttonLabelVariantClasses";
-import clsx from "clsx";
+import { buttonLabelVariantClasses } from "../../../utils/variantClasses/buttonLabelVariantClasses";
 
 export default function ButtonWithLabel({
   label,
@@ -13,7 +12,7 @@ export default function ButtonWithLabel({
     <div className={styles.container}>
       <label>{label}</label>
       <button
-        className={clsx(variant && ButtonLabelVariantClasses[variant])}
+        className={variant && buttonLabelVariantClasses[variant]}
         {...rest}
       >
         {text}

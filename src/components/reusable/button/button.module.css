@@ -14,3 +14,10 @@
 .buttonLabelDefaul:hover {
   box-shadow: 0 0 20px var(--tea-green);
 }
+
+.buttonLabelLong {
+  width: 100%;
+  border: 1px solid var(--zomp);
+  padding: 11px 27px;
+  border-radius: 8px;
+}

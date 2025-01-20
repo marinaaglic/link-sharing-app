@@ -12,6 +12,16 @@ export default function CustomizeLinks() {
         </p>
         <ButtonWithLabel text="+ Add new link" variant="long" />
       </div>
+      <div className={styles.addedLinks}>
+        <h2>Let's get you started</h2>
+        <p className={styles.pGetStared}>
+          Use the "Add new link" button to get started. Once you have more than
+          one link, you can reorder and edit them. We are here to help you share
+          your profiles with everyone!
+        </p>
+      </div>
+      <hr />
+      <ButtonWithLabel text="Save" variant="default" />
     </div>
   );
 }

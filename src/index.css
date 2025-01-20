@@ -9,10 +9,10 @@
   --error-red: #ff0000;
   --shadow-color: #0000003d;
   --grey: #808080;
-  --background-color: #fafafa;
+  --light-grey: #fafafa;
 }
 
 body {
   font-family: "Poppins", sans-serif;
-  background-color: var(--background-color);
+  background-color: var(--light-grey);
 }

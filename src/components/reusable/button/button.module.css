@@ -20,6 +20,7 @@
   border: 1px solid var(--zomp);
   padding: 11px 27px;
   border-radius: 8px;
+  cursor: pointer;
 }
 
 .buttonLabelLong:hover {

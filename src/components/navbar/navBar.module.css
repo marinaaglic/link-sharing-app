@@ -1,5 +1,6 @@
 .navbarWrapper {
   height: auto;
+  max-height: 92px;
   padding: 16px 16px 16px 24px;
   gap: 8px;
   border-radius: 12px;

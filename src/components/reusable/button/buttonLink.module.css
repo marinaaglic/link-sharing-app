@@ -26,3 +26,8 @@
   color: var(--charcoal);
   border: 1px solid var(--zomp);
 }
+
+.buttonLinkOutlined:hover {
+  color: white;
+  background-color: var(--zomp);
+}

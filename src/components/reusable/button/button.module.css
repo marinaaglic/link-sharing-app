@@ -11,8 +11,14 @@
   cursor: pointer;
 }
 
-.buttonLabelDefaul:hover {
+.buttonLabelDefault:hover {
   box-shadow: 0 0 20px var(--tea-green);
+}
+
+.buttonLabelDefault:disabled {
+  background-color: var(--grey);
+  cursor: not-allowed;
+  box-shadow: none;
 }
 
 .buttonLabelLong {

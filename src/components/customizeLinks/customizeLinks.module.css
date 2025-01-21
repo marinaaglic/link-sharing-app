@@ -23,9 +23,14 @@
   text-align: center;
 }
 
+.saveButton {
+  text-align: right;
+}
+
 .addedLinks {
   background-color: var(--light-grey);
   border-radius: 12px;
   padding: 20px;
   margin-bottom: 24px;
+  text-align: center;
 }

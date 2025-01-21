@@ -21,7 +21,9 @@ export default function CustomizeLinks() {
         </p>
       </div>
       <hr />
-      <ButtonWithLabel text="Save" variant="default" />
+      <div className={styles.saveButton}>
+        <ButtonWithLabel text="Save" variant="default" disabled />
+      </div>
     </div>
   );
 }

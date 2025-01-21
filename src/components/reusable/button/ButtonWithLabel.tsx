@@ -1,5 +1,5 @@
 import { ButtonLabelType } from "../../../utils/type/button";
-import styles from "./button.module.css";
+import styles from "./buttonWithLabel.module.css";
 import { buttonLabelVariantClasses } from "../../../utils/variantClasses/buttonLabelVariantClasses";
 
 export default function ButtonWithLabel({

@@ -22,7 +22,7 @@ export default function CustomizeLinks() {
       </div>
       <hr />
       <div className={styles.saveButton}>
-        <ButtonWithLabel text="Save" variant="default" disabled />
+        <ButtonWithLabel text="Save" variant="defaultSmall" disabled />
       </div>
     </div>
   );

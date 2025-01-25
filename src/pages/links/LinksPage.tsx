@@ -8,8 +8,12 @@ export default function LinksPage() {
     <div className={styles.pageContainer}>
       <NavBar />
       <div className={styles.pageContent}>
-        <PhonePreview />
-        <CustomizeLinks />
+        <div className={styles.phonePreviewContainer}>
+          <PhonePreview />
+        </div>
+        <div className={styles.customizeLinksContainer}>
+          <CustomizeLinks />
+        </div>
       </div>
     </div>
   );

@@ -1,7 +1,14 @@
 .pageContent {
-  display: grid;
-  grid-template-columns: 35% 65%;
+  display: flex;
   padding: 0px 24px 24px 24px;
   gap: 24px;
   justify-content: center;
+}
+
+.phonePreviewContainer {
+  flex: 0 0 35%;
+}
+
+.customizeLinksContainer {
+  flex: 0 0 65%;
 }

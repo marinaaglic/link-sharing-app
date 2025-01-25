@@ -1,6 +1,7 @@
 .pageContent {
   display: grid;
-  grid-template-columns: 40% 60%;
-  padding: 24px;
+  grid-template-columns: 35% 65%;
+  padding: 0px 24px 24px 24px;
   gap: 24px;
+  justify-content: center;
 }

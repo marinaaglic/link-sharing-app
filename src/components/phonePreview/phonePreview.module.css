@@ -6,3 +6,20 @@
   padding: 40px;
   box-sizing: border-box;
 }
+
+.phoneOutline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 307px;
+  height: 631px;
+  border: 1px solid var(--grey);
+  border-radius: 35px;
+}
+
+.phoneInline {
+  width: 285px;
+  height: 611px;
+  border: 1px solid var(--grey);
+  border-radius: 35px;
+}

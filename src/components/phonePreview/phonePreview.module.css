@@ -18,8 +18,19 @@
 }
 
 .phoneInline {
+  display: flex;
+  justify-content: center;
+
   width: 285px;
   height: 611px;
   border: 1px solid var(--grey);
   border-radius: 35px;
+}
+
+.profileCircle {
+  width: 96px;
+  height: 96px;
+  background-color: var(--light-grey);
+  border-radius: 50%;
+  margin: 24px;
 }

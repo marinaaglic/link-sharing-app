@@ -3,6 +3,7 @@
   height: 100%;
   border-radius: 12px;
   box-shadow: var(--shadow-color) 0px 3px 8px;
+  background-color: white;
   padding: 40px;
   box-sizing: border-box;
 }

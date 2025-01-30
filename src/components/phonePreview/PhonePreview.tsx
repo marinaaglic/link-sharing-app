@@ -7,8 +7,8 @@ export default function PhonePreview() {
         <div className={styles.phoneInline}>
           <div className={styles.profileHeader}>
             <div className={styles.profileCircle}></div>
-            <div className={styles.name}></div>
             <div className={styles.contact}></div>
+            <div className={styles.name}></div>
           </div>
 
           <div className={styles.phoneContent}>

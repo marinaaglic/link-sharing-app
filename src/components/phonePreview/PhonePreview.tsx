@@ -5,9 +5,17 @@ export default function PhonePreview() {
     <div className={styles.phoneWrapper}>
       <div className={styles.phoneOutline}>
         <div className={styles.phoneInline}>
-          <div className={styles.profileCircle}></div>
-          <div className={styles.contact}></div>
-          <div className={styles.name}></div>
+          <div className={styles.profileHeader}>
+            <div className={styles.profileCircle}></div>
+            <div className={styles.name}></div>
+            <div className={styles.contact}></div>
+          </div>
+
+          <div className={styles.phoneContent}>
+            {Array.from({ length: 5 }).map((_, index) => (
+              <div className={styles.linkElement} key={index}></div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

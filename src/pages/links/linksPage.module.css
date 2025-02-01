@@ -12,3 +12,13 @@
 .customizeLinksContainer {
   flex: 0 0 65%;
 }
+
+@media (max-width: 768px) {
+  .phonePreviewContainer {
+    display: none;
+  }
+
+  .customizeLinksContainer {
+    flex: 1;
+  }
+}

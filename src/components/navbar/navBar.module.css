@@ -19,3 +19,18 @@
   display: flex;
   gap: 16px;
 }
+
+@media (max-width: 480px) {
+  h2 {
+    font-size: 15px;
+  }
+
+  .navbarWrapper {
+    margin: 0px;
+    padding: 16px;
+  }
+
+  .buttonsContainer {
+    gap: 8px;
+  }
+}

@@ -7,11 +7,17 @@ export default function NavBar() {
       <div className={styles.navbarContainer}>
         <h2>Link Sharing App</h2>
         <div className={styles.buttonsContainer}>
-          <ButtonLink text="Links" to="/links" variant="default" />
+          <ButtonLink
+            text="Links"
+            to="/links"
+            variant="default"
+            imgSrc="/link-teal.svg"
+          />
           <ButtonLink
             text="Profile Details"
             to="/profile-details"
             variant="default"
+            imgSrc="/profile-teal.svg"
           />
         </div>
         <div className={styles.previewButton}>

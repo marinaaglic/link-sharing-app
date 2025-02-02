@@ -8,6 +8,7 @@ export default function ButtonLink({
   to,
   text,
   variant,
+  imgSrc,
   ...rest
 }: ButtonLinkType) {
   return (
@@ -21,6 +22,7 @@ export default function ButtonLink({
           })
         }
       >
+        {imgSrc && <img src={imgSrc} />}
         {text}
       </NavLink>
     </div>

@@ -14,5 +14,6 @@ export type ButtonLinkVariant = "default" | "outlined";
 export type ButtonLinkType = {
   to: string;
   text: string;
+  imgSrc?: string;
   variant?: ButtonLinkVariant;
 } & AnchorHTMLAttributes<HTMLAnchorElement>;

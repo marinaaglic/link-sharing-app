@@ -6,9 +6,8 @@ import { buttonLinkVariantClasses } from "../../../utils/variantClasses/buttonLi
 
 export default function ButtonLink({
   to,
-  text,
+  children,
   variant,
-  imgSrc,
   ...rest
 }: ButtonLinkType) {
   return (
@@ -22,8 +21,7 @@ export default function ButtonLink({
           })
         }
       >
-        {imgSrc && <img src={imgSrc} className={styles.icon} />}
-        {<span className={styles.text}>{text}</span>}
+        {children}
       </NavLink>
     </div>
   );

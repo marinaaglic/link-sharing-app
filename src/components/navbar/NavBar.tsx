@@ -7,26 +7,20 @@ export default function NavBar() {
       <div className={styles.navbarContainer}>
         <h2>Link Sharing App</h2>
         <div className={styles.buttonsContainer}>
-          <ButtonLink
-            text="Links"
-            to="/links"
-            variant="default"
-            imgSrc="/link-teal.svg"
-          />
-          <ButtonLink
-            text="Profile Details"
-            to="/profile-details"
-            variant="default"
-            imgSrc="/profile-teal.svg"
-          />
+          <ButtonLink to="/links" variant="default">
+            <img src="/link-teal.svg" className={styles.linkIcon} />
+            <span className={styles.linksText}>Links</span>
+          </ButtonLink>
+          <ButtonLink to="/profile-details" variant="default">
+            <img src="/profile-teal.svg" className={styles.profileIcon} />
+            <span className={styles.profileText}>Profile</span>
+          </ButtonLink>
         </div>
         <div className={styles.previewButton}>
-          <ButtonLink
-            text="Preview"
-            to="/preview"
-            variant="outlined"
-            imgSrc="/preview.svg"
-          />
+          <ButtonLink to="/preview" variant="outlined">
+            <img src="/preview.svg" className={styles.previewIcon} />
+            <span className={styles.previewText}>Preview</span>
+          </ButtonLink>
         </div>
       </div>
     </div>

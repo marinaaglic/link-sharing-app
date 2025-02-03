@@ -33,6 +33,13 @@
   background-color: var(--zomp);
 }
 
+@media (max-width: 768px) {
+  .buttonLinkDefault,
+  .buttonLinkOutlined {
+    font-size: 14px;
+  }
+}
+
 @media (max-width: 480px) {
   .text {
     display: none;

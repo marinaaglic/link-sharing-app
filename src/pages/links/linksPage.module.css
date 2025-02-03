@@ -22,3 +22,9 @@
     flex: 1;
   }
 }
+
+@media (max-width: 480px) {
+  .pageContent {
+    padding: 5px;
+  }
+}

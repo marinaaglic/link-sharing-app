@@ -45,3 +45,10 @@
   color: white;
   background-color: var(--zomp);
 }
+
+@media (max-width: 480px) {
+  .buttonLabelSmall {
+    max-width: unset;
+    width: 100%;
+  }
+}

@@ -20,17 +20,25 @@
   gap: 16px;
 }
 
+.previewIcon {
+  display: none;
+}
+
 @media (max-width: 480px) {
   h2 {
-    font-size: 15px;
+    font-size: 12px;
   }
 
   .navbarWrapper {
-    margin: 0px;
+    margin: 0px 0px 10px 0px;
     padding: 16px;
   }
 
   .buttonsContainer {
     gap: 8px;
+  }
+
+  .previewIcon {
+    display: block;
   }
 }

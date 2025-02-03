@@ -22,8 +22,8 @@ export default function ButtonLink({
           })
         }
       >
-        {imgSrc && <img src={imgSrc} />}
-        {text}
+        {imgSrc && <img src={imgSrc} className={styles.icon} />}
+        {<span className={styles.text}>{text}</span>}
       </NavLink>
     </div>
   );

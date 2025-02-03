@@ -21,7 +21,12 @@ export default function NavBar() {
           />
         </div>
         <div className={styles.previewButton}>
-          <ButtonLink text="Preview" to="/preview" variant="outlined" />
+          <ButtonLink
+            text="Preview"
+            to="/preview"
+            variant="outlined"
+            imgSrc="/preview.svg"
+          />
         </div>
       </div>
     </div>

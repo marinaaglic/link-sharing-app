@@ -32,3 +32,13 @@
   color: white;
   background-color: var(--zomp);
 }
+
+@media (max-width: 480px) {
+  .text {
+    display: none;
+  }
+
+  .buttonLinkOutlined {
+    padding: 11px 16px;
+  }
+}

@@ -1,0 +1,54 @@
+.buttonLabelDefault {
+  width: 100%;
+  max-width: 396px;
+  min-height: 48px;
+  padding: 11px 27px;
+  border-radius: 8px;
+  font-family: inherit;
+  background-color: var(--charcoal);
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.buttonLabelDefault:hover {
+  box-shadow: 0 0 20px var(--tea-green);
+}
+
+.buttonLabelSmall {
+  max-width: 91px;
+  min-height: 48px;
+  padding: 11px 27px;
+  border-radius: 8px;
+  font-family: inherit;
+  background-color: var(--charcoal);
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.buttonLabelSmall:disabled {
+  background-color: var(--grey);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.buttonLabelLong {
+  width: 100%;
+  border: 1px solid var(--zomp);
+  padding: 11px 27px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.buttonLabelLong:hover {
+  color: white;
+  background-color: var(--zomp);
+}
+
+@media (max-width: 480px) {
+  .buttonLabelSmall {
+    max-width: unset;
+    width: 100%;
+  }
+}

@@ -1,0 +1,76 @@
+.phoneWrapper {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  box-shadow: var(--shadow-color) 0px 3px 8px;
+  background-color: white;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.phoneOutline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 307px;
+  height: 631px;
+  border: 1px solid var(--grey);
+  border-radius: 35px;
+}
+
+.phoneInline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 285px;
+  height: 611px;
+  border: 1px solid var(--grey);
+  border-radius: 35px;
+  gap: 20px;
+}
+
+.profileHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 24px;
+}
+
+.profileCircle {
+  width: 96px;
+  height: 96px;
+  background-color: var(--light-grey);
+  border-radius: 50%;
+  margin: 24px;
+}
+
+.contact {
+  width: 160px;
+  height: 16px;
+  border-radius: 8px;
+  background-color: var(--light-grey);
+  margin-bottom: 13px;
+}
+
+.name {
+  width: 72px;
+  height: 8px;
+  border-radius: 8px;
+  background-color: var(--light-grey);
+}
+
+.phoneContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  width: 90%;
+}
+
+.linkElement {
+  background-color: var(--light-grey);
+  border-radius: 8px;
+  width: 100%;
+  height: 44px;
+}

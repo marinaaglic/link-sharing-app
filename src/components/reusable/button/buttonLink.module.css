@@ -1,0 +1,47 @@
+.buttonLinkDefault {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 8px;
+  padding: 11px 27px;
+  font-size: 16px;
+  text-decoration: none;
+  color: var(--charcoal);
+  gap: 8px;
+}
+
+.buttonLinkDefault.active {
+  background-color: var(--tea-green);
+}
+
+.buttonLinkOutlined {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 8px;
+  padding: 11px 27px;
+  font-size: 16px;
+  text-decoration: none;
+  color: var(--charcoal);
+  border: 1px solid var(--zomp);
+}
+
+.buttonLinkOutlined:hover {
+  color: white;
+  background-color: var(--zomp);
+}
+
+@media (max-width: 768px) {
+  .buttonLinkDefault,
+  .buttonLinkOutlined {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .buttonLinkOutlined {
+    padding: 11px 16px;
+  }
+}

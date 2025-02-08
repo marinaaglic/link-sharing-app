@@ -71,6 +71,7 @@ export default function FormComponent({ title, text, type }: FormType) {
         <ButtonWithLabel
           text={type === "login" ? "Login" : "Create new account"}
           type="submit"
+          variant="default"
         />
         {type === "login" ? (
           <p className={styles.link}>

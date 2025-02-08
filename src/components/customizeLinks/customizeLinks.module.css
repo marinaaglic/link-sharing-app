@@ -1,0 +1,36 @@
+.customizeWrapper {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  box-shadow: var(--shadow-color) 0px 3px 8px;
+  background-color: white;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.customizeHeader {
+  margin-bottom: 24px;
+}
+
+.pHeader {
+  font-size: 16px;
+  color: var(--grey);
+}
+
+.pGetStared {
+  font-size: 16px;
+  color: var(--grey);
+  text-align: center;
+}
+
+.saveButton {
+  text-align: end;
+}
+
+.addedLinks {
+  background-color: var(--light-grey);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+  text-align: center;
+}

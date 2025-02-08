@@ -1,0 +1,56 @@
+.navbarWrapper {
+  height: auto;
+  max-height: 92px;
+  padding: 16px 24px;
+  margin: 24px;
+  border-radius: 12px;
+  background-color: white;
+}
+
+.navbarContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+}
+
+.buttonsContainer {
+  display: flex;
+  gap: 16px;
+}
+
+.previewIcon {
+  display: none;
+}
+
+@media (max-width: 786px) {
+  h2 {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  h2 {
+    font-size: 12px;
+  }
+
+  .navbarWrapper {
+    margin: 0px 0px 10px 0px;
+    padding: 16px;
+  }
+
+  .buttonsContainer {
+    gap: 0px;
+  }
+
+  .previewIcon {
+    display: block;
+  }
+
+  .linksText,
+  .profileText,
+  .previewText {
+    display: none;
+  }
+}

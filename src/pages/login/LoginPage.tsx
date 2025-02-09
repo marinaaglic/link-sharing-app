@@ -1,6 +1,6 @@
 import styles from "./loginPage.module.css";
 
-import FormComponent from "../../components/form/FormComponent";
+import FormComponent from "../../components/form/loginAndRegister/FormComponent";
 
 export default function LoginPage() {
   return (

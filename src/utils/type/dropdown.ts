@@ -1,4 +1,4 @@
-export interface IOption {
+export interface IPlatform {
   id: string;
   name: string;
   imgUrl?: string;

@@ -7,10 +7,8 @@
 label {
   display: block;
   margin-bottom: 8px;
-  font-weight: bold;
   text-align: left;
   font-size: 10px;
-  font-weight: 100;
 }
 
 .dropdown {
@@ -25,7 +23,7 @@ label {
 .selected {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .selected img {
@@ -45,6 +43,7 @@ label {
   width: 100%;
   background: white;
   z-index: 10;
+  margin-top: 30px;
 }
 
 .options li {
@@ -53,6 +52,7 @@ label {
   gap: 10px;
   padding: 10px;
   cursor: pointer;
+  color: var(--dark-grey);
 }
 
 .options li:hover {

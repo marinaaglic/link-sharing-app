@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "./dropdown.module.css";
 import { IPlatform } from "../../../utils/type/dropdown";
+import usePlatforms from "../../../hooks/usePlatforms";
 
 interface DropdownProps {
   options: IPlatform[];
@@ -8,30 +9,17 @@ interface DropdownProps {
   onSelect: (option: IPlatform) => void;
 }
 
-const platforms: IPlatform[] = [
-  {
-    id: "github",
-    name: "Github",
-  },
-  {
-    id: "youtube",
-    name: "Youtube",
-  },
-  {
-    id: "linkedin",
-    name: "LinkedIn",
-  },
-  {
-    id: "facebook",
-    name: "Facebook",
-  },
-];
-
 export default function Dropdown() {
+  const platforms = usePlatforms();
   const [selectedPlatform, setSelectedPlatfrom] = useState<IPlatform | null>(
     null
   );
   const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const handleSelect = (platform: IPlatform) => {
+    setSelectedPlatfrom(platform);
+    setIsOpen(false);
+  };
 
   return (
     <div className={styles.dropdownWrapper}>
@@ -41,17 +29,20 @@ export default function Dropdown() {
       <div className={styles.dropdown} onClick={() => setIsOpen(!isOpen)}>
         {selectedPlatform ? (
           <>
-            <img src={selectedPlatform.imgUrl} />
+            {selectedPlatform.iconURL && <img src={selectedPlatform.iconURL} />}
+            <span>{selectedPlatform.name}</span>
           </>
         ) : (
-          <span>Odaberi platformu</span>
+          <span>Select platform</span>
         )}
       </div>
       {isOpen && (
         <ul className={styles.options}>
           {platforms.map((platform) => (
-            <li key={platform.id}>
-              <img src={platform.imgUrl} />
+            <li key={platform.id} onClick={() => handleSelect(platform)}>
+              {platform.iconURL && (
+                <img src={platform.iconURL} alt={platform.name} />
+              )}
               <span>{platform.name}</span>
             </li>
           ))}

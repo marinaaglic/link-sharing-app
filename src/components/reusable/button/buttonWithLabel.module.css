@@ -46,6 +46,13 @@
   background-color: var(--zomp);
 }
 
+.buttonLabelText {
+  border: none;
+  background-color: unset;
+  color: var(--grey);
+  cursor: pointer;
+}
+
 @media (max-width: 480px) {
   .buttonLabelSmall {
     max-width: unset;

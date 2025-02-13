@@ -9,7 +9,7 @@ export default function LinkFrom() {
       <form className={styles.linkForm}>
         <div className={styles.linkFormHeader}>
           <p>Link #1</p>
-          <ButtonWithLabel text="Remove" />
+          <ButtonWithLabel text="Remove" variant="textOnly" />
         </div>
         <div className={styles.inputContainer}>
           <Dropdown />

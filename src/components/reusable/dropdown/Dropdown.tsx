@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "./dropdown.module.css";
-import { IPlatform } from "../../../utils/type/dropdown";
+import { IPlatform } from "../../form/link/linkForm";
 import usePlatforms from "../../../hooks/usePlatforms";
 
 interface DropdownProps {

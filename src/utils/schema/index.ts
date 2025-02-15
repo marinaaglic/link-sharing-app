@@ -20,3 +20,10 @@ export const loginSchema = (type: "login" | "register") =>
         path: ["confirmPassword"],
       }
     );
+
+export const linkSchema = z.object({
+  url: z
+    .string()
+    .min(1, { message: "Can't be empty" })
+    .url({ message: "Please check the URL" }),
+});

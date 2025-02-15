@@ -3,3 +3,8 @@ export interface IPlatform {
   name: string;
   iconURL?: string;
 }
+
+export interface ILinkFormFields {
+  platform: string;
+  url: string;
+}

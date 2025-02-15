@@ -1,6 +1,6 @@
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebaseConfig";
-import { IPlatform } from "../../type/dropdown";
+import { IPlatform } from "../../../components/form/link/linkForm";
 
 export const fetchPlatforms = async (): Promise<IPlatform[]> => {
   try {

@@ -5,6 +5,11 @@ import LinkForm from "../form/link/LinkFrom";
 
 export default function CustomizeLinks() {
   const [showForm, setShowForm] = useState<boolean>(false);
+  const [isFormValid, setIsFormValid] = useState<boolean>(false);
+
+  const handleFormValidation = (valid: boolean) => {
+    setIsFormValid(valid);
+  };
   return (
     <div className={styles.customizeWrapper}>
       <div className={styles.customizeHeader}>
@@ -30,12 +35,16 @@ export default function CustomizeLinks() {
             </p>
           </>
         ) : (
-          <LinkForm />
+          <LinkForm onFormValidation={handleFormValidation} />
         )}
       </div>
       <hr />
       <div className={styles.saveButton}>
-        <ButtonWithLabel text="Save" variant="defaultSmall" disabled />
+        <ButtonWithLabel
+          text="Save"
+          variant="defaultSmall"
+          disabled={!isFormValid}
+        />
       </div>
     </div>
   );

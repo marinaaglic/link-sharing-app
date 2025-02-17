@@ -1,23 +1,22 @@
 import { useState } from "react";
 import styles from "./dropdown.module.css";
 import { IPlatform } from "../../form/link/linkForm";
-import usePlatforms from "../../../hooks/usePlatforms";
 
 interface DropdownProps {
   options: IPlatform[];
-  selectedOption: IPlatform;
+  selectedOption: IPlatform | null;
   onSelect: (option: IPlatform) => void;
 }
 
-export default function Dropdown() {
-  const platforms = usePlatforms();
-  const [selectedPlatform, setSelectedPlatfrom] = useState<IPlatform | null>(
-    null
-  );
+export default function Dropdown({
+  options,
+  selectedOption,
+  onSelect,
+}: DropdownProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleSelect = (platform: IPlatform) => {
-    setSelectedPlatfrom(platform);
+    onSelect(platform);
     setIsOpen(false);
   };
 
@@ -27,10 +26,10 @@ export default function Dropdown() {
         Platform
       </label>
       <div className={styles.dropdown} onClick={() => setIsOpen(!isOpen)}>
-        {selectedPlatform ? (
+        {selectedOption ? (
           <>
-            {selectedPlatform.iconURL && <img src={selectedPlatform.iconURL} />}
-            <span>{selectedPlatform.name}</span>
+            {selectedOption.iconURL && <img src={selectedOption.iconURL} />}
+            <span>{selectedOption.name}</span>
           </>
         ) : (
           <span>Select platform</span>
@@ -38,12 +37,10 @@ export default function Dropdown() {
       </div>
       {isOpen && (
         <ul className={styles.options}>
-          {platforms.map((platform) => (
-            <li key={platform.id} onClick={() => handleSelect(platform)}>
-              {platform.iconURL && (
-                <img src={platform.iconURL} alt={platform.name} />
-              )}
-              <span>{platform.name}</span>
+          {options.map((option) => (
+            <li key={option.id} onClick={() => handleSelect(option)}>
+              {option.iconURL && <img src={option.iconURL} alt={option.name} />}
+              <span>{option.name}</span>
             </li>
           ))}
         </ul>

@@ -1,6 +1,5 @@
 .buttonLabelDefault {
   width: 100%;
-  max-width: 396px;
   min-height: 48px;
   padding: 11px 27px;
   border-radius: 8px;
@@ -44,6 +43,13 @@
 .buttonLabelLong:hover {
   color: white;
   background-color: var(--zomp);
+}
+
+.buttonLabelText {
+  border: none;
+  background-color: unset;
+  color: var(--grey);
+  cursor: pointer;
 }
 
 @media (max-width: 480px) {

@@ -6,4 +6,5 @@ export const buttonLabelVariantClasses: Record<ButtonLabelVariant, string> = {
   defaultSmall: styles.buttonLabelSmall,
   long: styles.buttonLabelLong,
   square: styles.buttonLabelSquare,
+  textOnly: styles.buttonLabelText,
 };

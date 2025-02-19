@@ -1,16 +1,18 @@
 import styles from "./form.module.css";
 import { FormType, IFormFields } from "./form";
-import ButtonWithLabel from "../reusable/button/ButtonWithLabel";
-import Input from "../reusable/input/Input";
+import ButtonWithLabel from "../../reusable/button/ButtonWithLabel";
+import Input from "../../reusable/input/Input";
 import { Link } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema } from "../../utils/schema";
-import { useAuth } from "../../context/UserAuthContext";
-import { createNewAccount, signIn } from "../../utils/firebase/firebase";
+import { loginSchema } from "../../../utils/schema";
+import { useAuth } from "../../../context/UserAuthContext";
+import { createNewAccount, signIn } from "../../../utils/firebase/firebase";
+import { useNavigate } from "react-router-dom";
 
 export default function FormComponent({ title, text, type }: FormType) {
   const { setCurrentUser } = useAuth();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -30,6 +32,7 @@ export default function FormComponent({ title, text, type }: FormType) {
         const successMessage = type === "register" ? "Saved!" : "Logged in!";
         console.log(successMessage);
         setCurrentUser(user.user);
+        navigate("/links");
         reset();
       }
     } catch (error: any) {

@@ -47,7 +47,10 @@ export default function LinkFrom({ onFormValidation }: LinkFormProps) {
       <form className={styles.linkForm}>
         <div className={styles.linkFormHeader}>
           <p>Link #1</p>
-          <ButtonWithLabel text="Remove" variant="textOnly" />
+          <div className={styles.buttonDiv}>
+            <ButtonWithLabel text="Edit" variant="textOnly" />
+            <ButtonWithLabel text="Remove" variant="textOnly" />
+          </div>
         </div>
         <div className={styles.inputContainer}>
           <Dropdown

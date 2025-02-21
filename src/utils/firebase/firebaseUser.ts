@@ -7,7 +7,7 @@ import {
   User,
 } from "firebase/auth";
 
-import { auth } from "../../utils/firebase/firebaseConfig";
+import { auth } from "./firebaseConfig";
 
 export async function createNewAccount(email: string, password: string) {
   if (!email && !password) return;

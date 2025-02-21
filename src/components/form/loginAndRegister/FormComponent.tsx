@@ -7,7 +7,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "../../../utils/schema";
 import { useAuth } from "../../../context/UserAuthContext";
-import { createNewAccount, signIn } from "../../../utils/firebase/firebase";
+import { createNewAccount, signIn } from "../../../utils/firebase/firebaseUser";
 import { useNavigate } from "react-router-dom";
 
 export default function FormComponent({ title, text, type }: FormType) {

@@ -9,6 +9,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { IPlatform } from "./linkForm";
 import usePlatforms from "../../../hooks/usePlatforms";
+import { addUserLink } from "../../../utils/firebase/firebaseLinks";
 
 interface LinkFormProps {
   onFormValidation: (valid: boolean) => void;

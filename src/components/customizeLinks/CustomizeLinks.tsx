@@ -1,7 +1,7 @@
 import styles from "./customizeLinks.module.css";
 import ButtonWithLabel from "../reusable/button/ButtonWithLabel";
 import { useState } from "react";
-import LinkFrom from "../form/link/LinkFrom";
+import LinkForm from "../form/link/LinkFormComponent";
 import { addUserLink } from "../../utils/firebase/firebaseLinks";
 import { ILinkFormFields } from "../form/link/linkForm";
 
@@ -54,7 +54,7 @@ export default function CustomizeLinks() {
             </p>
           </>
         ) : (
-          <LinkFrom
+          <LinkForm
             onFormValidation={handleFormValidation}
             setFormData={setFormData}
           />

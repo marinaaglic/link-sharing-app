@@ -15,7 +15,7 @@ interface LinkFormProps {
   setFormData: (linkData: ILinkFormFields) => void;
 }
 
-export default function LinkFrom({
+export default function LinkForm({
   onFormValidation,
   setFormData,
 }: LinkFormProps) {

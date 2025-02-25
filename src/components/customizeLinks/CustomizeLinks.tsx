@@ -1,15 +1,32 @@
 import styles from "./customizeLinks.module.css";
 import ButtonWithLabel from "../reusable/button/ButtonWithLabel";
 import { useState } from "react";
-import LinkForm from "../form/link/LinkFrom";
+import LinkFrom from "../form/link/LinkFrom";
+import { addUserLink } from "../../utils/firebase/firebaseLinks";
+import { ILinkFormFields } from "../form/link/linkForm";
 
 export default function CustomizeLinks() {
   const [showForm, setShowForm] = useState<boolean>(false);
   const [isFormValid, setIsFormValid] = useState<boolean>(false);
+  const [formData, setFormData] = useState<ILinkFormFields | null>(null);
 
   const handleFormValidation = (valid: boolean) => {
     setIsFormValid(valid);
   };
+
+  const handleSaveLink = async () => {
+    if (formData) {
+      console.log(formData);
+      try {
+        const newLink = await addUserLink(formData);
+        console.log("Link saved.", newLink);
+        setShowForm(false);
+      } catch (error) {
+        console.log("Error while saving link.", error);
+      }
+    }
+  };
+
   return (
     <div className={styles.customizeWrapper}>
       <div className={styles.customizeHeader}>
@@ -35,7 +52,10 @@ export default function CustomizeLinks() {
             </p>
           </>
         ) : (
-          <LinkForm onFormValidation={handleFormValidation} />
+          <LinkFrom
+            onFormValidation={handleFormValidation}
+            setFormData={setFormData}
+          />
         )}
       </div>
       <hr />
@@ -44,6 +64,7 @@ export default function CustomizeLinks() {
           text="Save"
           variant="defaultSmall"
           disabled={!isFormValid}
+          onClick={handleSaveLink}
         />
       </div>
     </div>

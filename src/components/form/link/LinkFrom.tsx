@@ -9,13 +9,16 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { IPlatform } from "./linkForm";
 import usePlatforms from "../../../hooks/usePlatforms";
-import { addUserLink } from "../../../utils/firebase/firebaseLinks";
 
 interface LinkFormProps {
   onFormValidation: (valid: boolean) => void;
+  setFormData: (linkData: ILinkFormFields) => void;
 }
 
-export default function LinkFrom({ onFormValidation }: LinkFormProps) {
+export default function LinkFrom({
+  onFormValidation,
+  setFormData,
+}: LinkFormProps) {
   const {
     register,
     handleSubmit,
@@ -32,20 +35,32 @@ export default function LinkFrom({ onFormValidation }: LinkFormProps) {
     null
   );
 
-  const handleSelectPlatform = (platform: IPlatform) => {
-    setSelectedPlatform(platform);
-  };
-
-  const urlValue = watch("url");
-  const isFormValid = !!urlValue && !errors.url && selectedPlatform !== null;
-
+  const isFormValid =
+    !!watch("url") && !errors.url && selectedPlatform !== null;
   useEffect(() => {
     onFormValidation(isFormValid);
   }, [isFormValid, onFormValidation]);
 
+  const handleSelectPlatform = (platform: IPlatform) => {
+    setSelectedPlatform(platform);
+  };
+
+  const onSubmitHandler: SubmitHandler<ILinkFormFields> = async (data) => {
+    setFormData({
+      platform: selectedPlatform?.name ?? "",
+      url: data.url,
+    });
+    console.log("Platform:", selectedPlatform?.name);
+    console.log("url:", data.url);
+    reset();
+  };
+
   return (
     <div>
-      <form className={styles.linkForm}>
+      <form
+        className={styles.linkForm}
+        onSubmit={handleSubmit(onSubmitHandler)}
+      >
         <div className={styles.linkFormHeader}>
           <p>Link #1</p>
           <div className={styles.buttonDiv}>

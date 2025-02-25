@@ -26,7 +26,11 @@ export const UserAuthProvider = ({ children }: IUserAuthContextProps) => {
   useEffect(() => {
     const unsubscribe = userStateListener((user) => {
       if (user) {
+        console.log("User state changed:", user);
         setCurrentUser(user);
+      } else {
+        console.log("User logged out.");
+        setCurrentUser(null);
       }
     });
     return unsubscribe;
@@ -37,7 +41,7 @@ export const UserAuthProvider = ({ children }: IUserAuthContextProps) => {
     setCurrentUser(null);
     navigate("/");
   };
-
+  console.log("Current user:", currentUser);
   const value = {
     currentUser,
     setCurrentUser,

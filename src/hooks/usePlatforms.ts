@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { IPlatform } from "../utils/type/dropdown";
+import { IPlatform } from "../components/form/link/linkForm";
 import { fetchPlatforms } from "../utils/firebase/api/queries";
 
 const usePlatforms = () => {

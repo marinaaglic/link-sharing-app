@@ -1,25 +1,25 @@
-import { db } from "./firebaseConfig";
-import { collection, addDoc } from "firebase/firestore";
-import { ILinkFormFields } from "../../components/form/link/linkForm";
-import { useAuth } from "../../context/UserAuthContext";
+import { addDoc, collection } from 'firebase/firestore';
+import { ILinkFormFields } from '../../components/form/link/linkForm';
+import { useAuth } from '../../context/UserAuthContext';
+import { db } from './firebaseConfig';
 
 export async function addUserLink(linkData: ILinkFormFields) {
   const { currentUser } = useAuth();
 
-  console.log("Current user:", currentUser);
+  // console.log("Current user:", currentUser);
   if (!currentUser) {
-    throw new Error("User is not logged in!");
+    throw new Error('User is not logged in!');
   }
 
   try {
-    const userLinksRef = collection(db, "users", currentUser.uid, "links");
+    const userLinksRef = collection(db, 'users', currentUser.uid, 'links');
     await addDoc(userLinksRef, {
       ...linkData,
     });
 
-    console.log("Link successfully added.");
+    console.log('Link successfully added.');
   } catch (err) {
-    console.log("Error adding links: ", err);
-    throw new Error("Failed to add a link.");
+    console.log('Error adding links: ', err);
+    throw new Error('Failed to add a link.');
   }
 }

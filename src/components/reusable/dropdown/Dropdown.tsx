@@ -1,6 +1,6 @@
-import { useState } from "react";
-import styles from "./dropdown.module.css";
-import { IPlatform } from "../../form/link/linkForm";
+import { useState } from 'react';
+import { IPlatform } from '../../form/link/linkForm';
+import styles from './dropdown.module.css';
 
 interface DropdownProps {
   options: IPlatform[];
@@ -8,11 +8,7 @@ interface DropdownProps {
   onSelect: (option: IPlatform) => void;
 }
 
-export default function Dropdown({
-  options,
-  selectedOption,
-  onSelect,
-}: DropdownProps) {
+export default function Dropdown({ options, selectedOption, onSelect }: DropdownProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleSelect = (platform: IPlatform) => {

@@ -1,9 +1,9 @@
-import { FormHTMLAttributes } from "react";
+import { FormHTMLAttributes } from 'react';
 
 export type FormType = {
   title: string;
   text: string;
-  type: "login" | "register";
+  type: 'login' | 'register';
   onCTAClick?: () => void;
 } & FormHTMLAttributes<HTMLFormElement>;
 

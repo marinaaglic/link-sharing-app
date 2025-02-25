@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { IPlatform } from "../components/form/link/linkForm";
-import { fetchPlatforms } from "../utils/firebase/api/queries";
+import { useEffect, useState } from 'react';
+import { IPlatform } from '../components/form/link/linkForm';
+import { fetchPlatforms } from '../utils/firebase/api/queries';
 
 const usePlatforms = () => {
   const [platforms, setPlatforms] = useState<IPlatform[]>([]);
@@ -10,7 +10,7 @@ const usePlatforms = () => {
         const fetchedPlatforms: IPlatform[] = await fetchPlatforms();
         setPlatforms(fetchedPlatforms);
       } catch (err) {
-        console.log("Data could not be fetched: ", err);
+        console.log('Data could not be fetched: ', err);
       }
     };
     fetchAndSetPlatforms();

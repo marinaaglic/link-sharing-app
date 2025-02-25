@@ -1,7 +1,7 @@
-import NavBar from "../../components/navbar/NavBar";
-import CustomizeLinks from "../../components/customizeLinks/CustomizeLinks";
-import PhonePreview from "../../components/phonePreview/PhonePreview";
-import styles from "./linksPage.module.css";
+import CustomizeLinks from '../../components/customizeLinks/CustomizeLinks';
+import NavBar from '../../components/navbar/NavBar';
+import PhonePreview from '../../components/phonePreview/PhonePreview';
+import styles from './linksPage.module.css';
 
 export default function LinksPage() {
   return (

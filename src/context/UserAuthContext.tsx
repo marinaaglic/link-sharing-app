@@ -1,13 +1,7 @@
-import { User } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
-import { signOutUser, userStateListener } from "../utils/firebase/firebaseUser";
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { User } from 'firebase/auth';
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { signOutUser, userStateListener } from '../utils/firebase/firebaseUser';
 
 interface IUserAuthContextProps {
   children: ReactNode;
@@ -26,10 +20,10 @@ export const UserAuthProvider = ({ children }: IUserAuthContextProps) => {
   useEffect(() => {
     const unsubscribe = userStateListener((user) => {
       if (user) {
-        console.log("User state changed:", user);
+        console.log('User state changed:', user);
         setCurrentUser(user);
       } else {
-        console.log("User logged out.");
+        console.log('User logged out.');
         setCurrentUser(null);
       }
     });
@@ -39,19 +33,15 @@ export const UserAuthProvider = ({ children }: IUserAuthContextProps) => {
   const signOut = () => {
     signOutUser();
     setCurrentUser(null);
-    navigate("/");
+    navigate('/');
   };
-  console.log("Current user:", currentUser);
+  // console.log("Current user:", currentUser);
   const value = {
     currentUser,
     setCurrentUser,
     signOut,
   };
-  return (
-    <UserAuthContext.Provider value={value}>
-      {children}
-    </UserAuthContext.Provider>
-  );
+  return <UserAuthContext.Provider value={value}>{children}</UserAuthContext.Provider>;
 };
 
 export const useAuth = () => {

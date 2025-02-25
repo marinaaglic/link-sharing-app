@@ -1,5 +1,5 @@
-import ButtonLink from "../reusable/button/ButtonLink";
-import styles from "./navBar.module.css";
+import ButtonLink from '../reusable/button/ButtonLink';
+import styles from './navBar.module.css';
 
 export default function NavBar() {
   return (

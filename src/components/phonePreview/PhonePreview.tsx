@@ -1,4 +1,4 @@
-import styles from "./phonePreview.module.css";
+import styles from './phonePreview.module.css';
 
 export default function PhonePreview() {
   return (

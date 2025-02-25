@@ -1,13 +1,12 @@
 import {
-  onAuthStateChanged,
-  signOut,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
   NextOrObserver,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
   User,
-} from "firebase/auth";
-
-import { auth } from "./firebaseConfig";
+} from 'firebase/auth';
+import { auth } from './firebaseConfig';
 
 export async function createNewAccount(email: string, password: string) {
   if (!email && !password) return;
@@ -19,15 +18,11 @@ export async function signIn(email: string, password: string) {
   if (!email || !password) return;
 
   try {
-    const userCredential = await signInWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-    console.log("Logged in user:", userCredential.user);
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    console.log('Logged in user:', userCredential.user);
     return userCredential;
   } catch (error) {
-    console.error("Login failed:", error);
+    console.error('Login failed:', error);
   }
 }
 

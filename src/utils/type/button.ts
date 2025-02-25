@@ -1,12 +1,6 @@
-import { ButtonHTMLAttributes, ReactNode } from "react";
-import { AnchorHTMLAttributes } from "react";
+import { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'react';
 
-export type ButtonLabelVariant =
-  | "default"
-  | "defaultSmall"
-  | "long"
-  | "square"
-  | "textOnly";
+export type ButtonLabelVariant = 'default' | 'defaultSmall' | 'long' | 'square' | 'textOnly';
 
 export type ButtonLabelType = {
   label?: string;
@@ -14,7 +8,7 @@ export type ButtonLabelType = {
   variant?: ButtonLabelVariant;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
-export type ButtonLinkVariant = "default" | "outlined";
+export type ButtonLinkVariant = 'default' | 'outlined';
 
 export type ButtonLinkType = {
   to: string;

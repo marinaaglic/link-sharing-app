@@ -1,5 +1,5 @@
-import styles from "../../components/reusable/button/buttonWithLabel.module.css";
-import { ButtonLabelVariant } from "../type/button";
+import styles from '../../components/reusable/button/buttonWithLabel.module.css';
+import { ButtonLabelVariant } from '../type/button';
 
 export const buttonLabelVariantClasses: Record<ButtonLabelVariant, string> = {
   default: styles.buttonLabelDefault,

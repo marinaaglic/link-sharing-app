@@ -1,17 +1,12 @@
-import styles from "./registrationPage.module.css";
-
-import FormComponent from "../../components/form/loginAndRegister/FormComponent";
+import FormComponent from '../../components/form/loginAndRegister/FormComponent';
+import styles from './registrationPage.module.css';
 
 export default function RegistrationPage() {
   return (
     <div className={styles.registrationFormContainer}>
       <h1>Link Sharing App</h1>
       <div className={styles.registrationCard}>
-        <FormComponent
-          title="Create Account"
-          text="Let's get you started sharing your links!"
-          type="register"
-        />
+        <FormComponent title="Create Account" text="Let's get you started sharing your links!" type="register" />
       </div>
     </div>
   );

@@ -39,6 +39,7 @@ export default function LinkFrom({
     !!watch("url") && !errors.url && selectedPlatform !== null;
   useEffect(() => {
     onFormValidation(isFormValid);
+    console.log("Form valid status:", isFormValid);
   }, [isFormValid, onFormValidation]);
 
   const handleSelectPlatform = (platform: IPlatform) => {
@@ -52,6 +53,7 @@ export default function LinkFrom({
     });
     console.log("Platform:", selectedPlatform?.name);
     console.log("url:", data.url);
+
     reset();
   };
 

@@ -16,7 +16,7 @@ export default function CustomizeLinks() {
 
   const handleSaveLink = async () => {
     if (formData) {
-      console.log(formData);
+      console.log("Form data: ", formData);
       try {
         const newLink = await addUserLink(formData);
         console.log("Link saved.", newLink);
@@ -24,6 +24,8 @@ export default function CustomizeLinks() {
       } catch (error) {
         console.log("Error while saving link.", error);
       }
+    } else {
+      console.log("No form data to save.");
     }
   };
 

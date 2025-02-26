@@ -6,7 +6,6 @@ import { useAuth } from "../../context/UserAuthContext";
 export async function addUserLink(linkData: ILinkFormFields) {
   const { currentUser } = useAuth();
 
-  console.log("Current user:", currentUser);
   if (!currentUser) {
     throw new Error("User is not logged in!");
   }

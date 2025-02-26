@@ -24,7 +24,7 @@ export async function signIn(email: string, password: string) {
       email,
       password
     );
-    console.log("Logged in user:", userCredential.user);
+
     return userCredential;
   } catch (error) {
     console.error("Login failed:", error);

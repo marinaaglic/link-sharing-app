@@ -1,12 +1,12 @@
-import styles from "./customizeLinks.module.css";
-import ButtonWithLabel from "../reusable/button/ButtonWithLabel";
 import { useState } from "react";
-import LinkForm from "../form/link/LinkFormComponent";
 import { addUserLink } from "../../utils/firebase/firebaseLinks";
 import { ILinkFormFields } from "../form/link/linkForm";
+import LinkForm from "../form/link/LinkFormComponent";
+import ButtonWithLabel from "../reusable/button/ButtonWithLabel";
+import styles from "./customizeLinks.module.css";
 
 export default function CustomizeLinks() {
-  const [showForm, setShowForm] = useState<boolean>(false);
+  const [showForm, setShowForm] = useState<boolean>(true);
   const [isFormValid, setIsFormValid] = useState<boolean>(false);
   const [formData, setFormData] = useState<ILinkFormFields | null>(null);
 
@@ -15,8 +15,8 @@ export default function CustomizeLinks() {
   };
 
   const handleSaveLink = async () => {
-    if (formData) {
-      console.log("Form data: ", formData);
+    if (formData && isFormValid) {
+      console.log("Form data is ready:", formData);
       try {
         const newLink = await addUserLink(formData);
         console.log("Link saved.", newLink);
@@ -24,8 +24,6 @@ export default function CustomizeLinks() {
       } catch (error) {
         console.log("Error while saving link.", error);
       }
-    } else {
-      console.log("No form data to save.");
     }
   };
 
@@ -57,18 +55,19 @@ export default function CustomizeLinks() {
           <LinkForm
             onFormValidation={handleFormValidation}
             setFormData={setFormData}
-          />
+          >
+            <ButtonWithLabel
+              text="Save"
+              variant="defaultSmall"
+              type="submit"
+              disabled={!isFormValid}
+              onClick={handleSaveLink}
+            />
+          </LinkForm>
         )}
       </div>
       <hr />
-      <div className={styles.saveButton}>
-        <ButtonWithLabel
-          text="Save"
-          variant="defaultSmall"
-          disabled={!isFormValid}
-          onClick={handleSaveLink}
-        />
-      </div>
+      <div className={styles.saveButton}></div>
     </div>
   );
 }

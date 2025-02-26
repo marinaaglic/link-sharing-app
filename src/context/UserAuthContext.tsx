@@ -40,7 +40,7 @@ export const UserAuthProvider = ({ children }: IUserAuthContextProps) => {
     setCurrentUser(null);
     navigate("/");
   };
-  console.log("Current user:", currentUser);
+
   const value = {
     currentUser,
     setCurrentUser,

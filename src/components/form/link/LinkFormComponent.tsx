@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ReactNode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import usePlatforms from "../../../hooks/usePlatforms";
 import { linkSchema } from "../../../utils/schema";
@@ -8,18 +8,13 @@ import Dropdown from "../../reusable/dropdown/Dropdown";
 import Input from "../../reusable/input/Input";
 import { ILinkFormFields, IPlatform } from "./linkForm";
 import styles from "./linkForm.module.css";
+import { addUserLink } from "../../../utils/firebase/firebaseLinks";
 
-interface LinkFormProps {
-  onFormValidation: (valid: boolean) => void;
-  setFormData: React.Dispatch<React.SetStateAction<ILinkFormFields | null>>;
-  children: ReactNode;
-}
+// interface LinkFormProps {
+//   onFormValidation: (valid: boolean) => void;
+// }
 
-export default function LinkForm({
-  onFormValidation,
-  setFormData,
-  children,
-}: LinkFormProps) {
+export default function LinkForm() {
   const {
     register,
     handleSubmit,
@@ -34,24 +29,26 @@ export default function LinkForm({
   const [selectedPlatform, setSelectedPlatform] = useState<IPlatform | null>(
     null
   );
+  const [isFormValid, setIsFormValid] = useState<boolean>(false);
 
-  const isFormValid =
-    !!watch("url") && !errors.url && selectedPlatform !== null;
   useEffect(() => {
-    onFormValidation(isFormValid);
-  }, [isFormValid, onFormValidation]);
+    setIsFormValid(!!watch("url") && !errors.url && selectedPlatform !== null);
+  }, [watch("url"), errors.url, selectedPlatform]);
 
   const handleSelectPlatform = (platform: IPlatform) => {
     setSelectedPlatform(platform);
   };
 
   const onSubmitHandler: SubmitHandler<ILinkFormFields> = async (data) => {
-    setFormData({
-      platform: selectedPlatform?.name ?? " dummy platform",
-      url: data.url || "dummy url",
-    });
-    console.log("Platform:", selectedPlatform?.name);
-    console.log("url:", data.url);
+    try {
+      const newLink = await addUserLink({
+        platform: selectedPlatform?.name ?? " dummy platform",
+        url: data.url || "dummy url",
+      });
+      console.log("Link saved.", newLink);
+    } catch (error) {
+      console.log("Error while saving link.", error);
+    }
   };
 
   return (
@@ -78,7 +75,15 @@ export default function LinkForm({
           error={errors.url?.message?.toString()}
         />
       </div>
-      {children}
+      <div className={styles.saveButton}>
+        {" "}
+        <ButtonWithLabel
+          text="Save"
+          variant="defaultSmall"
+          type="submit"
+          disabled={!isFormValid}
+        />
+      </div>
     </form>
   );
 }

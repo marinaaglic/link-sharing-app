@@ -7,3 +7,7 @@
 .buttonDiv {
   display: flex;
 }
+
+.saveButton {
+  text-align: end;
+}

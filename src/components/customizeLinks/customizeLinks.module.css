@@ -23,10 +23,6 @@
   text-align: center;
 }
 
-.saveButton {
-  text-align: end;
-}
-
 .addedLinks {
   background-color: var(--light-grey);
   border-radius: 12px;

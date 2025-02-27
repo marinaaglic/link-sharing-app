@@ -56,18 +56,20 @@ export default function CustomizeLinks() {
             onFormValidation={handleFormValidation}
             setFormData={setFormData}
           >
-            <ButtonWithLabel
-              text="Save"
-              variant="defaultSmall"
-              type="submit"
-              disabled={!isFormValid}
-              onClick={handleSaveLink}
-            />
+            <div className={styles.saveButton}>
+              {" "}
+              <ButtonWithLabel
+                text="Save"
+                variant="defaultSmall"
+                type="submit"
+                disabled={!isFormValid}
+                onClick={handleSaveLink}
+              />
+            </div>
           </LinkForm>
         )}
       </div>
       <hr />
-      <div className={styles.saveButton}></div>
     </div>
   );
 }

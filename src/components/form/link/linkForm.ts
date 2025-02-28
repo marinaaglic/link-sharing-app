@@ -5,6 +5,7 @@ export interface IPlatform {
 }
 
 export interface ILinkFormFields {
+  id: string;
   platform: string;
   url: string;
 }

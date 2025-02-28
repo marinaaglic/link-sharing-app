@@ -9,22 +9,21 @@ import Input from "../../reusable/input/Input";
 import { ILinkFormFields, IPlatform } from "./linkForm";
 import styles from "./linkForm.module.css";
 import { addUserLink } from "../../../utils/firebase/firebaseLinks";
-
-// interface LinkFormProps {
-//   onFormValidation: (valid: boolean) => void;
-// }
+import { useUserPlatforms } from "../../../context/UserPlatformsContext";
 
 export default function LinkForm() {
   const {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm<ILinkFormFields>({
     resolver: zodResolver(linkSchema),
     mode: "onBlur",
   });
   const platforms = usePlatforms();
+  const { userPlatforms, setUserPlatforms } = useUserPlatforms();
 
   const [selectedPlatform, setSelectedPlatform] = useState<IPlatform | null>(
     null
@@ -41,11 +40,22 @@ export default function LinkForm() {
 
   const onSubmitHandler: SubmitHandler<ILinkFormFields> = async (data) => {
     try {
+      const isPlatformAdded = userPlatforms.some(
+        (platform) => platform.id === selectedPlatform?.id
+      );
+
+      if (isPlatformAdded) {
+        console.log("Platform is already added.");
+        return;
+      }
       const newLink = await addUserLink({
+        id: selectedPlatform?.id as string,
         platform: selectedPlatform?.name ?? " dummy platform",
         url: data.url || "dummy url",
       });
       console.log("Link saved.", newLink);
+      reset();
+      setUserPlatforms([...userPlatforms, newLink]);
     } catch (error) {
       console.log("Error while saving link.", error);
     }

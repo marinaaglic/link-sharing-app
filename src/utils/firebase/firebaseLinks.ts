@@ -1,6 +1,7 @@
 import { auth, db } from "./firebaseConfig";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, getDoc } from "firebase/firestore";
 import { ILinkFormFields } from "../../components/form/link/linkForm";
+import { IPlatform } from "../../components/form/link/linkForm";
 
 export async function addUserLink(linkData: ILinkFormFields) {
   const user = auth.currentUser;
@@ -14,8 +15,16 @@ export async function addUserLink(linkData: ILinkFormFields) {
       ...linkData,
     });
 
-    console.log("Link successfully added.");
-    return docRef;
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      const link = docSnap.data();
+      return {
+        id: docRef.id,
+        ...link,
+      } as IPlatform;
+    } else {
+      throw new Error("No such document!");
+    }
   } catch (err) {
     console.log("Error adding links: ", err);
     throw new Error("Failed to add a link.");

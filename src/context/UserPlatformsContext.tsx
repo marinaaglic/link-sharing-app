@@ -6,8 +6,8 @@ import {
   useContext,
 } from "react";
 import { fetchUserPlatforms } from "../utils/firebase/api/queries";
-import { auth } from "../utils/firebase/firebaseConfig";
 import { IPlatform } from "../components/form/link/linkForm";
+import { useAuth } from "./UserAuthContext";
 
 interface IUserPlatformsProps {
   children: ReactNode;
@@ -23,16 +23,21 @@ export const UserPlatformsContext = createContext<
 >(undefined);
 
 export const UserPlatformsProvider = ({ children }: IUserPlatformsProps) => {
+  const { currentUser } = useAuth();
   const [userPlatforms, setUserPlatforms] = useState<IPlatform[]>([]);
 
   useEffect(() => {
-    const user = auth.currentUser;
-    if (user) {
-      fetchUserPlatforms(user.uid).then((platforms) => {
+    console.log("Current user:", currentUser);
+
+    if (currentUser) {
+      fetchUserPlatforms(currentUser.uid).then((platforms) => {
+        console.log("Setting user platforms:", platforms);
         setUserPlatforms(platforms);
       });
+    } else {
+      setUserPlatforms([]);
     }
-  }, []);
+  }, [currentUser]);
 
   const value = {
     userPlatforms,

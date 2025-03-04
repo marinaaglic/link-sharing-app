@@ -27,6 +27,8 @@ export const fetchUserPlatforms = async (
       ...doc.data(),
     })) as IPlatform[];
 
+    console.log("User platforms:", userPlatforms);
+
     return userPlatforms;
   } catch (error) {
     console.log("Error fetching user platforms", error);

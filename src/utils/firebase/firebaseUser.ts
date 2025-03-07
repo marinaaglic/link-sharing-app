@@ -5,6 +5,8 @@ import {
   signInWithEmailAndPassword,
   NextOrObserver,
   User,
+  setPersistence,
+  browserLocalPersistence,
 } from "firebase/auth";
 
 import { auth } from "./firebaseConfig";
@@ -19,6 +21,7 @@ export async function signIn(email: string, password: string) {
   if (!email || !password) return;
 
   try {
+    await setPersistence(auth, browserLocalPersistence);
     const userCredential = await signInWithEmailAndPassword(
       auth,
       email,

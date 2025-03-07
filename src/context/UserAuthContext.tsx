@@ -21,6 +21,7 @@ export const UserAuthContext = createContext({
 
 export const UserAuthProvider = ({ children }: IUserAuthContextProps) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,6 +32,7 @@ export const UserAuthProvider = ({ children }: IUserAuthContextProps) => {
         console.log("User logged out.");
         setCurrentUser(null);
       }
+      setLoading(false);
     });
     return unsubscribe;
   }, [setCurrentUser]);
@@ -40,6 +42,10 @@ export const UserAuthProvider = ({ children }: IUserAuthContextProps) => {
     setCurrentUser(null);
     navigate("/");
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   const value = {
     currentUser,

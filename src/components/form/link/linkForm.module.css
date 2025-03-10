@@ -11,3 +11,9 @@
 .saveButton {
   text-align: end;
 }
+
+.errorMessage {
+  font-size: 12px;
+  color: var(--warning-red);
+  text-align: end;
+}

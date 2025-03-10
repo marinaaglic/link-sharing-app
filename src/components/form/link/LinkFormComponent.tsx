@@ -29,6 +29,7 @@ export default function LinkForm() {
     null
   );
   const [isFormValid, setIsFormValid] = useState<boolean>(false);
+  const [platformError, setPlatformError] = useState<string | null>(null);
 
   useEffect(() => {
     setIsFormValid(!!watch("url") && !errors.url && selectedPlatform !== null);
@@ -36,6 +37,7 @@ export default function LinkForm() {
 
   const handleSelectPlatform = (platform: IPlatform) => {
     setSelectedPlatform(platform);
+    setPlatformError(null);
   };
 
   const onSubmitHandler: SubmitHandler<ILinkFormFields> = async (data) => {
@@ -45,7 +47,7 @@ export default function LinkForm() {
       );
 
       if (isPlatformAdded) {
-        console.log("Platform is already added.");
+        setPlatformError("Platform is already added.");
         return;
       }
       const newLink = await addUserLink({
@@ -53,7 +55,7 @@ export default function LinkForm() {
         platform: selectedPlatform?.name ?? " dummy platform",
         url: data.url || "dummy url",
       });
-      console.log("Link saved.", newLink);
+      console.log("Link saved.");
       reset();
       setUserPlatforms([...userPlatforms, newLink]);
     } catch (error) {
@@ -85,6 +87,7 @@ export default function LinkForm() {
           error={errors.url?.message?.toString()}
         />
       </div>
+      {platformError && <p className={styles.errorMessage}>{platformError}</p>}
       <div className={styles.saveButton}>
         {" "}
         <ButtonWithLabel

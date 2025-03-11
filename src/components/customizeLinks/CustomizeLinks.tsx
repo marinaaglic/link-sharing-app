@@ -16,20 +16,16 @@ export default function CustomizeLinks() {
           Add/edit/remove links below and then share all your profiles with the
           world!
         </p>
-        <div className={styles.addedPlatforms}>
-          <p>Added links</p>
-          {userPlatforms.map((platform) => (
-            <li key={platform.id}>{platform.platform}</li>
-          ))}
-        </div>
-        <ButtonWithLabel
-          text="+ Add new link"
-          variant="long"
-          onClick={() => setShowForm(!showForm)}
-        />
-      </div>
-      <div className={styles.addedLinks}>
-        {showForm ? (
+        {userPlatforms.length > 0 ? (
+          <div className={styles.addedPlatforms}>
+            <p>Added links</p>
+            {userPlatforms.map((platform) => (
+              <p key={platform.id} className={styles.platform}>
+                {platform.platform}
+              </p>
+            ))}
+          </div>
+        ) : (
           <>
             <h2>Let's get you started</h2>
             <p className={styles.pGetStared}>
@@ -38,10 +34,18 @@ export default function CustomizeLinks() {
               you share your profiles with everyone!
             </p>
           </>
-        ) : (
-          <LinkForm />
         )}
+        <ButtonWithLabel
+          text="+ Add new link"
+          variant="long"
+          onClick={() => setShowForm(!showForm)}
+        />
       </div>
+      {showForm && (
+        <div className={styles.linkForm}>
+          <LinkForm />
+        </div>
+      )}
 
       <hr />
     </div>

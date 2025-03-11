@@ -1,9 +1,8 @@
 import { auth, db } from "./firebaseConfig";
 import { collection, addDoc, getDoc } from "firebase/firestore";
-import { ILinkFormFields } from "../../components/form/link/linkForm";
-import { IPlatform } from "../../components/form/link/linkForm";
+import { ILinkData } from "../../components/form/link/linkForm";
 
-export async function addUserLink(linkData: ILinkFormFields) {
+export async function addUserLink(linkData: ILinkData) {
   const user = auth.currentUser;
   if (!user) {
     throw new Error("User is not logged in!");
@@ -21,7 +20,7 @@ export async function addUserLink(linkData: ILinkFormFields) {
       return {
         id: docRef.id,
         ...link,
-      } as IPlatform;
+      } as ILinkData;
     } else {
       throw new Error("No such document!");
     }

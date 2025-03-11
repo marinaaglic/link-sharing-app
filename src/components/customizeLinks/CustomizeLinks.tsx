@@ -2,9 +2,11 @@ import { useState } from "react";
 import LinkForm from "../form/link/LinkFormComponent";
 import ButtonWithLabel from "../reusable/button/ButtonWithLabel";
 import styles from "./customizeLinks.module.css";
+import { useUserPlatforms } from "../../context/UserPlatformsContext";
 
 export default function CustomizeLinks() {
   const [showForm, setShowForm] = useState<boolean>(true);
+  const { userPlatforms } = useUserPlatforms();
 
   return (
     <div className={styles.customizeWrapper}>
@@ -14,6 +16,12 @@ export default function CustomizeLinks() {
           Add/edit/remove links below and then share all your profiles with the
           world!
         </p>
+        <div className={styles.addedPlatforms}>
+          <p>Added links</p>
+          {userPlatforms.map((platform) => (
+            <li key={platform.id}>{platform.platform}</li>
+          ))}
+        </div>
         <ButtonWithLabel
           text="+ Add new link"
           variant="long"
@@ -34,6 +42,7 @@ export default function CustomizeLinks() {
           <LinkForm />
         )}
       </div>
+
       <hr />
     </div>
   );

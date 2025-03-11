@@ -6,7 +6,7 @@ import { linkSchema } from "../../../utils/schema";
 import ButtonWithLabel from "../../reusable/button/ButtonWithLabel";
 import Dropdown from "../../reusable/dropdown/Dropdown";
 import Input from "../../reusable/input/Input";
-import { ILinkFormFields, IPlatform } from "./linkForm";
+import { ILinkData, IPlatform } from "./linkForm";
 import styles from "./linkForm.module.css";
 import { addUserLink } from "../../../utils/firebase/firebaseLinks";
 import { useUserPlatforms } from "../../../context/UserPlatformsContext";
@@ -18,7 +18,7 @@ export default function LinkForm() {
     watch,
     reset,
     formState: { errors },
-  } = useForm<ILinkFormFields>({
+  } = useForm<ILinkData>({
     resolver: zodResolver(linkSchema),
     mode: "onBlur",
   });
@@ -40,7 +40,7 @@ export default function LinkForm() {
     setPlatformError(null);
   };
 
-  const onSubmitHandler: SubmitHandler<ILinkFormFields> = async (data) => {
+  const onSubmitHandler: SubmitHandler<ILinkData> = async (data) => {
     try {
       const isPlatformAdded = userPlatforms.some(
         (platform) => platform.id === selectedPlatform?.id

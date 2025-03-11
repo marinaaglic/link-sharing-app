@@ -4,7 +4,7 @@ export interface IPlatform {
   iconURL?: string;
 }
 
-export interface ILinkFormFields {
+export interface ILinkData {
   id: string;
   platform: string;
   url: string;

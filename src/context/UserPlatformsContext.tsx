@@ -6,7 +6,7 @@ import {
   useContext,
 } from "react";
 import { fetchUserPlatforms } from "../utils/firebase/api/queries";
-import { IPlatform } from "../components/form/link/linkForm";
+import { ILinkData } from "../components/form/link/linkForm";
 import { useAuth } from "./UserAuthContext";
 
 interface IUserPlatformsProps {
@@ -14,8 +14,8 @@ interface IUserPlatformsProps {
 }
 
 interface UserPlatformsContextType {
-  userPlatforms: IPlatform[];
-  setUserPlatforms: React.Dispatch<React.SetStateAction<IPlatform[]>>;
+  userPlatforms: ILinkData[];
+  setUserPlatforms: React.Dispatch<React.SetStateAction<ILinkData[]>>;
 }
 
 export const UserPlatformsContext = createContext<
@@ -24,7 +24,7 @@ export const UserPlatformsContext = createContext<
 
 export const UserPlatformsProvider = ({ children }: IUserPlatformsProps) => {
   const { currentUser } = useAuth();
-  const [userPlatforms, setUserPlatforms] = useState<IPlatform[]>([]);
+  const [userPlatforms, setUserPlatforms] = useState<ILinkData[]>([]);
 
   useEffect(() => {
     console.log("Current user:", currentUser);

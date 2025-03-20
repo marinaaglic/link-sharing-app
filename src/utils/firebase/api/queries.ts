@@ -1,6 +1,6 @@
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebaseConfig";
-import { IPlatform } from "../../../components/form/link/linkForm";
+import { ILinkData, IPlatform } from "../../../components/form/link/linkForm";
 
 export const fetchPlatforms = async (): Promise<IPlatform[]> => {
   try {
@@ -10,8 +10,28 @@ export const fetchPlatforms = async (): Promise<IPlatform[]> => {
       id: doc.id,
     }));
     return newData;
-  } catch (err) {
-    console.log("Error fetching platforms: ", err);
+  } catch (error) {
+    console.log("Error fetching platforms: ", error);
+    return [];
+  }
+};
+
+export const fetchUserPlatforms = async (
+  userId: string,
+): Promise<ILinkData[]> => {
+  try {
+    const userLinksRef = collection(db, "users", userId, "links");
+    const querySnapshot = await getDocs(userLinksRef);
+    const userPlatforms: ILinkData[] = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    })) as ILinkData[];
+
+    console.log("User platforms:", userPlatforms);
+
+    return userPlatforms;
+  } catch (error) {
+    console.log("Error fetching user platforms", error);
     return [];
   }
 };

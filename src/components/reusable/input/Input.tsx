@@ -5,7 +5,7 @@ import clsx from "clsx";
 
 function Input(
   { type, label, id, error, ...rest }: InputType,
-  ref: React.ForwardedRef<HTMLInputElement>
+  ref: React.ForwardedRef<HTMLInputElement>,
 ) {
   return (
     <div className={styles.inputContainer}>

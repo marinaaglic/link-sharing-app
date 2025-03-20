@@ -1,15 +1,13 @@
-import styles from "./customizeLinks.module.css";
-import ButtonWithLabel from "../reusable/button/ButtonWithLabel";
 import { useState } from "react";
-import LinkForm from "../form/link/LinkFrom";
+import LinkForm from "../form/link/LinkFormComponent";
+import ButtonWithLabel from "../reusable/button/ButtonWithLabel";
+import styles from "./customizeLinks.module.css";
+import { useUserPlatforms } from "../../context/UserPlatformsContext";
 
 export default function CustomizeLinks() {
-  const [showForm, setShowForm] = useState<boolean>(false);
-  const [isFormValid, setIsFormValid] = useState<boolean>(false);
+  const [showForm, setShowForm] = useState<boolean>(true);
+  const { userPlatforms } = useUserPlatforms();
 
-  const handleFormValidation = (valid: boolean) => {
-    setIsFormValid(valid);
-  };
   return (
     <div className={styles.customizeWrapper}>
       <div className={styles.customizeHeader}>
@@ -18,14 +16,16 @@ export default function CustomizeLinks() {
           Add/edit/remove links below and then share all your profiles with the
           world!
         </p>
-        <ButtonWithLabel
-          text="+ Add new link"
-          variant="long"
-          onClick={() => setShowForm(!showForm)}
-        />
-      </div>
-      <div className={styles.addedLinks}>
-        {showForm ? (
+        {userPlatforms.length > 0 ? (
+          <div className={styles.addedPlatforms}>
+            <p>Added links</p>
+            {userPlatforms.map((platform) => (
+              <p key={platform.id} className={styles.platform}>
+                {platform.platform}
+              </p>
+            ))}
+          </div>
+        ) : (
           <>
             <h2>Let's get you started</h2>
             <p className={styles.pGetStared}>
@@ -34,18 +34,20 @@ export default function CustomizeLinks() {
               you share your profiles with everyone!
             </p>
           </>
-        ) : (
-          <LinkForm onFormValidation={handleFormValidation} />
         )}
-      </div>
-      <hr />
-      <div className={styles.saveButton}>
         <ButtonWithLabel
-          text="Save"
-          variant="defaultSmall"
-          disabled={!isFormValid}
+          text="+ Add new link"
+          variant="long"
+          onClick={() => setShowForm(!showForm)}
         />
       </div>
+      {showForm && (
+        <div className={styles.linkForm}>
+          <LinkForm />
+        </div>
+      )}
+
+      <hr />
     </div>
   );
 }

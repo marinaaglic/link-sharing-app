@@ -7,7 +7,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "../../../utils/schema";
 import { useAuth } from "../../../context/UserAuthContext";
-import { createNewAccount, signIn } from "../../../utils/firebase/firebase";
+import { createNewAccount, signIn } from "../../../utils/firebase/firebaseUser";
 import { useNavigate } from "react-router-dom";
 
 export default function FormComponent({ title, text, type }: FormType) {
@@ -26,12 +26,12 @@ export default function FormComponent({ title, text, type }: FormType) {
   const onSubmit: SubmitHandler<IFormFields> = async (data) => {
     try {
       const action = type === "register" ? createNewAccount : signIn;
-      const user = await action(data.email!, data.password!);
+      const userCredentials = await action(data.email!, data.password!);
 
-      if (user) {
+      if (userCredentials) {
         const successMessage = type === "register" ? "Saved!" : "Logged in!";
         console.log(successMessage);
-        setCurrentUser(user.user);
+        setCurrentUser(userCredentials.user);
         navigate("/links");
         reset();
       }

@@ -1,6 +1,6 @@
 import { User } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { signOutUser, userStateListener } from "../utils/firebase/firebase";
+import { signOutUser, userStateListener } from "../utils/firebase/firebaseUser";
 import {
   createContext,
   ReactNode,
@@ -21,13 +21,18 @@ export const UserAuthContext = createContext({
 
 export const UserAuthProvider = ({ children }: IUserAuthContextProps) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
   const navigate = useNavigate();
 
   useEffect(() => {
     const unsubscribe = userStateListener((user) => {
       if (user) {
         setCurrentUser(user);
+      } else {
+        console.log("User logged out.");
+        setCurrentUser(null);
       }
+      setLoading(false);
     });
     return unsubscribe;
   }, [setCurrentUser]);
@@ -37,6 +42,10 @@ export const UserAuthProvider = ({ children }: IUserAuthContextProps) => {
     setCurrentUser(null);
     navigate("/");
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   const value = {
     currentUser,

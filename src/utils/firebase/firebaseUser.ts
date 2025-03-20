@@ -5,9 +5,11 @@ import {
   signInWithEmailAndPassword,
   NextOrObserver,
   User,
+  setPersistence,
+  browserLocalPersistence,
 } from "firebase/auth";
 
-import { auth } from "../../utils/firebase/firebaseConfig";
+import { auth } from "./firebaseConfig";
 
 export async function createNewAccount(email: string, password: string) {
   if (!email && !password) return;
@@ -16,9 +18,20 @@ export async function createNewAccount(email: string, password: string) {
 }
 
 export async function signIn(email: string, password: string) {
-  if (!email && !password) return;
+  if (!email || !password) return;
 
-  return await signInWithEmailAndPassword(auth, email, password);
+  try {
+    await setPersistence(auth, browserLocalPersistence);
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password,
+    );
+
+    return userCredential;
+  } catch (error) {
+    console.error("Login failed:", error);
+  }
 }
 
 export function userStateListener(callback: NextOrObserver<User>) {

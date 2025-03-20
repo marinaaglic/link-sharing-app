@@ -23,14 +23,17 @@
   text-align: center;
 }
 
-.saveButton {
-  text-align: end;
-}
-
-.addedLinks {
+.linkForm {
   background-color: var(--light-grey);
   border-radius: 12px;
   padding: 20px;
   margin-bottom: 24px;
   text-align: center;
+}
+
+.platform {
+  background-color: var(--tea-green);
+  width: fit-content;
+  padding: 10px;
+  border-radius: 8px;
 }

@@ -18,7 +18,7 @@ export const loginSchema = (type: "login" | "register") =>
       {
         message: "Passwords do not match",
         path: ["confirmPassword"],
-      }
+      },
     );
 
 export const linkSchema = z.object({

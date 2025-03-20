@@ -26,7 +26,7 @@ export default function LinkForm() {
   const { userPlatforms, setUserPlatforms } = useUserPlatforms();
 
   const [selectedPlatform, setSelectedPlatform] = useState<IPlatform | null>(
-    null
+    null,
   );
   const [isFormValid, setIsFormValid] = useState<boolean>(false);
   const [platformError, setPlatformError] = useState<string | null>(null);
@@ -43,7 +43,7 @@ export default function LinkForm() {
   const onSubmitHandler: SubmitHandler<ILinkData> = async (data) => {
     try {
       const isPlatformAdded = userPlatforms.some(
-        (platform) => platform.id === selectedPlatform?.id
+        (platform) => platform.id === selectedPlatform?.id,
       );
 
       if (isPlatformAdded) {

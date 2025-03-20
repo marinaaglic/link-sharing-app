@@ -54,7 +54,7 @@ export const useUserPlatforms = (): UserPlatformsContextType => {
   const context = useContext(UserPlatformsContext);
   if (!context) {
     throw new Error(
-      "useUserPlatforms must be used within a UserPlatformsProvider"
+      "useUserPlatforms must be used within a UserPlatformsProvider",
     );
   }
   return context;

@@ -11,12 +11,13 @@ import styles from "./linkForm.module.css";
 import { addUserLink } from "../../../utils/firebase/firebaseLinks";
 import { useUserPlatforms } from "../../../context/UserPlatformsContext";
 
-export default function LinkForm() {
+export default function LinkForm({selectedPlatform}: {selectedPlatform: ILinkData | null}) {
   const {
     register,
     handleSubmit,
     watch,
     reset,
+    setValue,
     formState: { errors },
   } = useForm<ILinkData>({
     resolver: zodResolver(linkSchema),
@@ -25,25 +26,39 @@ export default function LinkForm() {
   const platforms = usePlatforms();
   const { userPlatforms, setUserPlatforms } = useUserPlatforms();
 
-  const [selectedPlatform, setSelectedPlatform] = useState<IPlatform | null>(
+  const [selectedDropdownPlatform, setSelectedDropdownPlatform] = useState<IPlatform | null>(
     null,
   );
   const [isFormValid, setIsFormValid] = useState<boolean>(false);
   const [platformError, setPlatformError] = useState<string | null>(null);
 
   useEffect(() => {
-    setIsFormValid(!!watch("url") && !errors.url && selectedPlatform !== null);
-  }, [watch("url"), errors.url, selectedPlatform]);
+    setIsFormValid(!!watch("url") && !errors.url && selectedDropdownPlatform !== null);
+   
+  }, [watch("url"), errors.url, selectedDropdownPlatform]);
+
+  useEffect(() => {
+    if (selectedPlatform) {
+      setSelectedDropdownPlatform({
+        id: selectedPlatform.id,
+        name: selectedPlatform.platform,
+      });
+      setValue("url", selectedPlatform.url);
+    } else {
+      reset();
+      setSelectedDropdownPlatform(null);
+    }
+  }, [selectedPlatform, setValue, reset]);
 
   const handleSelectPlatform = (platform: IPlatform) => {
-    setSelectedPlatform(platform);
+    setSelectedDropdownPlatform(platform);
     setPlatformError(null);
   };
 
   const onSubmitHandler: SubmitHandler<ILinkData> = async (data) => {
     try {
       const isPlatformAdded = userPlatforms.some(
-        (platform) => platform.id === selectedPlatform?.id,
+        (platform) => platform.id === selectedDropdownPlatform?.id,
       );
 
       if (isPlatformAdded) {
@@ -51,8 +66,8 @@ export default function LinkForm() {
         return;
       }
       const newLink = await addUserLink({
-        id: selectedPlatform?.id as string,
-        platform: selectedPlatform?.name ?? " dummy platform",
+        id: selectedDropdownPlatform?.id as string,
+        platform: selectedDropdownPlatform?.name ?? " dummy platform",
         url: data.url || "dummy url",
       });
       console.log("Link saved.");
@@ -62,6 +77,7 @@ export default function LinkForm() {
       console.log("Error while saving link.", error);
     }
   };
+
 
   return (
     <form className={styles.linkForm} onSubmit={handleSubmit(onSubmitHandler)}>
@@ -75,7 +91,7 @@ export default function LinkForm() {
       <div className={styles.inputContainer}>
         <Dropdown
           options={platforms}
-          selectedOption={selectedPlatform}
+          selectedOption={selectedDropdownPlatform}
           onSelect={handleSelectPlatform}
         />
         <Input

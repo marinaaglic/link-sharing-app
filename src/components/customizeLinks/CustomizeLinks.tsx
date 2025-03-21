@@ -3,10 +3,23 @@ import LinkForm from "../form/link/LinkFormComponent";
 import ButtonWithLabel from "../reusable/button/ButtonWithLabel";
 import styles from "./customizeLinks.module.css";
 import { useUserPlatforms } from "../../context/UserPlatformsContext";
+import { ILinkData } from "../form/link/linkForm";
+
 
 export default function CustomizeLinks() {
-  const [showForm, setShowForm] = useState<boolean>(true);
+  const [showForm, setShowForm] = useState<boolean>(false);
+  const [selectedPlatform, setSelectedPlatform] = useState<ILinkData | null>(null);
   const { userPlatforms } = useUserPlatforms();
+
+  const handleAddNewLink = () => {
+    setSelectedPlatform(null);
+    setShowForm(!showForm);
+  }
+
+  const handleEditPlatform = (platform: ILinkData) => {
+    setShowForm(true);
+    setSelectedPlatform(platform);
+  }
 
   return (
     <div className={styles.customizeWrapper}>
@@ -20,9 +33,8 @@ export default function CustomizeLinks() {
           <div className={styles.addedPlatforms}>
             <p>Added links</p>
             {userPlatforms.map((platform) => (
-              <p key={platform.id} className={styles.platform}>
+              <p key={platform.id} className={styles.platform} onClick={() => handleEditPlatform(platform)}>
                 {platform.platform}
-            
               </p>
             ))}
           </div>
@@ -39,12 +51,12 @@ export default function CustomizeLinks() {
         <ButtonWithLabel
           text="+ Add new link"
           variant="long"
-          onClick={() => setShowForm(!showForm)}
+          onClick={handleAddNewLink}
         />
       </div>
       {showForm && (
         <div className={styles.linkForm}>
-          <LinkForm />
+          <LinkForm selectedPlatform={selectedPlatform} />
         </div>
       )}
 

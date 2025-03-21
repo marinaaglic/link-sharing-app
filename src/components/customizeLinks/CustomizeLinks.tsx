@@ -22,6 +22,7 @@ export default function CustomizeLinks() {
             {userPlatforms.map((platform) => (
               <p key={platform.id} className={styles.platform}>
                 {platform.platform}
+            
               </p>
             ))}
           </div>

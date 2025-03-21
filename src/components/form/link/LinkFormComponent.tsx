@@ -66,7 +66,7 @@ export default function LinkForm() {
   return (
     <form className={styles.linkForm} onSubmit={handleSubmit(onSubmitHandler)}>
       <div className={styles.linkFormHeader}>
-        <p>Link #1</p>
+        <p>Link</p>
         <div className={styles.buttonDiv}>
           <ButtonWithLabel text="Edit" variant="textOnly" />
           <ButtonWithLabel text="Remove" variant="textOnly" />

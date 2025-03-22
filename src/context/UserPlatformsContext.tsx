@@ -31,6 +31,7 @@ export const UserPlatformsProvider = ({ children }: IUserPlatformsProps) => {
 
     if (currentUser) {
       fetchUserPlatforms(currentUser.uid).then((platforms) => {
+        console.log("Fetched user platforms after delete:", platforms);
         setUserPlatforms(platforms);
       });
     } else {

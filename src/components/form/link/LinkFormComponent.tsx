@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useForm, useWatch } from "react-hook-form";
 import usePlatforms from "../../../hooks/usePlatforms";
 import { linkSchema } from "../../../utils/schema";
 import ButtonWithLabel from "../../reusable/button/ButtonWithLabel";
@@ -8,16 +8,17 @@ import Dropdown from "../../reusable/dropdown/Dropdown";
 import Input from "../../reusable/input/Input";
 import { ILinkData, IPlatform } from "./linkForm";
 import styles from "./linkForm.module.css";
-import { addUserLink } from "../../../utils/firebase/firebaseLinks";
+import { addUserLink, deleteLink } from "../../../utils/firebase/firebaseLinks";
 import { useUserPlatforms } from "../../../context/UserPlatformsContext";
+
 
 export default function LinkForm({selectedPlatform}: {selectedPlatform: ILinkData | null}) {
   const {
     register,
     handleSubmit,
-    watch,
     reset,
     setValue,
+    control,
     formState: { errors },
   } = useForm<ILinkData>({
     resolver: zodResolver(linkSchema),
@@ -32,10 +33,12 @@ export default function LinkForm({selectedPlatform}: {selectedPlatform: ILinkDat
   const [isFormValid, setIsFormValid] = useState<boolean>(false);
   const [platformError, setPlatformError] = useState<string | null>(null);
 
+  const watchedUrl = useWatch({ control, name: "url" });
+
   useEffect(() => {
-    setIsFormValid(!!watch("url") && !errors.url && selectedDropdownPlatform !== null);
-   
-  }, [watch("url"), errors.url, selectedDropdownPlatform]);
+    setIsFormValid(!!watchedUrl && !errors.url && selectedDropdownPlatform !== null);
+  }, [watchedUrl, errors.url, selectedDropdownPlatform]);
+  
 
   useEffect(() => {
     if (selectedPlatform) {
@@ -78,6 +81,21 @@ export default function LinkForm({selectedPlatform}: {selectedPlatform: ILinkDat
     }
   };
 
+  const deleteLinkHandler = async () => {
+    if (!selectedPlatform) return;
+  
+    try {
+      await deleteLink(selectedPlatform.id);
+      console.log(`Link ${selectedPlatform.id} deleted from Firestore`);
+  
+      setUserPlatforms(userPlatforms.filter((link) => link.id !== selectedPlatform.id));
+      reset();
+      setSelectedDropdownPlatform(null);
+    } catch (error) {
+      console.log("An error occurred while deleting:", error);
+    }
+  };
+  
 
   return (
     <form className={styles.linkForm} onSubmit={handleSubmit(onSubmitHandler)}>
@@ -85,7 +103,7 @@ export default function LinkForm({selectedPlatform}: {selectedPlatform: ILinkDat
         <p>Link</p>
         <div className={styles.buttonDiv}>
           <ButtonWithLabel text="Edit" variant="textOnly" />
-          <ButtonWithLabel text="Remove" variant="textOnly" />
+          <ButtonWithLabel text="Remove" variant="textOnly" onClick={deleteLinkHandler}/>
         </div>
       </div>
       <div className={styles.inputContainer}>

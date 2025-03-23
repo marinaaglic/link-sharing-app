@@ -37,8 +37,9 @@ export async function deleteLink(linkId: string) {
   }
 
   try {
-    console.log(`Attempting to delete link with ID: ${linkId}`);
-    await deleteDoc(doc(db, "users", user.uid, "links", linkId));
+    const linkRef = doc(db, "users", user.uid, "links", linkId);
+    console.log("DocRef: ", linkRef);
+    await deleteDoc(linkRef);
     console.log(`Successfully deleted link with ID: ${linkId}`);
   } catch (err) {
     console.error("Error deleting link:", err);

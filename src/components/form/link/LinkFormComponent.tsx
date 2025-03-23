@@ -82,11 +82,11 @@ export default function LinkForm({selectedPlatform}: {selectedPlatform: ILinkDat
   };
 
   const deleteLinkHandler = async () => {
-    if (!selectedPlatform) return;
+    if (!selectedPlatform || !selectedPlatform.docId) return;
   
     try {
-      await deleteLink(selectedPlatform.id);
-      console.log(`Link ${selectedPlatform.id} deleted from Firestore`);
+      await deleteLink(selectedPlatform.docId);
+      console.log(`Link ${selectedPlatform.docId} deleted from Firestore`);
   
       setUserPlatforms(userPlatforms.filter((link) => link.id !== selectedPlatform.id));
       reset();

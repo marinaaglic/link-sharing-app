@@ -5,6 +5,7 @@ export interface IPlatform {
 }
 
 export interface ILinkData {
+  docId?: string,
   id: string;
   platform: string;
   url: string;

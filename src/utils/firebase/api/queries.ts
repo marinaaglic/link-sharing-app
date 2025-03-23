@@ -23,8 +23,10 @@ export const fetchUserPlatforms = async (
     const userLinksRef = collection(db, "users", userId, "links");
     const querySnapshot = await getDocs(userLinksRef);
     const userPlatforms: ILinkData[] = querySnapshot.docs.map((doc) => ({
+      docId: doc.id,
       id: doc.id,
-      ...doc.data(),
+      platform: doc.data().platform,
+      url: doc.data().url, 
     })) as ILinkData[];
 
     console.log("User platforms:", userPlatforms);

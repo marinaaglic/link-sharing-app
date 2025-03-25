@@ -16,6 +16,7 @@ interface IUserPlatformsProps {
 interface UserPlatformsContextType {
   userPlatforms: ILinkData[];
   setUserPlatforms: React.Dispatch<React.SetStateAction<ILinkData[]>>;
+  loading: boolean
 }
 
 export const UserPlatformsContext = createContext<
@@ -25,15 +26,20 @@ export const UserPlatformsContext = createContext<
 export const UserPlatformsProvider = ({ children }: IUserPlatformsProps) => {
   const { currentUser } = useAuth();
   const [userPlatforms, setUserPlatforms] = useState<ILinkData[]>([]);
+  const [loading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     console.log("Current user:", currentUser);
 
     if (currentUser) {
+      setIsLoading(true);
       fetchUserPlatforms(currentUser.uid).then((platforms) => {
         console.log("Fetched user platforms after delete:", platforms);
         setUserPlatforms(platforms);
-      });
+      })
+      .finally(() => {
+        setIsLoading(false);
+      })
     } else {
       setUserPlatforms([]);
     }
@@ -42,6 +48,7 @@ export const UserPlatformsProvider = ({ children }: IUserPlatformsProps) => {
   const value = {
     userPlatforms,
     setUserPlatforms,
+    loading
   };
 
   return (

@@ -9,7 +9,7 @@ import { ILinkData } from "../form/link/linkForm";
 export default function CustomizeLinks() {
   const [showForm, setShowForm] = useState<boolean>(false);
   const [selectedPlatform, setSelectedPlatform] = useState<ILinkData | null>(null);
-  const { userPlatforms } = useUserPlatforms();
+  const { userPlatforms, loading } = useUserPlatforms();
 
   const handleAddNewLink = () => {
     setSelectedPlatform(null);
@@ -29,7 +29,9 @@ export default function CustomizeLinks() {
           Add/edit/remove links below and then share all your profiles with the
           world!
         </p>
-        {userPlatforms.length > 0 ? (
+        {loading ? (
+          <p>Loading...</p>
+        ) : userPlatforms.length > 0 ? (
           <div className={styles.addedPlatforms}>
             <p>Added links</p>
             {userPlatforms.map((platform) => (
@@ -41,7 +43,7 @@ export default function CustomizeLinks() {
         ) : (
           <>
             <h2>Let's get you started</h2>
-            <p className={styles.pGetStared}>
+            <p className={styles.pGetStarted}>
               Use the "Add new link" button to get started. Once you have more
               than one link, you can reorder and edit them. We are here to help
               you share your profiles with everyone!

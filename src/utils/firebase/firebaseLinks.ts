@@ -46,7 +46,7 @@ export async function deleteLink(linkId: string) {
   }
 }
 
-export async function updateLink(linkId: string, url: string) {
+export async function updateLink(linkId: string, newUrl: string) {
   const user = auth.currentUser;
   if (!user) {
     throw new Error("User is not logged in!");
@@ -55,8 +55,8 @@ export async function updateLink(linkId: string, url: string) {
   try {
     const linkRef = doc(db, "users", user.uid, "links", linkId);
     await updateDoc(linkRef, {
-      url: url
-    })
+      url: newUrl
+    });
   }catch(err) {
     console.log("Error updating link:", err);
     throw new Error("Failed to update link.");

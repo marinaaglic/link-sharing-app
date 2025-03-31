@@ -32,6 +32,7 @@ export default function LinkForm({selectedPlatform}: {selectedPlatform: ILinkDat
   );
   const [isFormValid, setIsFormValid] = useState<boolean>(false);
   const [platformError, setPlatformError] = useState<string | null>(null);
+  const [isEditing, setIsEditing] = useState<boolean>(false);
 
   const watchedUrl = useWatch({ control, name: "url" });
 
@@ -102,7 +103,7 @@ export default function LinkForm({selectedPlatform}: {selectedPlatform: ILinkDat
       <div className={styles.linkFormHeader}>
         <p>Link</p>
         <div className={styles.buttonDiv}>
-          <ButtonWithLabel text="Edit" variant="textOnly" />
+          <ButtonWithLabel text="Edit" variant="textOnly" onClick={() => setIsEditing(true)}/>
           <ButtonWithLabel text="Remove" variant="textOnly" onClick={deleteLinkHandler}/>
         </div>
       </div>
@@ -119,6 +120,7 @@ export default function LinkForm({selectedPlatform}: {selectedPlatform: ILinkDat
           placeholder="e.g. https://www.github.com/johnappleseed"
           {...register("url")}
           error={errors.url?.message?.toString()}
+          disabled={!!selectedPlatform && !isEditing}
         />
       </div>
       {platformError && <p className={styles.errorMessage}>{platformError}</p>}

@@ -1,4 +1,4 @@
-import styles from "./form.module.css";
+import styles from "./Form.module.css";
 import { FormType, IFormFields } from "./form";
 import ButtonWithLabel from "../../reusable/button/ButtonWithLabel";
 import Input from "../../reusable/input/Input";

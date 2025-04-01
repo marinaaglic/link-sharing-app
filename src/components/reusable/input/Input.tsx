@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 import { InputType } from "../../../utils/type/input";
-import styles from "./input.module.css";
+import styles from "./Input.module.css";
 import clsx from "clsx";
 
 function Input(

@@ -7,7 +7,7 @@ import ButtonWithLabel from "../../reusable/button/ButtonWithLabel";
 import Dropdown from "../../reusable/dropdown/Dropdown";
 import Input from "../../reusable/input/Input";
 import { ILinkData, IPlatform } from "./linkForm";
-import styles from "./linkForm.module.css";
+import styles from "./LinkForm.module.css";
 import { addUserLink } from "../../../utils/firebase/firebaseLinks";
 import { useUserPlatforms } from "../../../context/UserPlatformsContext";
 

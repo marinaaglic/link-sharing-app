@@ -7,3 +7,12 @@
     padding: 40px;
     box-sizing: border-box;
   }
+
+  .inputElements {
+    flex-direction: column;
+    background-color: var(--light-grey);
+    width: 728px;
+    gap: 12px;
+    border-radius: 12px;
+    padding: 20px;
+  }

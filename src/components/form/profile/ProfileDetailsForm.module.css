@@ -1,18 +1,23 @@
 .customizeWrapper {
-    width: 100%;
-    height: 100%;
-    border-radius: 12px;
-    box-shadow: var(--shadow-color) 0px 3px 8px;
-    background-color: white;
-    padding: 40px;
-    box-sizing: border-box;
-  }
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  box-shadow: var(--shadow-color) 0px 3px 8px;
+  background-color: white;
+  padding: 40px;
+  box-sizing: border-box;
+}
 
-  .inputElements {
-    flex-direction: column;
-    background-color: var(--light-grey);
-    width: 728px;
-    gap: 12px;
-    border-radius: 12px;
-    padding: 20px;
-  }
+.inputElements {
+  flex-direction: column;
+  background-color: var(--light-grey);
+  width: 728px;
+  gap: 12px;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.saveButton {
+  text-align: end;
+}
+

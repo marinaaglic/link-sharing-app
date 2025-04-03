@@ -1,5 +1,6 @@
 import styles from "./ProfileDetailsForm.module.css";
 import Input from "../../reusable/input/Input";
+import ButtonWithLabel from "../../reusable/button/ButtonWithLabel";
 
 export default function ProfileDetailsForm() {
   return (
@@ -29,7 +30,10 @@ export default function ProfileDetailsForm() {
                 placeholder="e.g. email@example.com"
                 />
             </div>
-           
+           <hr />
+           <div className={styles.saveButton}>
+            <ButtonWithLabel text="Save" variant="defaultSmall" type="submit"/>
+           </div>
         </form>
     </div>
   )

@@ -14,7 +14,7 @@ export default function AppRoutes() {
         <Route element={<ProtectedRoute />}>
           <Route path="/links" element={<LinksPage />} />
         </Route>
-        <Route element={<ProtectedRoute/>}>
+        <Route element={<ProtectedRoute />}>
           <Route path="/profile-details" element={<ProfileDetailsPage />} />
         </Route>
       </Routes>

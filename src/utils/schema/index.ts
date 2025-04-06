@@ -29,10 +29,6 @@ export const linkSchema = z.object({
 });
 
 export const profileDetailsSchema = z.object({
-  firstName: z
-  .string()
-  .min(1, {message: "Can't be empty"}),
-  lastName: z
-  .string()
-  .min(1, {message: "Can't be empty"}),
-})
+  firstName: z.string().min(1, { message: "Can't be empty" }),
+  lastName: z.string().min(1, { message: "Can't be empty" }),
+});

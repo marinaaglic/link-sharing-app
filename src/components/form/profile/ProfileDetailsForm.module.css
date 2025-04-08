@@ -17,6 +17,13 @@
   padding: 20px;
 }
 
+.uploadButton {
+  background-color: var(--light-grey);
+  margin-bottom: 24px;
+  width: 728px;
+  text-align: center;
+}
+
 .saveButton {
   text-align: end;
 }

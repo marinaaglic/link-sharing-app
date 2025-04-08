@@ -6,6 +6,7 @@ import { profileDetailsSchema } from "../../../utils/schema";
 import { useForm } from "react-hook-form";
 import { IProfileDetails } from "./profileDetails";
 import { useState, useEffect } from "react";
+import UploadImageButton from "../../reusable/button/UploadImageButton";
 
 export default function ProfileDetailsForm() {
   const {
@@ -27,6 +28,9 @@ export default function ProfileDetailsForm() {
         <p>Add your details to add personal touch to your profile.</p>
       </div>
       <form>
+        <div className={styles.uploadButton}>
+          <UploadImageButton text="+ Upload image" />
+        </div>
         <div className={styles.inputElements}>
           <Input
             label="First name"

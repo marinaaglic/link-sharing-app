@@ -21,6 +21,7 @@ export default function ProfileDetailsForm() {
   useEffect(() => {
     setIsFormValid(!errors.firstName && !errors.lastName);
   }, [errors.firstName, errors.lastName]);
+
   return (
     <div className={styles.customizeWrapper}>
       <div>
@@ -52,6 +53,7 @@ export default function ProfileDetailsForm() {
             label="Email"
             id="email"
             type="email"
+            {...register("email")}
             placeholder="e.g. email@example.com"
           />
         </div>

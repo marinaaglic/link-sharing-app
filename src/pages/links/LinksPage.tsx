@@ -1,10 +1,11 @@
 import CustomizeLinks from "../../components/customizeLinks/CustomizeLinks";
-import { PageContainer } from "../../components/layout/PageContainer";
-
+import { SharedLayout } from "../../components/layout/SharedLayout";
 export default function LinksPage() {
   return (
     <div>
-      <PageContainer children={<CustomizeLinks />} />
+      <SharedLayout>
+        <CustomizeLinks />
+      </SharedLayout>
     </div>
   );
 }

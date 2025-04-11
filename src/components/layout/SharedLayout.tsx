@@ -1,4 +1,4 @@
-import styles from "./PageContainer.module.css";
+import styles from "./SharedLayout.module.css";
 import NavBar from "../navbar/NavBar";
 import PhonePreview from "../phonePreview/PhonePreview";
 import { ReactNode } from "react";
@@ -7,7 +7,7 @@ type PageContentProps = {
   children: ReactNode;
 };
 
-export function PageContainer({ children }: PageContentProps) {
+export function SharedLayout({ children }: PageContentProps) {
   return (
     <div className={styles.pageContainer}>
       <NavBar />

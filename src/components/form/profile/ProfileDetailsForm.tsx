@@ -5,7 +5,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { profileDetailsSchema } from "../../../utils/schema";
 import { useForm } from "react-hook-form";
 import { IProfileDetails } from "./profileDetails";
-import { useState, useEffect } from "react";
 import UploadImageButton from "../../reusable/button/UploadImageButton";
 
 export default function ProfileDetailsForm() {
@@ -16,11 +15,6 @@ export default function ProfileDetailsForm() {
     resolver: zodResolver(profileDetailsSchema),
     mode: "onBlur",
   });
-
-  const [isFormValid, setIsFormValid] = useState<boolean>(false);
-  useEffect(() => {
-    setIsFormValid(!errors.firstName && !errors.lastName);
-  }, [errors.firstName, errors.lastName]);
 
   return (
     <div className={styles.customizeWrapper}>
@@ -59,12 +53,7 @@ export default function ProfileDetailsForm() {
         </div>
         <hr />
         <div className={styles.saveButton}>
-          <ButtonWithLabel
-            text="Save"
-            variant="defaultSmall"
-            type="submit"
-            disabled={!isFormValid}
-          />
+          <ButtonWithLabel text="Save" variant="defaultSmall" type="submit" />
         </div>
       </form>
     </div>

@@ -27,3 +27,8 @@ export const linkSchema = z.object({
     .min(1, { message: "Can't be empty" })
     .url({ message: "Please check the URL" }),
 });
+
+export const profileDetailsSchema = z.object({
+  firstName: z.string().min(1, { message: "Can't be empty" }),
+  lastName: z.string().min(1, { message: "Can't be empty" }),
+});

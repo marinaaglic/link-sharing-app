@@ -1,3 +1,9 @@
+.pageContainer {
+  padding: 0px 24px 24px 24px;
+  gap: 24px;
+  justify-content: center;
+}
+
 .pageContent {
   display: flex;
   padding: 0px 24px 24px 24px;
@@ -9,7 +15,7 @@
   flex: 0 0 35%;
 }
 
-.customizeLinksContainer {
+.childrenContainer {
   flex: 0 0 65%;
 }
 
@@ -18,7 +24,7 @@
     display: none;
   }
 
-  .customizeLinksContainer {
+  .childrenContainer {
     flex: 1;
   }
 }

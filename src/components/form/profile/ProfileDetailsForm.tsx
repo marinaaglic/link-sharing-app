@@ -27,7 +27,10 @@ export default function ProfileDetailsForm() {
         <div className={styles.uploadButton}>
           <LabelElement text="Profile picture" id="profilePicture" />
           <UploadImageButton text="+ Upload image" />
-          <LabelElement text="Image must be below 1024x1024px. Use PNG or JPG format." />
+          <LabelElement
+            text="Image must be below 1024x1024px. Use PNG or JPG format."
+            size="small"
+          />
         </div>
         <div className={styles.inputElements}>
           <Input

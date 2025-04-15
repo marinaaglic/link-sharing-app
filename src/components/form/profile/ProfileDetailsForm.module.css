@@ -23,6 +23,11 @@
   width: 728px;
   text-align: center;
   border-radius: 12px;
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  align-items: center;
+  gap: 16px;
 }
 
 .saveButton {

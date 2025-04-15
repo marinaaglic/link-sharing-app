@@ -6,6 +6,7 @@ import { profileDetailsSchema } from "../../../utils/schema";
 import { useForm } from "react-hook-form";
 import { IProfileDetails } from "./profileDetails";
 import UploadImageButton from "../../reusable/button/UploadImageButton";
+import LabelElement from "../../reusable/label/LabelElement";
 
 export default function ProfileDetailsForm() {
   const {
@@ -24,7 +25,9 @@ export default function ProfileDetailsForm() {
       </div>
       <form>
         <div className={styles.uploadButton}>
+          <LabelElement text="Profile picture" id="profilePicture" />
           <UploadImageButton text="+ Upload image" />
+          <LabelElement text="Image must be below 1024x1024px. Use PNG or JPG format." />
         </div>
         <div className={styles.inputElements}>
           <Input

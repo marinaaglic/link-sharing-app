@@ -37,29 +37,43 @@ export default function ProfileDetailsForm() {
           />
         </div>
         <div className={styles.inputElements}>
-          <Input
-            label="First name"
-            id="firstName"
-            type="text"
-            placeholder="e.g. John"
-            {...register("firstName")}
-            error={errors.firstName?.message?.toString()}
-          />
-          <Input
-            label="Last name"
-            id="lastName"
-            type="text"
-            placeholder="e.g. Appleseed"
-            {...register("lastName")}
-            error={errors.lastName?.message?.toString()}
-          />
-          <Input
-            label="Email"
-            id="email"
-            type="email"
-            {...register("email")}
-            placeholder="e.g. email@example.com"
-          />
+          <div className={styles.divRow}>
+            <LabelElement
+              text="First name*"
+              htmlFor="firstName"
+              variant="medium"
+            />
+            <Input
+              id="firstName"
+              type="text"
+              placeholder="e.g. John"
+              {...register("firstName")}
+              error={errors.firstName?.message?.toString()}
+            />
+          </div>
+          <div className={styles.divRow}>
+            <LabelElement
+              text="Last name*"
+              htmlFor="lastName"
+              variant="medium"
+            />
+            <Input
+              id="lastName"
+              type="text"
+              placeholder="e.g. Appleseed"
+              {...register("lastName")}
+              error={errors.lastName?.message?.toString()}
+            />
+          </div>
+          <div className={styles.divRow}>
+            <LabelElement text="E-mail" htmlFor="email" variant="medium" />
+            <Input
+              id="email"
+              type="email"
+              {...register("email")}
+              placeholder="e.g. email@example.com"
+            />
+          </div>
         </div>
         <hr />
         <div className={styles.saveButton}>

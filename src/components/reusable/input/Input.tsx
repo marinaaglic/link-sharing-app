@@ -4,14 +4,11 @@ import styles from "./input.module.css";
 import clsx from "clsx";
 
 function Input(
-  { type, label, id, error, ...rest }: InputType,
-  ref: React.ForwardedRef<HTMLInputElement>,
+  { type, id, error, ...rest }: InputType,
+  ref: React.ForwardedRef<HTMLInputElement>
 ) {
   return (
     <div className={styles.inputContainer}>
-      <label htmlFor={id} className={styles.inputLabel}>
-        {label}
-      </label>
       <div className={styles.inputWrapper}>
         <input
           id={id}

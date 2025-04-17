@@ -5,4 +5,5 @@
   border: none;
   background-color: var(--zomp);
   font-family: inherit;
+  cursor: pointer;
 }

@@ -1,7 +1,9 @@
 import { LabelHTMLAttributes } from "react";
 
+export type LabelVariant = "small" | "medium";
+
 export type LabelType = {
   id?: string;
   text: string;
-  size?: "small" | "medium";
+  variant?: LabelVariant;
 } & LabelHTMLAttributes<HTMLLabelElement>;

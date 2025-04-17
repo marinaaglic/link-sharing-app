@@ -1,10 +1,11 @@
 import styles from "./LabelElement.module.css";
 import { LabelType } from "../../../utils/type/label";
+import { labelVariantClasses } from "../../../utils/variantClasses/labelVariantClasses";
 
 export default function LabelElement({
   id,
   text,
-  size = "medium",
+  variant,
   ...rest
 }: LabelType) {
   return (
@@ -12,7 +13,7 @@ export default function LabelElement({
       <label
         htmlFor={id}
         {...rest}
-        className={`${styles.labelText} ${styles[size]}`}
+        className={variant && labelVariantClasses[variant]}
       >
         {text}
       </label>

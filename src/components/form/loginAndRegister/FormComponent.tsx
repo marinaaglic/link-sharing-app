@@ -9,6 +9,7 @@ import { loginSchema } from "../../../utils/schema";
 import { useAuth } from "../../../context/UserAuthContext";
 import { createNewAccount, signIn } from "../../../utils/firebase/firebaseUser";
 import { useNavigate } from "react-router-dom";
+import LabelElement from "../../reusable/label/LabelElement";
 
 export default function FormComponent({ title, text, type }: FormType) {
   const { setCurrentUser } = useAuth();
@@ -48,28 +49,34 @@ export default function FormComponent({ title, text, type }: FormType) {
       <h1 className={styles.formTitle}>{title}</h1>
       <p className={styles.formSubtitle}>{text}</p>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+        <LabelElement text="E-mail address" htmlFor="email" variant="medium" />
         <Input
           type="email"
-          label="Email address"
           id="email"
           {...register("email")}
           error={errors.email?.message?.toString()}
         />
+        <LabelElement text="Password" htmlFor="password" variant="medium" />
         <Input
           type="password"
-          label="Password"
           id="password"
           {...register("password")}
           error={errors.password?.message?.toString()}
         />
         {type === "register" && (
-          <Input
-            type="password"
-            label="Confirm Password"
-            id="confirmPassword"
-            {...register("confirmPassword")}
-            error={errors.confirmPassword?.message?.toString()}
-          />
+          <div>
+            <LabelElement
+              text="Confirm password"
+              htmlFor="confirmPassword"
+              variant="medium"
+            />
+            <Input
+              type="password"
+              id="confirmPassword"
+              {...register("confirmPassword")}
+              error={errors.confirmPassword?.message?.toString()}
+            />
+          </div>
         )}
         <ButtonWithLabel
           text={type === "login" ? "Login" : "Create new account"}

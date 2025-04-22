@@ -7,9 +7,10 @@ import ButtonWithLabel from "../../reusable/button/ButtonWithLabel";
 import Dropdown from "../../reusable/dropdown/Dropdown";
 import Input from "../../reusable/input/Input";
 import { ILinkData, IPlatform } from "./linkForm";
-import styles from "./linkForm.module.css";
+import styles from "./LinkForm.module.css";
 import { addUserLink, deleteLink } from "../../../utils/firebase/firebaseLinks";
 import { useUserPlatforms } from "../../../context/UserPlatformsContext";
+import LabelElement from "../../reusable/label/LabelElement";
 
 
 export default function LinkForm({selectedPlatform}: {selectedPlatform: ILinkData | null}) {
@@ -27,8 +28,10 @@ export default function LinkForm({selectedPlatform}: {selectedPlatform: ILinkDat
   const platforms = usePlatforms();
   const { userPlatforms, setUserPlatforms } = useUserPlatforms();
 
+
   const [selectedDropdownPlatform, setSelectedDropdownPlatform] = useState<IPlatform | null>(
     null,
+
   );
   const [isFormValid, setIsFormValid] = useState<boolean>(false);
   const [platformError, setPlatformError] = useState<string | null>(null);
@@ -62,7 +65,11 @@ export default function LinkForm({selectedPlatform}: {selectedPlatform: ILinkDat
   const onSubmitHandler: SubmitHandler<ILinkData> = async (data) => {
     try {
       const isPlatformAdded = userPlatforms.some(
+
         (platform) => platform.id === selectedDropdownPlatform?.id,
+
+        
+
       );
 
       if (isPlatformAdded) {
@@ -113,8 +120,8 @@ export default function LinkForm({selectedPlatform}: {selectedPlatform: ILinkDat
           selectedOption={selectedDropdownPlatform}
           onSelect={handleSelectPlatform}
         />
+        <LabelElement text="Link" htmlFor="url" variant="small" />
         <Input
-          label="Link"
           type="text"
           id="url"
           placeholder="e.g. https://www.github.com/johnappleseed"

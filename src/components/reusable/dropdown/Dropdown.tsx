@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./dropdown.module.css";
+import styles from "./Dropdown.module.css";
 import { IPlatform } from "../../form/link/linkForm";
 
 interface DropdownProps {

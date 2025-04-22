@@ -1,0 +1,9 @@
+.uploadImageBtn {
+  width: 193px;
+  height: 193px;
+  border-radius: 12px;
+  border: none;
+  background-color: var(--zomp);
+  font-family: inherit;
+  cursor: pointer;
+}

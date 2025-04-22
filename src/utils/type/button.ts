@@ -21,3 +21,8 @@ export type ButtonLinkType = {
   children: ReactNode;
   variant?: ButtonLinkVariant;
 } & AnchorHTMLAttributes<HTMLAnchorElement>;
+
+export type UploadImageButtonType = {
+  label?: string;
+  text: string;
+} & ButtonHTMLAttributes<HTMLButtonElement>;

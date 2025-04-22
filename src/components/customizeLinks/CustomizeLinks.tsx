@@ -1,7 +1,7 @@
 import { useState } from "react";
 import LinkForm from "../form/link/LinkFormComponent";
 import ButtonWithLabel from "../reusable/button/ButtonWithLabel";
-import styles from "./customizeLinks.module.css";
+import styles from "./CustomizeLinks.module.css";
 import { useUserPlatforms } from "../../context/UserPlatformsContext";
 import { ILinkData } from "../form/link/linkForm";
 

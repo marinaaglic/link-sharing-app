@@ -1,0 +1,14 @@
+.labelText {
+  font-size: 1rem;
+  color: var(--grey);
+}
+
+.labelSmall {
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.labelMedium {
+  font-size: 1rem;
+  white-space: nowrap;
+}

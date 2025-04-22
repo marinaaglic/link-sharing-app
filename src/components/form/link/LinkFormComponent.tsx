@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useForm, useWatch } from "react-hook-form";
 import usePlatforms from "../../../hooks/usePlatforms";
 import { linkSchema } from "../../../utils/schema";
 import ButtonWithLabel from "../../reusable/button/ButtonWithLabel";
@@ -8,16 +8,18 @@ import Dropdown from "../../reusable/dropdown/Dropdown";
 import Input from "../../reusable/input/Input";
 import { ILinkData, IPlatform } from "./linkForm";
 import styles from "./LinkForm.module.css";
-import { addUserLink } from "../../../utils/firebase/firebaseLinks";
+import { addUserLink, deleteLink } from "../../../utils/firebase/firebaseLinks";
 import { useUserPlatforms } from "../../../context/UserPlatformsContext";
 import LabelElement from "../../reusable/label/LabelElement";
 
-export default function LinkForm() {
+
+export default function LinkForm({selectedPlatform}: {selectedPlatform: ILinkData | null}) {
   const {
     register,
     handleSubmit,
-    watch,
     reset,
+    setValue,
+    control,
     formState: { errors },
   } = useForm<ILinkData>({
     resolver: zodResolver(linkSchema),
@@ -26,25 +28,48 @@ export default function LinkForm() {
   const platforms = usePlatforms();
   const { userPlatforms, setUserPlatforms } = useUserPlatforms();
 
-  const [selectedPlatform, setSelectedPlatform] = useState<IPlatform | null>(
-    null
+
+  const [selectedDropdownPlatform, setSelectedDropdownPlatform] = useState<IPlatform | null>(
+    null,
+
   );
   const [isFormValid, setIsFormValid] = useState<boolean>(false);
   const [platformError, setPlatformError] = useState<string | null>(null);
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+
+  const watchedUrl = useWatch({ control, name: "url" });
 
   useEffect(() => {
-    setIsFormValid(!!watch("url") && !errors.url && selectedPlatform !== null);
-  }, [watch("url"), errors.url, selectedPlatform]);
+    setIsFormValid(!!watchedUrl && !errors.url && selectedDropdownPlatform !== null);
+  }, [watchedUrl, errors.url, selectedDropdownPlatform]);
+  
+
+  useEffect(() => {
+    if (selectedPlatform) {
+      setSelectedDropdownPlatform({
+        id: selectedPlatform.id,
+        name: selectedPlatform.platform,
+      });
+      setValue("url", selectedPlatform.url);
+    } else {
+      reset();
+      setSelectedDropdownPlatform(null);
+    }
+  }, [selectedPlatform, setValue, reset]);
 
   const handleSelectPlatform = (platform: IPlatform) => {
-    setSelectedPlatform(platform);
+    setSelectedDropdownPlatform(platform);
     setPlatformError(null);
   };
 
   const onSubmitHandler: SubmitHandler<ILinkData> = async (data) => {
     try {
       const isPlatformAdded = userPlatforms.some(
-        (platform) => platform.id === selectedPlatform?.id
+
+        (platform) => platform.id === selectedDropdownPlatform?.id,
+
+        
+
       );
 
       if (isPlatformAdded) {
@@ -52,8 +77,8 @@ export default function LinkForm() {
         return;
       }
       const newLink = await addUserLink({
-        id: selectedPlatform?.id as string,
-        platform: selectedPlatform?.name ?? " dummy platform",
+        id: selectedDropdownPlatform?.id as string,
+        platform: selectedDropdownPlatform?.name ?? " dummy platform",
         url: data.url || "dummy url",
       });
       console.log("Link saved.");
@@ -64,19 +89,35 @@ export default function LinkForm() {
     }
   };
 
+  const deleteLinkHandler = async () => {
+    if (!selectedPlatform || !selectedPlatform.docId) return;
+  
+    try {
+      await deleteLink(selectedPlatform.docId);
+      console.log(`Link ${selectedPlatform.docId} deleted from Firestore`);
+  
+      setUserPlatforms(userPlatforms.filter((link) => link.id !== selectedPlatform.id));
+      reset();
+      setSelectedDropdownPlatform(null);
+    } catch (error) {
+      console.log("An error occurred while deleting:", error);
+    }
+  };
+  
+
   return (
     <form className={styles.linkForm} onSubmit={handleSubmit(onSubmitHandler)}>
       <div className={styles.linkFormHeader}>
-        <p>Link #1</p>
+        <p>Link</p>
         <div className={styles.buttonDiv}>
-          <ButtonWithLabel text="Edit" variant="textOnly" />
-          <ButtonWithLabel text="Remove" variant="textOnly" />
+          <ButtonWithLabel text="Edit" variant="textOnly" onClick={() => setIsEditing(true)}/>
+          <ButtonWithLabel text="Remove" variant="textOnly" onClick={deleteLinkHandler}/>
         </div>
       </div>
       <div className={styles.inputContainer}>
         <Dropdown
           options={platforms}
-          selectedOption={selectedPlatform}
+          selectedOption={selectedDropdownPlatform}
           onSelect={handleSelectPlatform}
         />
         <LabelElement text="Link" htmlFor="url" variant="small" />
@@ -86,6 +127,7 @@ export default function LinkForm() {
           placeholder="e.g. https://www.github.com/johnappleseed"
           {...register("url")}
           error={errors.url?.message?.toString()}
+          disabled={!!selectedPlatform && !isEditing}
         />
       </div>
       {platformError && <p className={styles.errorMessage}>{platformError}</p>}

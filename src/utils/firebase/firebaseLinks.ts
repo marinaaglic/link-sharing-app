@@ -1,5 +1,5 @@
 import { auth, db } from "./firebaseConfig";
-import { collection, addDoc, getDoc } from "firebase/firestore";
+import { collection, addDoc, getDoc, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { ILinkData } from "../../components/form/link/linkForm";
 
 export async function addUserLink(linkData: ILinkData) {
@@ -27,5 +27,38 @@ export async function addUserLink(linkData: ILinkData) {
   } catch (err) {
     console.log("Error adding links: ", err);
     throw new Error("Failed to add a link.");
+  }
+}
+
+export async function deleteLink(linkId: string) {
+  const user = auth.currentUser;
+  if (!user) {
+    throw new Error("User is not logged in!");
+  }
+
+  try {
+    const linkRef = doc(db, "users", user.uid, "links", linkId);
+    await deleteDoc(linkRef);
+    console.log(`Successfully deleted link with ID: ${linkId}`);
+  } catch (err) {
+    console.error("Error deleting link:", err);
+    throw new Error("Failed to delete link.");
+  }
+}
+
+export async function updateLink(linkId: string, newUrl: string) {
+  const user = auth.currentUser;
+  if (!user) {
+    throw new Error("User is not logged in!");
+  }
+  
+  try {
+    const linkRef = doc(db, "users", user.uid, "links", linkId);
+    await updateDoc(linkRef, {
+      url: newUrl
+    });
+  }catch(err) {
+    console.log("Error updating link:", err);
+    throw new Error("Failed to update link.");
   }
 }

@@ -5,7 +5,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { profileDetailsSchema } from "../../../utils/schema";
 import { useForm } from "react-hook-form";
 import { IProfileDetails } from "./profileDetails";
-import { useState, useEffect } from "react";
+import UploadImageButton from "../../reusable/button/UploadImageButton";
+import LabelElement from "../../reusable/label/LabelElement";
 
 export default function ProfileDetailsForm() {
   const {
@@ -16,10 +17,6 @@ export default function ProfileDetailsForm() {
     mode: "onBlur",
   });
 
-  const [isFormValid, setIsFormValid] = useState<boolean>(false);
-  useEffect(() => {
-    setIsFormValid(!errors.firstName && !errors.lastName);
-  }, [errors.firstName, errors.lastName]);
   return (
     <div className={styles.customizeWrapper}>
       <div>
@@ -27,38 +24,60 @@ export default function ProfileDetailsForm() {
         <p>Add your details to add personal touch to your profile.</p>
       </div>
       <form>
+        <div className={styles.uploadButton}>
+          <LabelElement
+            text="Profile picture"
+            id="profilePicture"
+            variant="medium"
+          />
+          <UploadImageButton text="+ Upload image" />
+          <LabelElement
+            text="Image must be below 1024x1024px. Use PNG or JPG format."
+            variant="small"
+          />
+        </div>
         <div className={styles.inputElements}>
-          <Input
-            label="First name"
-            id="firstName"
-            type="text"
-            placeholder="e.g. John"
-            {...register("firstName")}
-            error={errors.firstName?.message?.toString()}
-          />
-          <Input
-            label="Last name"
-            id="lastName"
-            type="text"
-            placeholder="e.g. Appleseed"
-            {...register("lastName")}
-            error={errors.lastName?.message?.toString()}
-          />
-          <Input
-            label="Email"
-            id="email"
-            type="email"
-            placeholder="e.g. email@example.com"
-          />
+          <div className={styles.divRow}>
+            <LabelElement
+              text="First name*"
+              htmlFor="firstName"
+              variant="medium"
+            />
+            <Input
+              id="firstName"
+              type="text"
+              placeholder="e.g. John"
+              {...register("firstName")}
+              error={errors.firstName?.message?.toString()}
+            />
+          </div>
+          <div className={styles.divRow}>
+            <LabelElement
+              text="Last name*"
+              htmlFor="lastName"
+              variant="medium"
+            />
+            <Input
+              id="lastName"
+              type="text"
+              placeholder="e.g. Appleseed"
+              {...register("lastName")}
+              error={errors.lastName?.message?.toString()}
+            />
+          </div>
+          <div className={styles.divRow}>
+            <LabelElement text="E-mail" htmlFor="email" variant="medium" />
+            <Input
+              id="email"
+              type="email"
+              {...register("email")}
+              placeholder="e.g. email@example.com"
+            />
+          </div>
         </div>
         <hr />
         <div className={styles.saveButton}>
-          <ButtonWithLabel
-            text="Save"
-            variant="defaultSmall"
-            type="submit"
-            disabled={!isFormValid}
-          />
+          <ButtonWithLabel text="Save" variant="defaultSmall" type="submit" />
         </div>
       </form>
     </div>

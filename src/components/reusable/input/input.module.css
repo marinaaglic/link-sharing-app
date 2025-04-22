@@ -1,18 +1,19 @@
-.inputContainer {
+/* .inputContainer {
   display: flex;
   align-items: flex-start;
   flex-direction: column;
   margin-bottom: 24px;
   text-align: left;
-}
-
-.inputLabel {
-  font-size: 10px;
-}
+} */
 
 .inputWrapper {
   position: relative;
   width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-bottom: 24px;
+  text-align: left;
 }
 
 .input {

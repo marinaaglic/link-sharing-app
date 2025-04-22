@@ -11,12 +11,34 @@
 .inputElements {
   flex-direction: column;
   background-color: var(--light-grey);
-  width: 728px;
+  width: 100%;
+  max-width: 728px;
   gap: 12px;
   border-radius: 12px;
   padding: 20px;
 }
 
+.uploadButton {
+  background-color: var(--light-grey);
+  margin-bottom: 24px;
+  width: 728px;
+  text-align: center;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  align-items: center;
+  gap: 16px;
+}
+
 .saveButton {
   text-align: end;
+}
+
+.divRow {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
 }

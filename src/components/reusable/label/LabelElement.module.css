@@ -5,8 +5,10 @@
 
 .labelSmall {
   font-size: 0.75rem;
+  white-space: nowrap;
 }
 
 .labelMedium {
   font-size: 1rem;
+  white-space: nowrap;
 }

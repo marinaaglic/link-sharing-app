@@ -11,7 +11,8 @@
 .inputElements {
   flex-direction: column;
   background-color: var(--light-grey);
-  width: 728px;
+  width: 100%;
+  max-width: 728px;
   gap: 12px;
   border-radius: 12px;
   padding: 20px;
@@ -35,8 +36,9 @@
 }
 
 .divRow {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
+  display: grid;
+  grid-template-columns: 150px 1fr;
   align-items: center;
+  gap: 12px;
+  width: 100%;
 }

@@ -49,14 +49,14 @@ export default function FormComponent({ title, text, type }: FormType) {
       <h1 className={styles.formTitle}>{title}</h1>
       <p className={styles.formSubtitle}>{text}</p>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-        <LabelElement text="E-mail address" htmlFor="email" variant="medium" />
+        <LabelElement text="E-mail address" htmlFor="email" variant="small" />
         <Input
           type="email"
           id="email"
           {...register("email")}
           error={errors.email?.message?.toString()}
         />
-        <LabelElement text="Password" htmlFor="password" variant="medium" />
+        <LabelElement text="Password" htmlFor="password" variant="small" />
         <Input
           type="password"
           id="password"
@@ -68,7 +68,7 @@ export default function FormComponent({ title, text, type }: FormType) {
             <LabelElement
               text="Confirm password"
               htmlFor="confirmPassword"
-              variant="medium"
+              variant="small"
             />
             <Input
               type="password"

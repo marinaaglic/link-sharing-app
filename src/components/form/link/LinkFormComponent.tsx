@@ -65,22 +65,27 @@ export default function LinkForm({
 
   const onSubmitHandler: SubmitHandler<ILinkData> = async (data) => {
     try {
-      const isPlatformAdded = userPlatforms.some(
-        (platform) => platform.id === selectedDropdownPlatform?.id
-      );
+      if (!isEditing) {
+        const isPlatformAdded = userPlatforms.some(
+          (platform) => platform.id === selectedDropdownPlatform?.id
+        );
 
-      if (isPlatformAdded) {
-        setPlatformError("Platform is already added.");
-        return;
+        if (isPlatformAdded) {
+          setPlatformError("Platform is already added.");
+          return;
+        }
+
+        const newLink = await addUserLink({
+          id: selectedDropdownPlatform?.id as string,
+          platform: selectedDropdownPlatform?.name ?? " dummy platform",
+          url: data.url || "dummy url",
+        });
+        console.log("Link saved.");
+        reset();
+        setUserPlatforms([...userPlatforms, newLink]);
+      } else {
+        console.log("Edit platform.");
       }
-      const newLink = await addUserLink({
-        id: selectedDropdownPlatform?.id as string,
-        platform: selectedDropdownPlatform?.name ?? " dummy platform",
-        url: data.url || "dummy url",
-      });
-      console.log("Link saved.");
-      reset();
-      setUserPlatforms([...userPlatforms, newLink]);
     } catch (error) {
       console.log("Error while saving link.", error);
     }

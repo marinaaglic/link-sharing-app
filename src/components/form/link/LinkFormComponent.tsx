@@ -8,7 +8,11 @@ import Dropdown from "../../reusable/dropdown/Dropdown";
 import Input from "../../reusable/input/Input";
 import { ILinkData, IPlatform } from "./linkForm";
 import styles from "./LinkForm.module.css";
-import { addUserLink, deleteLink } from "../../../utils/firebase/firebaseLinks";
+import {
+  addUserLink,
+  deleteLink,
+  updateLink,
+} from "../../../utils/firebase/firebaseLinks";
 import { useUserPlatforms } from "../../../context/UserPlatformsContext";
 import LabelElement from "../../reusable/label/LabelElement";
 
@@ -84,7 +88,21 @@ export default function LinkForm({
         reset();
         setUserPlatforms([...userPlatforms, newLink]);
       } else {
-        console.log("Edit platform.");
+        if (!selectedPlatform || !selectedPlatform.docId) {
+          console.log("No platform selected for editing.");
+          return;
+        }
+        await updateLink(selectedPlatform.docId, data.url);
+        console.log("Link updated.");
+
+        setUserPlatforms((prev) =>
+          prev.map((link) =>
+            link.id === selectedPlatform.id ? { ...link, url: data.url } : link
+          )
+        );
+        setIsEditing(false);
+        reset();
+        setSelectedDropdownPlatform(null);
       }
     } catch (error) {
       console.log("Error while saving link.", error);

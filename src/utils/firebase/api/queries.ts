@@ -17,7 +17,7 @@ export const fetchPlatforms = async (): Promise<IPlatform[]> => {
 };
 
 export const fetchUserPlatforms = async (
-  userId: string,
+  userId: string
 ): Promise<ILinkData[]> => {
   try {
     const userLinksRef = collection(db, "users", userId, "links");
@@ -26,7 +26,7 @@ export const fetchUserPlatforms = async (
       docId: doc.id,
       id: doc.id,
       platform: doc.data().platform,
-      url: doc.data().url, 
+      url: doc.data().url,
     })) as ILinkData[];
 
     console.log("User platforms:", userPlatforms);

@@ -50,16 +50,17 @@ export default function LinkForm({
   }, [watchedUrl, errors.url, selectedDropdownPlatform]);
 
   useEffect(() => {
-    if (isEditing && selectedPlatform) {
+    if (selectedPlatform) {
       setSelectedDropdownPlatform({
         id: selectedPlatform.id,
         name: selectedPlatform.platform,
       });
       setValue("url", selectedPlatform.url);
     } else {
+      reset();
       setSelectedDropdownPlatform(null);
     }
-  }, [isEditing, selectedPlatform, setValue, reset]);
+  }, [selectedPlatform, setValue, reset]);
 
   const handleSelectPlatform = (platform: IPlatform) => {
     setSelectedDropdownPlatform(platform);
@@ -88,17 +89,19 @@ export default function LinkForm({
         setUserPlatforms([...userPlatforms, newLink]);
       } else {
         if (!selectedPlatform || !selectedPlatform.docId) {
+          console.log("No platform selected for editing.");
           return;
         }
         await updateLink(selectedPlatform.docId, data.url);
+        console.log("Link updated.");
 
         setUserPlatforms((prev) =>
           prev.map((link) =>
             link.id === selectedPlatform.id ? { ...link, url: data.url } : link
           )
         );
-        setIsEditing(false);
-        reset();
+        //setIsEditing(false);
+        //reset();
         setSelectedDropdownPlatform(null);
       }
     } catch (error) {

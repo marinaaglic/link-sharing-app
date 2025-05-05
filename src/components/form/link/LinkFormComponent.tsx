@@ -44,10 +44,15 @@ export default function LinkForm({
   const watchedUrl = useWatch({ control, name: "url" });
 
   useEffect(() => {
-    setIsFormValid(
-      !!watchedUrl && !errors.url && selectedDropdownPlatform !== null
-    );
-  }, [watchedUrl, errors.url, selectedDropdownPlatform]);
+    const isUrlValid = !!watchedUrl && !errors.url;
+    const isPlatformSelected = selectedDropdownPlatform !== null;
+
+    if (isEditing) {
+      setIsFormValid(isUrlValid);
+    } else {
+      setIsFormValid(isUrlValid && isPlatformSelected);
+    }
+  }, [watchedUrl, errors.url, selectedDropdownPlatform, isEditing]);
 
   useEffect(() => {
     if (selectedPlatform) {
@@ -59,6 +64,7 @@ export default function LinkForm({
     } else {
       reset();
       setSelectedDropdownPlatform(null);
+      setIsEditing(false);
     }
   }, [selectedPlatform, setValue, reset]);
 
@@ -102,7 +108,7 @@ export default function LinkForm({
         );
         //setIsEditing(false);
         //reset();
-        setSelectedDropdownPlatform(null);
+        //setSelectedDropdownPlatform(null);
       }
     } catch (error) {
       console.log("Error while saving link.", error);

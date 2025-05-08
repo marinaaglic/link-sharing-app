@@ -106,9 +106,6 @@ export default function LinkForm({
             link.id === selectedPlatform.id ? { ...link, url: data.url } : link
           )
         );
-        //setIsEditing(false);
-        //reset();
-        //setSelectedDropdownPlatform(null);
       }
     } catch (error) {
       console.log("Error while saving link.", error);

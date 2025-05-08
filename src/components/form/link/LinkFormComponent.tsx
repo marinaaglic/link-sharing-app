@@ -61,6 +61,7 @@ export default function LinkForm({
         name: selectedPlatform.platform,
       });
       setValue("url", selectedPlatform.url);
+      setIsEditing(false);
     } else {
       reset();
       setSelectedDropdownPlatform(null);
@@ -106,6 +107,7 @@ export default function LinkForm({
             link.id === selectedPlatform.id ? { ...link, url: data.url } : link
           )
         );
+        setIsEditing(false);
       }
     } catch (error) {
       console.log("Error while saving link.", error);
@@ -169,7 +171,7 @@ export default function LinkForm({
           text="Save"
           variant="defaultSmall"
           type="submit"
-          disabled={!isFormValid}
+          disabled={!isFormValid || !isEditing}
         />
       </div>
     </form>

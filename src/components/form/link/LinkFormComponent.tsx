@@ -44,15 +44,10 @@ export default function LinkForm({
   const watchedUrl = useWatch({ control, name: "url" });
 
   useEffect(() => {
-    const isUrlValid = !!watchedUrl && !errors.url;
-    const isPlatformSelected = selectedDropdownPlatform !== null;
-
-    if (isEditing) {
-      setIsFormValid(isUrlValid);
-    } else {
-      setIsFormValid(isUrlValid && isPlatformSelected);
-    }
-  }, [watchedUrl, errors.url, selectedDropdownPlatform, isEditing]);
+    setIsFormValid(
+      !!watchedUrl && !errors.url && selectedDropdownPlatform !== null
+    );
+  }, [watchedUrl, errors.url, selectedDropdownPlatform]);
 
   useEffect(() => {
     if (selectedPlatform) {
@@ -61,11 +56,9 @@ export default function LinkForm({
         name: selectedPlatform.platform,
       });
       setValue("url", selectedPlatform.url);
-      setIsEditing(false);
     } else {
       reset();
       setSelectedDropdownPlatform(null);
-      setIsEditing(false);
     }
   }, [selectedPlatform, setValue, reset]);
 
@@ -161,7 +154,7 @@ export default function LinkForm({
           placeholder="e.g. https://www.github.com/johnappleseed"
           {...register("url")}
           error={errors.url?.message?.toString()}
-          disabled={!!selectedPlatform && !isEditing}
+          disabled={!isEditing}
         />
       </div>
       {platformError && <p className={styles.errorMessage}>{platformError}</p>}

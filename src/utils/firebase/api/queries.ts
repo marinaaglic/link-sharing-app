@@ -29,8 +29,6 @@ export const fetchUserPlatforms = async (
       url: doc.data().url,
     })) as ILinkData[];
 
-    console.log("User platforms:", userPlatforms);
-
     return userPlatforms;
   } catch (error) {
     console.log("Error fetching user platforms", error);

@@ -39,7 +39,6 @@ export default function LinkForm({
     useState<IPlatform | null>(null);
   const [isFormValid, setIsFormValid] = useState<boolean>(false);
   const [platformError, setPlatformError] = useState<string | null>(null);
-  const [isEditing, setIsEditing] = useState<boolean>(false);
 
   const watchedUrl = useWatch({ control, name: "url" });
 
@@ -69,7 +68,7 @@ export default function LinkForm({
 
   const onSubmitHandler: SubmitHandler<ILinkData> = async (data) => {
     try {
-      if (!isEditing) {
+      if (!selectedPlatform) {
         const isPlatformAdded = userPlatforms.some(
           (platform) => platform.id === selectedDropdownPlatform?.id
         );
@@ -100,7 +99,6 @@ export default function LinkForm({
             link.id === selectedPlatform.id ? { ...link, url: data.url } : link
           )
         );
-        setIsEditing(false);
       }
     } catch (error) {
       console.log("Error while saving link.", error);
@@ -130,11 +128,6 @@ export default function LinkForm({
         <p>Link</p>
         <div className={styles.buttonDiv}>
           <ButtonWithLabel
-            text="Edit"
-            variant="textOnly"
-            onClick={() => setIsEditing(true)}
-          />
-          <ButtonWithLabel
             text="Remove"
             variant="textOnly"
             onClick={deleteLinkHandler}
@@ -154,7 +147,6 @@ export default function LinkForm({
           placeholder="e.g. https://www.github.com/johnappleseed"
           {...register("url")}
           error={errors.url?.message?.toString()}
-          disabled={!isEditing}
         />
       </div>
       {platformError && <p className={styles.errorMessage}>{platformError}</p>}
@@ -164,7 +156,7 @@ export default function LinkForm({
           text="Save"
           variant="defaultSmall"
           type="submit"
-          disabled={!isFormValid || !isEditing}
+          disabled={!isFormValid}
         />
       </div>
     </form>

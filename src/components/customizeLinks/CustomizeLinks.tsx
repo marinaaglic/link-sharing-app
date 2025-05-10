@@ -22,6 +22,10 @@ export default function CustomizeLinks() {
     setSelectedPlatform(platform);
   };
 
+  const handleFormSuccess = () => {
+    setShowForm(false);
+    setSelectedPlatform(null);
+  };
   return (
     <div className={styles.customizeWrapper}>
       <div className={styles.customizeHeader}>
@@ -63,7 +67,10 @@ export default function CustomizeLinks() {
       </div>
       {showForm && (
         <div className={styles.linkForm}>
-          <LinkForm selectedPlatform={selectedPlatform} />
+          <LinkForm
+            selectedPlatform={selectedPlatform}
+            onSuccess={handleFormSuccess}
+          />
         </div>
       )}
 

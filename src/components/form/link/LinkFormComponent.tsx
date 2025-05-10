@@ -18,8 +18,10 @@ import LabelElement from "../../reusable/label/LabelElement";
 
 export default function LinkForm({
   selectedPlatform,
+  onSuccess,
 }: {
   selectedPlatform: ILinkData | null;
+  onSuccess: () => void;
 }) {
   const {
     register,
@@ -86,6 +88,7 @@ export default function LinkForm({
         console.log("Link saved.");
         reset();
         setUserPlatforms([...userPlatforms, newLink]);
+        onSuccess();
       } else {
         if (!selectedPlatform || !selectedPlatform.docId) {
           console.log("No platform selected for editing.");
@@ -99,6 +102,7 @@ export default function LinkForm({
             link.id === selectedPlatform.id ? { ...link, url: data.url } : link
           )
         );
+        onSuccess();
       }
     } catch (error) {
       console.log("Error while saving link.", error);

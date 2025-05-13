@@ -5,22 +5,36 @@ import styles from "./CustomizeLinks.module.css";
 import { useUserPlatforms } from "../../context/UserPlatformsContext";
 import { ILinkData } from "../form/link/linkForm";
 
-
 export default function CustomizeLinks() {
   const [showForm, setShowForm] = useState<boolean>(false);
-  const [selectedPlatform, setSelectedPlatform] = useState<ILinkData | null>(null);
+  const [selectedPlatform, setSelectedPlatform] = useState<ILinkData | null>(
+    null
+  );
   const { userPlatforms, loading } = useUserPlatforms();
 
   const handleAddNewLink = () => {
+    if (showForm && selectedPlatform === null) {
+      setShowForm(false);
+      return;
+    }
     setSelectedPlatform(null);
-    setShowForm(!showForm);
-  }
+    setShowForm(true);
+  };
 
   const handleEditPlatform = (platform: ILinkData) => {
-    setShowForm(true);
+    if (showForm && selectedPlatform?.id === platform.id) {
+      setShowForm(false);
+      setSelectedPlatform(null);
+      return;
+    }
     setSelectedPlatform(platform);
-  }
+    setShowForm(true);
+  };
 
+  const handleFormSuccess = () => {
+    setShowForm(false);
+    setSelectedPlatform(null);
+  };
   return (
     <div className={styles.customizeWrapper}>
       <div className={styles.customizeHeader}>
@@ -35,7 +49,11 @@ export default function CustomizeLinks() {
           <div className={styles.addedPlatforms}>
             <p>Added links</p>
             {userPlatforms.map((platform) => (
-              <p key={platform.id} className={styles.platform} onClick={() => handleEditPlatform(platform)}>
+              <p
+                key={platform.id}
+                className={styles.platform}
+                onClick={() => handleEditPlatform(platform)}
+              >
                 {platform.platform}
               </p>
             ))}
@@ -58,7 +76,10 @@ export default function CustomizeLinks() {
       </div>
       {showForm && (
         <div className={styles.linkForm}>
-          <LinkForm selectedPlatform={selectedPlatform} />
+          <LinkForm
+            selectedPlatform={selectedPlatform}
+            onSuccess={handleFormSuccess}
+          />
         </div>
       )}
 

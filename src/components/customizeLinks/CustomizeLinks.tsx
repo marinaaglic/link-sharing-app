@@ -13,13 +13,22 @@ export default function CustomizeLinks() {
   const { userPlatforms, loading } = useUserPlatforms();
 
   const handleAddNewLink = () => {
+    if (showForm && selectedPlatform === null) {
+      setShowForm(false);
+      return;
+    }
     setSelectedPlatform(null);
     setShowForm(true);
   };
 
   const handleEditPlatform = (platform: ILinkData) => {
-    setShowForm(true);
+    if (showForm && selectedPlatform?.id === platform.id) {
+      setShowForm(false);
+      setSelectedPlatform(null);
+      return;
+    }
     setSelectedPlatform(platform);
+    setShowForm(true);
   };
 
   const handleFormSuccess = () => {

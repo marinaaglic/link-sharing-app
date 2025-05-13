@@ -5,21 +5,22 @@ import styles from "./CustomizeLinks.module.css";
 import { useUserPlatforms } from "../../context/UserPlatformsContext";
 import { ILinkData } from "../form/link/linkForm";
 
-
 export default function CustomizeLinks() {
   const [showForm, setShowForm] = useState<boolean>(false);
-  const [selectedPlatform, setSelectedPlatform] = useState<ILinkData | null>(null);
+  const [selectedPlatform, setSelectedPlatform] = useState<ILinkData | null>(
+    null
+  );
   const { userPlatforms, loading } = useUserPlatforms();
 
   const handleAddNewLink = () => {
     setSelectedPlatform(null);
     setShowForm(!showForm);
-  }
+  };
 
   const handleEditPlatform = (platform: ILinkData) => {
     setShowForm(true);
     setSelectedPlatform(platform);
-  }
+  };
 
   return (
     <div className={styles.customizeWrapper}>
@@ -32,13 +33,19 @@ export default function CustomizeLinks() {
         {loading ? (
           <p>Loading...</p>
         ) : userPlatforms.length > 0 ? (
-          <div className={styles.addedPlatforms}>
+          <div className={styles.platformList}>
             <p>Added links</p>
-            {userPlatforms.map((platform) => (
-              <p key={platform.id} className={styles.platform} onClick={() => handleEditPlatform(platform)}>
-                {platform.platform}
-              </p>
-            ))}
+            <div className={styles.addedPlatforms}>
+              {userPlatforms.map((platform) => (
+                <p
+                  key={platform.id}
+                  className={styles.platform}
+                  onClick={() => handleEditPlatform(platform)}
+                >
+                  {platform.platform}
+                </p>
+              ))}
+            </div>
           </div>
         ) : (
           <>

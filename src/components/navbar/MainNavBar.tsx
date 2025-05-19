@@ -1,7 +1,7 @@
 import ButtonLink from "../reusable/button/ButtonLink";
 import styles from "./NavBar.module.css";
 
-export default function NavBar() {
+export default function MainNavBar() {
   return (
     <div className={styles.navbarWrapper}>
       <div className={styles.navbarContainer}>

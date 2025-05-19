@@ -7,7 +7,7 @@ export default function PreviewNavBar() {
     <div className={styles.navbarWrapper}>
       <div className={styles.previewButtonsContainer}>
         <ButtonLink to="/links" variant="outlined">
-          <span className={styles.linksText}>Back to Editor</span>
+          <span>Back to Editor</span>
         </ButtonLink>
         <ButtonWithLabel text="Share Link" variant="default" />
       </div>

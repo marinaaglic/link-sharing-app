@@ -1,0 +1,8 @@
+.pageContainer {
+  background-color: var(--zomp);
+  height: 357px;
+  width: 100%;
+  border-bottom-left-radius: 32px;
+  border-bottom-right-radius: 32px;
+  position: absolute;
+}

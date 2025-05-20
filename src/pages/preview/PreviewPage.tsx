@@ -6,7 +6,9 @@ export default function PreviewPage() {
   return (
     <div className={styles.pageContainer}>
       <PreviewNavBar />
-      <ProfileDetailsCard />
+      <div className={styles.container}>
+        <ProfileDetailsCard />
+      </div>
     </div>
   );
 }

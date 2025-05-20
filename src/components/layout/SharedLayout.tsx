@@ -1,5 +1,5 @@
 import styles from "./SharedLayout.module.css";
-import MainNavBar from "../navbar/MainNavbar";
+import MainNavBar from "../navbar/MainNavBar";
 import PhonePreview from "../phonePreview/PhonePreview";
 import { ReactNode } from "react";
 

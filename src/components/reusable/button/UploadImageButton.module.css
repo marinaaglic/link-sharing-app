@@ -1,4 +1,10 @@
-.uploadImageBtn {
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.uploadBox {
   width: 193px;
   height: 193px;
   border-radius: 12px;
@@ -6,4 +12,8 @@
   background-color: var(--zomp);
   font-family: inherit;
   cursor: pointer;
+}
+
+.hiddenInput {
+  display: none;
 }

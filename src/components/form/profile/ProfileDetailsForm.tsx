@@ -30,7 +30,7 @@ export default function ProfileDetailsForm() {
             id="profilePicture"
             variant="medium"
           />
-          <UploadImageButton text="+ Upload image" />
+          <UploadImageButton label="+ Upload image" />
           <LabelElement
             text="Image must be below 1024x1024px. Use PNG or JPG format."
             variant="small"

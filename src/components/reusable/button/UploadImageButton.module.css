@@ -17,6 +17,12 @@
   align-items: center;
 }
 
+.labelText {
+  color: var(--dark-green);
+  font-weight: 500;
+  font-size: 14px;
+}
+
 .hiddenInput {
   display: none;
 }

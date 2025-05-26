@@ -12,6 +12,9 @@
   background-color: var(--zomp);
   font-family: inherit;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .hiddenInput {

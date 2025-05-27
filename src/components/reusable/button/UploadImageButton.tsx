@@ -9,13 +9,13 @@ export default function UploadImageButton({
     <div className={styles.container}>
       <label className={styles.uploadBox}>
         <span className={styles.labelText}>{label}</span>
+        <input
+          type="file"
+          accept="image/*"
+          className={styles.hiddenInput}
+          {...rest}
+        />
       </label>
-      <input
-        type="file"
-        accept="image/*"
-        className={styles.hiddenInput}
-        {...rest}
-      />
     </div>
   );
 }

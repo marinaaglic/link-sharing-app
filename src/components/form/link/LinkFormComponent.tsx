@@ -12,8 +12,11 @@ import { addUserLink, deleteLink } from "../../../utils/firebase/firebaseLinks";
 import { useUserPlatforms } from "../../../context/UserPlatformsContext";
 import LabelElement from "../../reusable/label/LabelElement";
 
-
-export default function LinkForm({selectedPlatform}: {selectedPlatform: ILinkData | null}) {
+export default function LinkForm({
+  selectedPlatform,
+}: {
+  selectedPlatform: ILinkData | null;
+}) {
   const {
     register,
     handleSubmit,
@@ -28,21 +31,18 @@ export default function LinkForm({selectedPlatform}: {selectedPlatform: ILinkDat
   const platforms = usePlatforms();
   const { userPlatforms, setUserPlatforms } = useUserPlatforms();
 
-
-  const [selectedDropdownPlatform, setSelectedDropdownPlatform] = useState<IPlatform | null>(
-    null,
-
-  );
+  const [selectedDropdownPlatform, setSelectedDropdownPlatform] =
+    useState<IPlatform | null>(null);
   const [isFormValid, setIsFormValid] = useState<boolean>(false);
   const [platformError, setPlatformError] = useState<string | null>(null);
-  const [isEditing, setIsEditing] = useState<boolean>(false);
 
   const watchedUrl = useWatch({ control, name: "url" });
 
   useEffect(() => {
-    setIsFormValid(!!watchedUrl && !errors.url && selectedDropdownPlatform !== null);
+    setIsFormValid(
+      !!watchedUrl && !errors.url && selectedDropdownPlatform !== null
+    );
   }, [watchedUrl, errors.url, selectedDropdownPlatform]);
-  
 
   useEffect(() => {
     if (selectedPlatform) {
@@ -65,11 +65,7 @@ export default function LinkForm({selectedPlatform}: {selectedPlatform: ILinkDat
   const onSubmitHandler: SubmitHandler<ILinkData> = async (data) => {
     try {
       const isPlatformAdded = userPlatforms.some(
-
-        (platform) => platform.id === selectedDropdownPlatform?.id,
-
-        
-
+        (platform) => platform.id === selectedDropdownPlatform?.id
       );
 
       if (isPlatformAdded) {
@@ -91,27 +87,31 @@ export default function LinkForm({selectedPlatform}: {selectedPlatform: ILinkDat
 
   const deleteLinkHandler = async () => {
     if (!selectedPlatform || !selectedPlatform.docId) return;
-  
+
     try {
       await deleteLink(selectedPlatform.docId);
       console.log(`Link ${selectedPlatform.docId} deleted from Firestore`);
-  
-      setUserPlatforms(userPlatforms.filter((link) => link.id !== selectedPlatform.id));
+
+      setUserPlatforms(
+        userPlatforms.filter((link) => link.id !== selectedPlatform.id)
+      );
       reset();
       setSelectedDropdownPlatform(null);
     } catch (error) {
       console.log("An error occurred while deleting:", error);
     }
   };
-  
 
   return (
     <form className={styles.linkForm} onSubmit={handleSubmit(onSubmitHandler)}>
       <div className={styles.linkFormHeader}>
         <p>Link</p>
         <div className={styles.buttonDiv}>
-          <ButtonWithLabel text="Edit" variant="textOnly" onClick={() => setIsEditing(true)}/>
-          <ButtonWithLabel text="Remove" variant="textOnly" onClick={deleteLinkHandler}/>
+          <ButtonWithLabel
+            text="Remove"
+            variant="textOnly"
+            onClick={deleteLinkHandler}
+          />
         </div>
       </div>
       <div className={styles.inputContainer}>
@@ -127,18 +127,12 @@ export default function LinkForm({selectedPlatform}: {selectedPlatform: ILinkDat
           placeholder="e.g. https://www.github.com/johnappleseed"
           {...register("url")}
           error={errors.url?.message?.toString()}
-          disabled={!!selectedPlatform && !isEditing}
         />
       </div>
       {platformError && <p className={styles.errorMessage}>{platformError}</p>}
       <div className={styles.saveButton}>
         {" "}
-        <ButtonWithLabel
-          text="Save"
-          variant="defaultSmall"
-          type="submit"
-          disabled={!isFormValid}
-        />
+        <ButtonWithLabel text="Save" variant="defaultSmall" type="submit" />
       </div>
     </form>
   );

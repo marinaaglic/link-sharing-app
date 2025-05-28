@@ -132,7 +132,12 @@ export default function LinkForm({
       {platformError && <p className={styles.errorMessage}>{platformError}</p>}
       <div className={styles.saveButton}>
         {" "}
-        <ButtonWithLabel text="Save" variant="defaultSmall" type="submit" />
+        <ButtonWithLabel
+          text="Save"
+          variant="defaultSmall"
+          type="submit"
+          disabled={!isFormValid}
+        />
       </div>
     </form>
   );

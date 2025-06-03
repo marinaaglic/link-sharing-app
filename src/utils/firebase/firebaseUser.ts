@@ -41,3 +41,10 @@ export function userStateListener(callback: NextOrObserver<User>) {
 export async function signOutUser() {
   await signOut(auth);
 }
+
+export async function saveUserDetails() {
+  const user = auth.currentUser;
+  if (!user) {
+    throw new Error("User is not logged in.");
+  }
+}

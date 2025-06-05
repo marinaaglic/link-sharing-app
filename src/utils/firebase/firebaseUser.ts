@@ -9,7 +9,9 @@ import {
   browserLocalPersistence,
 } from "firebase/auth";
 
-import { auth } from "./firebaseConfig";
+import { auth, db } from "./firebaseConfig";
+import { collection } from "firebase/firestore";
+import { IProfileDetails } from "../../components/form/profile/profileDetails";
 
 export async function createNewAccount(email: string, password: string) {
   if (!email && !password) return;
@@ -42,9 +44,13 @@ export async function signOutUser() {
   await signOut(auth);
 }
 
-export async function saveUserDetails() {
+export async function saveUserDetails(profileDetails: IProfileDetails) {
   const user = auth.currentUser;
   if (!user) {
     throw new Error("User is not logged in.");
   }
+
+  try {
+    const userLinksRef = collection(db, "users", user.uid, "details");
+  } catch (err) {}
 }

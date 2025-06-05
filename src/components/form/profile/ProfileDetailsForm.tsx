@@ -3,13 +3,15 @@ import Input from "../../reusable/input/Input";
 import ButtonWithLabel from "../../reusable/button/ButtonWithLabel";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { profileDetailsSchema } from "../../../utils/schema";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { IProfileDetails } from "./profileDetails";
 import UploadImageButton from "../../reusable/button/UploadImageButton";
 import LabelElement from "../../reusable/label/LabelElement";
+import { saveUserDetails } from "../../../utils/firebase/firebaseUser";
 
 export default function ProfileDetailsForm() {
   const {
+    handleSubmit,
     register,
     formState: { errors },
   } = useForm<IProfileDetails>({
@@ -17,13 +19,17 @@ export default function ProfileDetailsForm() {
     mode: "onBlur",
   });
 
+  const onSubmitHandler: SubmitHandler<IProfileDetails> = async (data) => {
+    console.log(data);
+  };
+
   return (
     <div className={styles.customizeWrapper}>
       <div>
         <h2>Profile Details</h2>
         <p>Add your details to add personal touch to your profile.</p>
       </div>
-      <form>
+      <form onSubmit={handleSubmit(onSubmitHandler)}>
         <div className={styles.uploadButton}>
           <LabelElement
             text="Profile picture"

@@ -21,11 +21,13 @@ export default function ProfileDetailsForm() {
 
   const onSubmitHandler: SubmitHandler<IProfileDetails> = async (data) => {
     console.log(data);
+
     const profileDetails = await saveUserDetails({
       firstName: data.firstName as string,
       lastName: data.lastName as string,
       email: data.email as string,
     });
+
     console.log("Link saved.");
     console.log(profileDetails);
   };

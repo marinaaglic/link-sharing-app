@@ -49,12 +49,13 @@ export async function saveUserDetails(profileDetails: IProfileDetails) {
   if (!user) {
     throw new Error("User is not logged in.");
   }
+  const filteredDetails = Object.fromEntries(
+    Object.entries(profileDetails).filter(([_, value]) => value !== undefined)
+  );
 
   try {
     const userDetailsRef = collection(db, "users", user.uid, "details");
-    const docRef = await addDoc(userDetailsRef, {
-      ...profileDetails,
-    });
+    const docRef = await addDoc(userDetailsRef, filteredDetails);
 
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {

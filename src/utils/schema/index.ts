@@ -32,4 +32,5 @@ export const profileDetailsSchema = z.object({
   firstName: z.string().min(1, { message: "Can't be empty" }),
   lastName: z.string().min(1, { message: "Can't be empty" }),
   email: z.string().email().optional(),
+  img: z.string().url().optional(),
 });

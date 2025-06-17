@@ -34,6 +34,7 @@ export default function ProfileDetailsForm() {
   };
 
   const onSubmitHandler: SubmitHandler<IProfileDetails> = async (data) => {
+    console.log(data);
     try {
       let imageUrl: string | undefined = undefined;
 

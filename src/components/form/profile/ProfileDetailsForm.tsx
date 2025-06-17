@@ -7,7 +7,12 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { IProfileDetails } from "./profileDetails";
 import UploadImageButton from "../../reusable/button/UploadImageButton";
 import LabelElement from "../../reusable/label/LabelElement";
-import { saveUserDetails } from "../../../utils/firebase/firebaseUser";
+import {
+  saveUserDetails,
+  uploadProfileImage,
+} from "../../../utils/firebase/firebaseUser";
+import { useState } from "react";
+import { auth } from "../../../utils/firebase/firebaseConfig";
 
 export default function ProfileDetailsForm() {
   const {
@@ -19,17 +24,33 @@ export default function ProfileDetailsForm() {
     mode: "onBlur",
   });
 
+  const [imageFile, setImageFile] = useState<File | null>(null);
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setImageFile(file);
+    }
+  };
+
   const onSubmitHandler: SubmitHandler<IProfileDetails> = async (data) => {
-    console.log(data);
+    try {
+      let imageUrl: string | undefined = undefined;
 
-    const profileDetails = await saveUserDetails({
-      firstName: data.firstName as string,
-      lastName: data.lastName as string,
-      email: data.email as string,
-    });
+      if (imageFile && auth.currentUser) {
+        imageUrl = await uploadProfileImage(imageFile, auth.currentUser.uid);
+      }
+      const profileDetails = await saveUserDetails({
+        firstName: data.firstName as string,
+        lastName: data.lastName as string,
+        email: data.email as string,
+        img: imageUrl,
+      });
 
-    console.log("Link saved.");
-    console.log(profileDetails);
+      console.log("Profile saved: ", profileDetails);
+    } catch (error) {
+      console.error("Error saving profile:", error);
+    }
   };
 
   return (
@@ -45,7 +66,10 @@ export default function ProfileDetailsForm() {
             id="profilePicture"
             variant="medium"
           />
-          <UploadImageButton label="+ Upload image" />
+          <UploadImageButton
+            label="+ Upload image"
+            onChange={handleImageChange}
+          />
           <LabelElement
             text="Image must be below 1024x1024px. Use PNG or JPG format."
             variant="small"

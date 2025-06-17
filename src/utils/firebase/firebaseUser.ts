@@ -12,6 +12,8 @@ import {
 import { auth, db } from "./firebaseConfig";
 import { addDoc, getDoc, collection } from "firebase/firestore";
 import { IProfileDetails } from "../../components/form/profile/profileDetails";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { storage } from "./firebaseConfig";
 
 export async function createNewAccount(email: string, password: string) {
   if (!email && !password) return;
@@ -70,4 +72,11 @@ export async function saveUserDetails(profileDetails: IProfileDetails) {
     console.log("Error saving user details: ", err);
     throw new Error("Failed to save user details.");
   }
+}
+
+export async function uploadProfileImage(file: File, userId: string) {
+  const imageRef = ref(storage, `profileImages/${userId}/${file.name}`);
+  await uploadBytes(imageRef, file);
+  const downloadURL = await getDownloadURL(imageRef);
+  return downloadURL;
 }

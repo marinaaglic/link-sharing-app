@@ -76,6 +76,7 @@ export async function saveUserDetails(profileDetails: IProfileDetails) {
 
 export async function uploadProfileImage(file: File, userId: string) {
   const imageRef = ref(storage, `profileImages/${userId}/${file.name}`);
+  console.log(imageRef);
   await uploadBytes(imageRef, file);
   const downloadURL = await getDownloadURL(imageRef);
   return downloadURL;

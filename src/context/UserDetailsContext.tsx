@@ -1,4 +1,10 @@
-import { createContext, useState, useEffect, ReactNode } from "react";
+import {
+  createContext,
+  useState,
+  useEffect,
+  ReactNode,
+  useContext,
+} from "react";
 import { IProfileDetails } from "../components/form/profile/profileDetails";
 import { useAuth } from "./UserAuthContext";
 import { fetchUserDetails } from "../utils/firebase/api/queries";
@@ -38,4 +44,26 @@ export const UserDetailsProvider = ({ children }: IUserDetailsProps) => {
       setUserDetails([]);
     }
   }, [currentUser]);
+
+  const value = {
+    userDetails,
+    setUserDetails,
+    loading,
+  };
+
+  return (
+    <UserDetailsContext.Provider value={value}>
+      {children}
+    </UserDetailsContext.Provider>
+  );
+};
+
+export const useUserPlatforms = (): UserDetailsContextType => {
+  const context = useContext(UserDetailsContext);
+  if (!context) {
+    throw new Error(
+      "useUserPlatforms must be used within a UserPlatformsProvider"
+    );
+  }
+  return context;
 };

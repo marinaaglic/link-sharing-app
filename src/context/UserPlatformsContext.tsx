@@ -35,7 +35,6 @@ export const UserPlatformsProvider = ({ children }: IUserPlatformsProps) => {
       setIsLoading(true);
       fetchUserPlatforms(currentUser.uid)
         .then((platforms) => {
-          console.log("Fetched user platforms:", platforms);
           setUserPlatforms(platforms);
         })
         .finally(() => {

@@ -28,8 +28,6 @@ export async function fetchUserPlatforms(userId: string): Promise<ILinkData[]> {
       url: doc.data().url,
     })) as ILinkData[];
 
-    console.log("User platforms:", userPlatforms);
-
     return userPlatforms;
   } catch (error) {
     console.log("Error fetching user platforms", error);

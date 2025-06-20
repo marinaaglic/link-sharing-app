@@ -37,21 +37,23 @@ export async function fetchUserPlatforms(userId: string): Promise<ILinkData[]> {
 
 export async function fetchUserDetails(
   userId: string
-): Promise<IProfileDetails[]> {
+): Promise<IProfileDetails | null> {
   try {
     const userDetailsRef = collection(db, "users", userId, "details");
     const querySnapshot = await getDocs(userDetailsRef);
-    const userDetails: IProfileDetails[] = querySnapshot.docs.map((doc) => ({
-      firstName: doc.data().firstName,
-      lastName: doc.data().lastName,
-      email: doc.data().email,
-    })) as IProfileDetails[];
 
-    console.log(userDetails);
+    if (!querySnapshot.empty) {
+      const doc = querySnapshot.docs[0];
+      return {
+        firstName: doc.data().firstName,
+        lastName: doc.data().lastName,
+        email: doc.data().email,
+      };
+    }
 
-    return userDetails;
+    return null;
   } catch (error) {
-    console.log("Error fetching user platforms", error);
-    return [];
+    console.log("Error fetching user details", error);
+    return null;
   }
 }

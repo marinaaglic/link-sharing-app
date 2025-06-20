@@ -14,8 +14,8 @@ interface IUserDetailsProps {
 }
 
 interface UserDetailsContextType {
-  userDetails: IProfileDetails[];
-  setUserDetails: React.Dispatch<React.SetStateAction<IProfileDetails[]>>;
+  userDetails: IProfileDetails | null;
+  setUserDetails: React.Dispatch<React.SetStateAction<IProfileDetails | null>>;
   loading: boolean;
 }
 
@@ -25,7 +25,7 @@ export const UserDetailsContext = createContext<
 
 export const UserDetailsProvider = ({ children }: IUserDetailsProps) => {
   const { currentUser } = useAuth();
-  const [userDetails, setUserDetails] = useState<IProfileDetails[]>([]);
+  const [userDetails, setUserDetails] = useState<IProfileDetails | null>(null);
   const [loading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ export const UserDetailsProvider = ({ children }: IUserDetailsProps) => {
           setIsLoading(false);
         });
     } else {
-      setUserDetails([]);
+      setUserDetails(null);
     }
   }, [currentUser]);
 
@@ -58,7 +58,7 @@ export const UserDetailsProvider = ({ children }: IUserDetailsProps) => {
   );
 };
 
-export const useUserPlatforms = (): UserDetailsContextType => {
+export const useUserDetails = (): UserDetailsContextType => {
   const context = useContext(UserDetailsContext);
   if (!context) {
     throw new Error(

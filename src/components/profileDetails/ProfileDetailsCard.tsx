@@ -1,8 +1,10 @@
 import styles from "./ProfileDetailsCard.module.css";
 import { useUserDetails } from "../../context/UserDetailsContext";
+import { useUserPlatforms } from "../../context/UserPlatformsContext";
 
 export default function ProfileDetailsCard() {
   const { userDetails, loading } = useUserDetails();
+  const { userPlatforms } = useUserPlatforms();
 
   if (loading) {
     return <p>Loading...</p>;
@@ -21,7 +23,19 @@ export default function ProfileDetailsCard() {
         </h2>
         <span>{email}</span>
       </div>
-      <div className={styles.addedLinks}></div>
+      <div className={styles.addedLinks}>
+        {userPlatforms && userPlatforms.length > 0 ? (
+          <ul className={styles.platformList}>
+            {userPlatforms.map((platform) => (
+              <li key={platform.id}>
+                <span>{platform.platform}</span>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No links added.</p>
+        )}
+      </div>
     </div>
   );
 }

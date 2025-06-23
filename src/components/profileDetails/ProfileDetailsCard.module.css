@@ -27,4 +27,13 @@
 
 .platformList {
   list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.listItem {
+  border-radius: 8px;
+  padding: 16px;
+  background-color: antiquewhite;
 }

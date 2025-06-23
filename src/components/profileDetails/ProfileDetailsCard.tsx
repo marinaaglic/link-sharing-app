@@ -27,7 +27,7 @@ export default function ProfileDetailsCard() {
         {userPlatforms && userPlatforms.length > 0 ? (
           <ul className={styles.platformList}>
             {userPlatforms.map((platform) => (
-              <li key={platform.id}>
+              <li key={platform.id} className={styles.listItem}>
                 <span>{platform.platform}</span>
               </li>
             ))}

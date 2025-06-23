@@ -36,4 +36,13 @@
   border-radius: 8px;
   padding: 16px;
   background-color: antiquewhite;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.copyButton {
+  background: none;
+  border: none;
+  cursor: pointer;
 }

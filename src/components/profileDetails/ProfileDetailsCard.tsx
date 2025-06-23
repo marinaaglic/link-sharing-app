@@ -1,6 +1,7 @@
 import styles from "./ProfileDetailsCard.module.css";
 import { useUserDetails } from "../../context/UserDetailsContext";
 import { useUserPlatforms } from "../../context/UserPlatformsContext";
+import { FaArrowRight } from "react-icons/fa";
 
 export default function ProfileDetailsCard() {
   const { userDetails, loading } = useUserDetails();
@@ -13,6 +14,15 @@ export default function ProfileDetailsCard() {
     return <p>User details are not available.</p>;
   }
   const { firstName, lastName, email } = userDetails;
+
+  const handleCopy = async (content: string) => {
+    try {
+      await navigator.clipboard.writeText(content);
+      console.log("Copied to clipboard.");
+    } catch (error) {
+      console.log("Unable to copy to clipboard. ", error);
+    }
+  };
 
   return (
     <div className={styles.cardWrapper}>
@@ -29,6 +39,12 @@ export default function ProfileDetailsCard() {
             {userPlatforms.map((platform) => (
               <li key={platform.id} className={styles.listItem}>
                 <span>{platform.platform}</span>
+                <button
+                  onClick={() => handleCopy(platform.url)}
+                  className={styles.copyButton}
+                >
+                  <FaArrowRight />
+                </button>
               </li>
             ))}
           </ul>

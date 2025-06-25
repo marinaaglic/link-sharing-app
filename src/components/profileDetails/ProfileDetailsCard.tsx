@@ -2,6 +2,7 @@ import styles from "./ProfileDetailsCard.module.css";
 import { useUserDetails } from "../../context/UserDetailsContext";
 import { useUserPlatforms } from "../../context/UserPlatformsContext";
 import { FaArrowRight } from "react-icons/fa";
+import { getPlatformColor } from "../../utils/platformColors";
 
 export default function ProfileDetailsCard() {
   const { userDetails, loading } = useUserDetails();
@@ -14,19 +15,6 @@ export default function ProfileDetailsCard() {
     return <p>User details are not available.</p>;
   }
   const { firstName, lastName, email } = userDetails;
-
-  const platformColors: Record<string, string> = {
-    youtube: "#ff0000",
-    github: "#000000",
-    linkedin: "#0a66c2",
-    twitter: "#1da1f2",
-    facebook: "#1877f2",
-    instagram: "#e1306c",
-  };
-
-  const getPlatformColor = (platformName: string) => {
-    return platformColors[platformName.toLocaleLowerCase() || "white"];
-  };
 
   const handleCopy = async (content: string) => {
     try {

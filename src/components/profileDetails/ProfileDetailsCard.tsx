@@ -15,6 +15,19 @@ export default function ProfileDetailsCard() {
   }
   const { firstName, lastName, email } = userDetails;
 
+  const platformColors: Record<string, string> = {
+    youtube: "#ff0000",
+    github: "#000000",
+    linkedin: "#0a66c2",
+    twitter: "#1da1f2",
+    facebook: "#1877f2",
+    instagram: "#e1306c",
+  };
+
+  const getPlatformColor = (platformName: string) => {
+    return platformColors[platformName.toLocaleLowerCase() || "white"];
+  };
+
   const handleCopy = async (content: string) => {
     try {
       await navigator.clipboard.writeText(content);
@@ -37,13 +50,20 @@ export default function ProfileDetailsCard() {
         {userPlatforms && userPlatforms.length > 0 ? (
           <ul className={styles.platformList}>
             {userPlatforms.map((platform) => (
-              <li key={platform.id} className={styles.listItem}>
+              <li
+                key={platform.id}
+                className={styles.listItem}
+                style={{
+                  backgroundColor: getPlatformColor(platform.platform),
+                  color: "#fff",
+                }}
+              >
                 <span>{platform.platform}</span>
                 <button
                   onClick={() => handleCopy(platform.url)}
                   className={styles.copyButton}
                 >
-                  <FaArrowRight />
+                  <FaArrowRight className={styles.arrow} />
                 </button>
               </li>
             ))}

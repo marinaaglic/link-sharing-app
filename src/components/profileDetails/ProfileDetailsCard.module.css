@@ -41,6 +41,10 @@
   align-items: center;
 }
 
+.arrow {
+  color: white;
+}
+
 .copyButton {
   background: none;
   border: none;

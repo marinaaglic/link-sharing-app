@@ -44,7 +44,7 @@ export default function ProfileDetailsCard() {
         <h2>
           {firstName} {lastName}
         </h2>
-        <span>{email}</span>
+        <span className={styles.spanEmail}>{email}</span>
       </div>
       <div className={styles.addedLinks}>
         {userPlatforms && userPlatforms.length > 0 ? (

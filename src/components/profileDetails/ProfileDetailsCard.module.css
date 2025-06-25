@@ -25,6 +25,10 @@
   border: 4px solid var(--dark-grey);
 }
 
+.spanEmail {
+  color: var(--grey);
+}
+
 .platformList {
   list-style: none;
   display: flex;

@@ -1,6 +1,10 @@
 import styles from "./PhonePreview.module.css";
+import { useUserPlatforms } from "../../context/UserPlatformsContext";
+import { getPlatformColor } from "../../utils/platformColors";
 
 export default function PhonePreview() {
+  const { userPlatforms } = useUserPlatforms();
+
   return (
     <div className={styles.phoneWrapper}>
       <div className={styles.phoneOutline}>

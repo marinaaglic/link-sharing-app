@@ -1,6 +1,7 @@
 import styles from "./PhonePreview.module.css";
 import { useUserPlatforms } from "../../context/UserPlatformsContext";
 import { getPlatformColor } from "../../utils/platformColors";
+import { FaArrowRight } from "react-icons/fa";
 
 export default function PhonePreview() {
   const { userPlatforms } = useUserPlatforms();
@@ -30,6 +31,7 @@ export default function PhonePreview() {
                   style={{ backgroundColor, color: textColor }}
                 >
                   {label}
+                  {platform && <FaArrowRight className={styles.arrow} />}
                 </div>
               );
             })}

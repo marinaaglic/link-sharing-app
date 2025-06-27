@@ -16,9 +16,23 @@ export default function PhonePreview() {
           </div>
 
           <div className={styles.phoneContent}>
-            {Array.from({ length: 5 }).map((_, index) => (
-              <div className={styles.linkElement} key={index}></div>
-            ))}
+            {Array.from({ length: 5 }).map((_, index) => {
+              const platform = userPlatforms[index];
+              const backgroundColor = platform
+                ? getPlatformColor(platform.platform)
+                : "var(--light-grey)";
+              const textColor = platform ? "#fff" : "#999";
+              const label = platform ? platform.platform : "";
+              return (
+                <div
+                  key={index}
+                  className={`${styles.linkElement} ${!platform ? styles.emptyLink : ""}`}
+                  style={{ backgroundColor, color: textColor }}
+                >
+                  {label}
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

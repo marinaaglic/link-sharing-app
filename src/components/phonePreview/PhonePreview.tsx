@@ -2,9 +2,13 @@ import styles from "./PhonePreview.module.css";
 import { useUserPlatforms } from "../../context/UserPlatformsContext";
 import { getPlatformColor } from "../../utils/platformColors";
 import { FaArrowRight } from "react-icons/fa";
+import { useUserDetails } from "../../context/UserDetailsContext";
 
 export default function PhonePreview() {
   const { userPlatforms } = useUserPlatforms();
+  const { userDetails } = useUserDetails();
+
+  const userName = userDetails?.firstName + " " + userDetails?.lastName;
 
   return (
     <div className={styles.phoneWrapper}>
@@ -12,8 +16,17 @@ export default function PhonePreview() {
         <div className={styles.phoneInline}>
           <div className={styles.profileHeader}>
             <div className={styles.profileCircle}></div>
-            <div className={styles.contact}></div>
-            <div className={styles.name}></div>
+
+            {userName ? (
+              <div className={styles.nameText}>{userName}</div>
+            ) : (
+              <div className={styles.name}></div>
+            )}
+            {userDetails?.email ? (
+              <div className={styles.contactText}>{userDetails.email}</div>
+            ) : (
+              <div className={styles.contact}></div>
+            )}
           </div>
 
           <div className={styles.phoneContent}>

@@ -13,7 +13,7 @@ export default function MainNavBar() {
           </ButtonLink>
           <ButtonLink to="/profile-details" variant="default">
             <img src="/profile-teal.svg" className={styles.profileIcon} />
-            <span className={styles.profileText}>Profile</span>
+            <span className={styles.profileText}>Profile Details</span>
           </ButtonLink>
         </div>
         <div className={styles.previewButton}>

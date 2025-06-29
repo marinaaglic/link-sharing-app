@@ -24,5 +24,4 @@ export type ButtonLinkType = {
 
 export type UploadImageButtonType = {
   label?: string;
-  text: string;
-} & ButtonHTMLAttributes<HTMLButtonElement>;
+} & ButtonHTMLAttributes<HTMLInputElement>;

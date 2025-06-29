@@ -1,0 +1,15 @@
+.pageContainer {
+  background-color: var(--zomp);
+  height: 357px;
+  width: 100%;
+  border-bottom-left-radius: 32px;
+  border-bottom-right-radius: 32px;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}

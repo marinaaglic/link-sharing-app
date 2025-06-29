@@ -1,7 +1,7 @@
 import ButtonLink from "../reusable/button/ButtonLink";
 import styles from "./NavBar.module.css";
 
-export default function NavBar() {
+export default function MainNavBar() {
   return (
     <div className={styles.navbarWrapper}>
       <div className={styles.navbarContainer}>
@@ -13,7 +13,7 @@ export default function NavBar() {
           </ButtonLink>
           <ButtonLink to="/profile-details" variant="default">
             <img src="/profile-teal.svg" className={styles.profileIcon} />
-            <span className={styles.profileText}>Profile</span>
+            <span className={styles.profileText}>Profile Details</span>
           </ButtonLink>
         </div>
         <div className={styles.previewButton}>

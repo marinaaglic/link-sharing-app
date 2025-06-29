@@ -3,15 +3,19 @@ import { UploadImageButtonType } from "../../../utils/type/button";
 
 export default function UploadImageButton({
   label,
-  text,
   ...rest
 }: UploadImageButtonType) {
   return (
     <div className={styles.container}>
-      <label>{label}</label>
-      <button {...rest} className={styles.uploadImageBtn}>
-        {text}
-      </button>
+      <label className={styles.uploadBox}>
+        <span className={styles.labelText}>{label}</span>
+        <input
+          type="file"
+          accept="image/*"
+          className={styles.hiddenInput}
+          {...rest}
+        />
+      </label>
     </div>
   );
 }

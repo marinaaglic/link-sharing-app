@@ -20,19 +20,25 @@
   gap: 16px;
 }
 
+.previewButtonsContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .previewIcon {
   display: none;
 }
 
 @media (max-width: 786px) {
   h2 {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 }
 
 @media (max-width: 480px) {
   h2 {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
 
   .navbarWrapper {

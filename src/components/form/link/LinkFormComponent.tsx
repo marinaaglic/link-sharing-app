@@ -22,6 +22,7 @@ export default function LinkForm({
 }: {
   selectedPlatform: ILinkData | null;
   onSuccess: () => void;
+
 }) {
   const {
     register,
@@ -70,6 +71,7 @@ export default function LinkForm({
 
   const onSubmitHandler: SubmitHandler<ILinkData> = async (data) => {
     try {
+
       if (!selectedPlatform) {
         const isPlatformAdded = userPlatforms.some(
           (platform) => platform.id === selectedDropdownPlatform?.id
@@ -103,6 +105,7 @@ export default function LinkForm({
           )
         );
         onSuccess();
+
       }
     } catch (error) {
       console.log("Error while saving link.", error);

@@ -3,13 +3,20 @@ import Input from "../../reusable/input/Input";
 import ButtonWithLabel from "../../reusable/button/ButtonWithLabel";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { profileDetailsSchema } from "../../../utils/schema";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { IProfileDetails } from "./profileDetails";
 import UploadImageButton from "../../reusable/button/UploadImageButton";
 import LabelElement from "../../reusable/label/LabelElement";
+import {
+  saveUserDetails,
+  uploadProfileImage,
+} from "../../../utils/firebase/firebaseUser";
+import { useState } from "react";
+import { auth } from "../../../utils/firebase/firebaseConfig";
 
 export default function ProfileDetailsForm() {
   const {
+    handleSubmit,
     register,
     formState: { errors },
   } = useForm<IProfileDetails>({
@@ -17,20 +24,53 @@ export default function ProfileDetailsForm() {
     mode: "onBlur",
   });
 
+  const [imageFile, setImageFile] = useState<File | null>(null);
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setImageFile(file);
+    }
+  };
+
+  const onSubmitHandler: SubmitHandler<IProfileDetails> = async (data) => {
+    console.log(data);
+    try {
+      let imageUrl: string | undefined = undefined;
+
+      if (imageFile && auth.currentUser) {
+        imageUrl = await uploadProfileImage(imageFile, auth.currentUser.uid);
+      }
+      const profileDetails = await saveUserDetails({
+        firstName: data.firstName as string,
+        lastName: data.lastName as string,
+        email: data.email as string,
+        img: imageUrl,
+      });
+
+      console.log("Profile saved: ", profileDetails);
+    } catch (error) {
+      console.error("Error saving profile:", error);
+    }
+  };
+
   return (
     <div className={styles.customizeWrapper}>
       <div>
         <h2>Profile Details</h2>
         <p>Add your details to add personal touch to your profile.</p>
       </div>
-      <form>
+      <form onSubmit={handleSubmit(onSubmitHandler)}>
         <div className={styles.uploadButton}>
           <LabelElement
             text="Profile picture"
             id="profilePicture"
             variant="medium"
           />
-          <UploadImageButton text="+ Upload image" />
+          <UploadImageButton
+            label="+ Upload image"
+            onChange={handleImageChange}
+          />
           <LabelElement
             text="Image must be below 1024x1024px. Use PNG or JPG format."
             variant="small"

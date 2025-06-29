@@ -56,11 +56,21 @@
   margin-bottom: 13px;
 }
 
+.contactText {
+  color: var(--grey);
+  font-size: 0.875rem;
+}
+
 .name {
   width: 72px;
   height: 8px;
   border-radius: 8px;
   background-color: var(--light-grey);
+}
+
+.nameText {
+  font-size: 1.125rem;
+  margin-bottom: 8px;
 }
 
 .phoneContent {
@@ -75,5 +85,10 @@
   background-color: var(--light-grey);
   border-radius: 8px;
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 12px;
   height: 44px;
+  box-sizing: border-box;
 }

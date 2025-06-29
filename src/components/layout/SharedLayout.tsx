@@ -1,5 +1,5 @@
 import styles from "./SharedLayout.module.css";
-import NavBar from "../navbar/NavBar";
+import MainNavBar from "../navbar/MainNavBar";
 import PhonePreview from "../phonePreview/PhonePreview";
 import { ReactNode } from "react";
 
@@ -10,7 +10,7 @@ type PageContentProps = {
 export function SharedLayout({ children }: PageContentProps) {
   return (
     <div className={styles.pageContainer}>
-      <NavBar />
+      <MainNavBar />
       <div className={styles.pageContent}>
         <div className={styles.phonePreviewContainer}>
           <PhonePreview />

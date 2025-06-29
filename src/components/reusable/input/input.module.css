@@ -41,7 +41,7 @@ input:focus {
   right: 20px;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 12px;
+  font-size: 0.75rem;
   color: var(--warning-red);
   background: #fff;
 }
@@ -49,7 +49,7 @@ input:focus {
 @media (max-width: 768px) {
   .input {
     width: 100%;
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 }
 

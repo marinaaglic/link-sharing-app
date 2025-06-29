@@ -13,12 +13,12 @@
 }
 
 .pHeader {
-  font-size: 16px;
+  font-size: 1rem;
   color: var(--grey);
 }
 
 .pGetStared {
-  font-size: 16px;
+  font-size: 1rem;
   color: var(--grey);
   text-align: center;
 }

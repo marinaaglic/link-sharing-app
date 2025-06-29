@@ -29,8 +29,6 @@ export const UserPlatformsProvider = ({ children }: IUserPlatformsProps) => {
   const [loading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    console.log("Current user:", currentUser);
-
     if (currentUser) {
       setIsLoading(true);
       fetchUserPlatforms(currentUser.uid)

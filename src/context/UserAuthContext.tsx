@@ -29,7 +29,6 @@ export const UserAuthProvider = ({ children }: IUserAuthContextProps) => {
       if (user) {
         setCurrentUser(user);
       } else {
-        console.log("User logged out.");
         setCurrentUser(null);
       }
       setLoading(false);

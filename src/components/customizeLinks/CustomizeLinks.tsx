@@ -13,15 +13,29 @@ export default function CustomizeLinks() {
   const { userPlatforms, loading } = useUserPlatforms();
 
   const handleAddNewLink = () => {
+    if (showForm && selectedPlatform === null) {
+      setShowForm(false);
+      return;
+    }
     setSelectedPlatform(null);
-    setShowForm(!showForm);
+    setShowForm(true);
+
   };
 
   const handleEditPlatform = (platform: ILinkData) => {
-    setShowForm(true);
+    if (showForm && selectedPlatform?.id === platform.id) {
+      setShowForm(false);
+      setSelectedPlatform(null);
+      return;
+    }
     setSelectedPlatform(platform);
+    setShowForm(true);
   };
 
+  const handleFormSuccess = () => {
+    setShowForm(false);
+    setSelectedPlatform(null);
+  };
   return (
     <div className={styles.customizeWrapper}>
       <div className={styles.customizeHeader}>
@@ -35,6 +49,7 @@ export default function CustomizeLinks() {
         ) : userPlatforms.length > 0 ? (
           <div className={styles.platformList}>
             <p>Added links</p>
+
             <div className={styles.addedPlatforms}>
               {userPlatforms.map((platform) => (
                 <p
@@ -46,6 +61,7 @@ export default function CustomizeLinks() {
                 </p>
               ))}
             </div>
+
           </div>
         ) : (
           <>
@@ -65,7 +81,10 @@ export default function CustomizeLinks() {
       </div>
       {showForm && (
         <div className={styles.linkForm}>
-          <LinkForm selectedPlatform={selectedPlatform} />
+          <LinkForm
+            selectedPlatform={selectedPlatform}
+            onSuccess={handleFormSuccess}
+          />
         </div>
       )}
 

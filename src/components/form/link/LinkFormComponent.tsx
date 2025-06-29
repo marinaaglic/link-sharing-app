@@ -8,14 +8,21 @@ import Dropdown from "../../reusable/dropdown/Dropdown";
 import Input from "../../reusable/input/Input";
 import { ILinkData, IPlatform } from "./linkForm";
 import styles from "./LinkForm.module.css";
-import { addUserLink, deleteLink } from "../../../utils/firebase/firebaseLinks";
+import {
+  addUserLink,
+  deleteLink,
+  updateLink,
+} from "../../../utils/firebase/firebaseLinks";
 import { useUserPlatforms } from "../../../context/UserPlatformsContext";
 import LabelElement from "../../reusable/label/LabelElement";
 
 export default function LinkForm({
   selectedPlatform,
+  onSuccess,
 }: {
   selectedPlatform: ILinkData | null;
+  onSuccess: () => void;
+
 }) {
   const {
     register,
@@ -64,22 +71,42 @@ export default function LinkForm({
 
   const onSubmitHandler: SubmitHandler<ILinkData> = async (data) => {
     try {
-      const isPlatformAdded = userPlatforms.some(
-        (platform) => platform.id === selectedDropdownPlatform?.id
-      );
 
-      if (isPlatformAdded) {
-        setPlatformError("Platform is already added.");
-        return;
+      if (!selectedPlatform) {
+        const isPlatformAdded = userPlatforms.some(
+          (platform) => platform.id === selectedDropdownPlatform?.id
+        );
+
+        if (isPlatformAdded) {
+          setPlatformError("Platform is already added.");
+          return;
+        }
+
+        const newLink = await addUserLink({
+          id: selectedDropdownPlatform?.id as string,
+          platform: selectedDropdownPlatform?.name ?? " dummy platform",
+          url: data.url || "dummy url",
+        });
+        console.log("Link saved.");
+        reset();
+        setUserPlatforms([...userPlatforms, newLink]);
+        onSuccess();
+      } else {
+        if (!selectedPlatform || !selectedPlatform.docId) {
+          console.log("No platform selected for editing.");
+          return;
+        }
+        await updateLink(selectedPlatform.docId, data.url);
+        console.log("Link updated.");
+
+        setUserPlatforms((prev) =>
+          prev.map((link) =>
+            link.id === selectedPlatform.id ? { ...link, url: data.url } : link
+          )
+        );
+        onSuccess();
+
       }
-      const newLink = await addUserLink({
-        id: selectedDropdownPlatform?.id as string,
-        platform: selectedDropdownPlatform?.name ?? " dummy platform",
-        url: data.url || "dummy url",
-      });
-      console.log("Link saved.");
-      reset();
-      setUserPlatforms([...userPlatforms, newLink]);
     } catch (error) {
       console.log("Error while saving link.", error);
     }

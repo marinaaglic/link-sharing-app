@@ -16,7 +16,7 @@ interface IUserPlatformsProps {
 interface UserPlatformsContextType {
   userPlatforms: ILinkData[];
   setUserPlatforms: React.Dispatch<React.SetStateAction<ILinkData[]>>;
-  loading: boolean
+  loading: boolean;
 }
 
 export const UserPlatformsContext = createContext<
@@ -29,17 +29,15 @@ export const UserPlatformsProvider = ({ children }: IUserPlatformsProps) => {
   const [loading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    console.log("Current user:", currentUser);
-
     if (currentUser) {
       setIsLoading(true);
-      fetchUserPlatforms(currentUser.uid).then((platforms) => {
-        console.log("Fetched user platforms after delete:", platforms);
-        setUserPlatforms(platforms);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      })
+      fetchUserPlatforms(currentUser.uid)
+        .then((platforms) => {
+          setUserPlatforms(platforms);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
     } else {
       setUserPlatforms([]);
     }
@@ -48,7 +46,7 @@ export const UserPlatformsProvider = ({ children }: IUserPlatformsProps) => {
   const value = {
     userPlatforms,
     setUserPlatforms,
-    loading
+    loading,
   };
 
   return (
@@ -62,7 +60,7 @@ export const useUserPlatforms = (): UserPlatformsContextType => {
   const context = useContext(UserPlatformsContext);
   if (!context) {
     throw new Error(
-      "useUserPlatforms must be used within a UserPlatformsProvider",
+      "useUserPlatforms must be used within a UserPlatformsProvider"
     );
   }
   return context;

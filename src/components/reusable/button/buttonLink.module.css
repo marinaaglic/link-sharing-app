@@ -5,7 +5,7 @@
   background-color: white;
   border-radius: 8px;
   padding: 11px 27px;
-  font-size: 16px;
+  font-size: 1rem;
   text-decoration: none;
   color: var(--charcoal);
   gap: 8px;
@@ -22,7 +22,7 @@
   background-color: white;
   border-radius: 8px;
   padding: 11px 27px;
-  font-size: 16px;
+  font-size: 1rem;
   text-decoration: none;
   color: var(--charcoal);
   border: 1px solid var(--zomp);
@@ -33,12 +33,12 @@
   background-color: var(--zomp);
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .buttonLinkDefault,
   .buttonLinkOutlined {
     font-size: 14px;
   }
-}
+} */
 
 @media (max-width: 480px) {
   .buttonLinkOutlined {

@@ -19,6 +19,7 @@ export default function CustomizeLinks() {
     }
     setSelectedPlatform(null);
     setShowForm(true);
+
   };
 
   const handleEditPlatform = (platform: ILinkData) => {
@@ -46,17 +47,21 @@ export default function CustomizeLinks() {
         {loading ? (
           <p>Loading...</p>
         ) : userPlatforms.length > 0 ? (
-          <div className={styles.addedPlatforms}>
+          <div className={styles.platformList}>
             <p>Added links</p>
-            {userPlatforms.map((platform) => (
-              <p
-                key={platform.id}
-                className={styles.platform}
-                onClick={() => handleEditPlatform(platform)}
-              >
-                {platform.platform}
-              </p>
-            ))}
+
+            <div className={styles.addedPlatforms}>
+              {userPlatforms.map((platform) => (
+                <p
+                  key={platform.id}
+                  className={styles.platform}
+                  onClick={() => handleEditPlatform(platform)}
+                >
+                  {platform.platform}
+                </p>
+              ))}
+            </div>
+
           </div>
         ) : (
           <>

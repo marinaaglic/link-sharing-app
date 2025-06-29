@@ -13,12 +13,12 @@
 }
 
 .pHeader {
-  font-size: 16px;
+  font-size: 1rem;
   color: var(--grey);
 }
 
 .pGetStared {
-  font-size: 16px;
+  font-size: 1rem;
   color: var(--grey);
   text-align: center;
 }
@@ -37,4 +37,9 @@
   padding: 10px;
   border-radius: 8px;
   cursor: pointer;
+}
+
+.addedPlatforms {
+  display: flex;
+  gap: 10px;
 }

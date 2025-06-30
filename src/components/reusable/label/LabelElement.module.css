@@ -12,3 +12,10 @@
   font-size: 1rem;
   white-space: nowrap;
 }
+
+@media (max-width: 480px) {
+  .labelSmall,
+  .labelMedium {
+    white-space: wrap;
+  }
+}

@@ -8,7 +8,10 @@ export default function PhonePreview() {
   const { userPlatforms } = useUserPlatforms();
   const { userDetails } = useUserDetails();
 
-  const userName = userDetails?.firstName + " " + userDetails?.lastName;
+  const hasName = userDetails?.firstName || userDetails?.lastName;
+  const userName = hasName
+    ? `${userDetails?.firstName || ""} ${userDetails?.lastName || ""}`.trim()
+    : null;
 
   return (
     <div className={styles.phoneWrapper}>

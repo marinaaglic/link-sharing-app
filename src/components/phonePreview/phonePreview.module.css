@@ -65,6 +65,7 @@
   height: 8px;
   border-radius: 8px;
   background-color: var(--light-grey);
+  margin-bottom: 8px;
 }
 
 .nameText {
